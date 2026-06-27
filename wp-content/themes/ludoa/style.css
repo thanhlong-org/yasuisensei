@@ -1,0 +1,13 @@
+/*
+Theme Name: Ludoa
+Theme URI: https://asofarm.test/
+Author: Ludoa
+Description: 大自然阿蘇 健康の森 — 滞在型健康増進プログラム LP。HTML/CSS から変換したカスタムワンページテーマ。多言語 (ja/zh-Hant/ko/en) 対応。
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: ludoa
+Tags: one-page, landing-page, custom, multilingual
+*/
+
+/* Actual styles live in /assets/css/* and are enqueued via functions.php. */
