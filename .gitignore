@@ -5,16 +5,10 @@
 # === CRITICAL: WordPress config (chứa DB credentials, secret keys) ===
 wp-config.php
 
-# === WordPress core (deploy riêng, không cần track) ===
-/index.php
-/wp-*.php
-!/wp-content/
-
 # === Uploads (media files - binary, không thuộc git) ===
 wp-content/uploads/
 
 # === WordPress core mặc định - không phải custom ===
-wp-content/plugins/
 wp-content/themes/twenty*/
 
 # === WordPress temp / cache ===
