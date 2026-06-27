@@ -1,0 +1,85 @@
+# ==============================
+# Force HTTPS + non-www
+# http://ludoa.jp      → https://ludoa.jp
+# http://www.ludoa.jp  → https://ludoa.jp
+# https://www.ludoa.jp → https://ludoa.jp
+# ==============================
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.ludoa\.jp$ [NC]
+RewriteRule ^(.*)$ https://ludoa.jp/$1 [R=301,L]
+</IfModule>
+
+# ==============================
+# Security hardening
+# ==============================
+
+# Disable directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(wp-config\.php|\.htaccess|\.env|memo\.md|readme\.html|license\.txt)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Block xmlrpc.php (common attack vector)
+<Files xmlrpc.php>
+  Order allow,deny
+  Deny from all
+</Files>
+
+# Block user enumeration (?author=N)
+<IfModule mod_rewrite.c>
+RewriteCond %{QUERY_STRING} ^author=\d
+RewriteRule ^ /? [R=301,L]
+</IfModule>
+
+# Block access to hidden files (.git, .env...)
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# ==============================
+# WordPress routing
+# ==============================
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# ==============================
+# Security headers
+# ==============================
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  # HSTS: enforce HTTPS for 1 year (enable after confirming HTTPS works)
+  # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
