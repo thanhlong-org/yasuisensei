@@ -5,6 +5,7 @@
  * @package Ludoa
  */
 ?>
+
   <!-- ============================================================
        FOOTER
        ============================================================ -->
@@ -55,7 +56,7 @@
 
         <!-- Right: Links Grid -->
         <nav class="footer__nav" aria-label="フッターナビゲーション">
-          <div class="footer__nav-grid">
+          <div class="footer__nav-list">
             <a href="#program" class="footer__nav-link footer__nav-link--full" data-i18n="footer.nav_program">滞在型健康増進プログラムとは</a>
             <a href="#supervision" class="footer__nav-link footer__nav-link--full" data-i18n="footer.nav_supervision">日本健康増進学術機構による総合監修</a>
             <a href="#fields" class="footer__nav-link footer__nav-link--full" data-i18n="footer.nav_fields">健康プログラムを構成する6つの分野</a>
@@ -537,65 +538,126 @@
         </svg>
       </button>
 
-      <div class="modal__content contact-modal">
-        <form action="#" method="POST" class="contact-modal__form">
-          
-          <!-- Name field -->
-          <div class="contact-modal__field">
-            <label class="contact-modal__label" data-i18n="contact.name_label">お名前 <span class="text-danger">*</span></label>
-            <input type="text" name="name" class="contact-modal__input" placeholder="阿蘇 太郎" data-i18n-placeholder="contact.name_placeholder" required />
-          </div>
+      <div class="modal__content contact-modal" data-contact-flow>
 
-          <!-- Email & Phone row -->
-          <div class="contact-modal__row">
-            <div class="contact-modal__field contact-modal__field--half">
-              <label class="contact-modal__label" data-i18n="contact.email_label">メールアドレス <span class="text-danger">*</span></label>
-              <input type="email" name="email" class="contact-modal__input" placeholder="example@domain.com" required />
+        <!-- ===== STEP 1: 入力 (input) ===== -->
+        <div class="contact-step is-active" data-step="input">
+          <form class="contact-modal__form js-contact-form">
+
+            <!-- Name field -->
+            <div class="contact-modal__field">
+              <label class="contact-modal__label" data-i18n="contact.name_label">お名前 <span class="text-danger">*</span></label>
+              <input type="text" name="ludoa_name" class="contact-modal__input" placeholder="阿蘇 太郎" data-i18n-placeholder="contact.name_placeholder" required />
             </div>
-            <div class="contact-modal__field contact-modal__field--half">
-              <label class="contact-modal__label" data-i18n="contact.tel_label">お電話番号 <span class="text-danger">*</span></label>
-              <input type="tel" name="tel" class="contact-modal__input" placeholder="090-0000-0000" required />
+
+            <!-- Email & Phone row -->
+            <div class="contact-modal__row">
+              <div class="contact-modal__field contact-modal__field--half">
+                <label class="contact-modal__label" data-i18n="contact.email_label">メールアドレス <span class="text-danger">*</span></label>
+                <input type="email" name="ludoa_email" class="contact-modal__input" placeholder="example@domain.com" required />
+              </div>
+              <div class="contact-modal__field contact-modal__field--half">
+                <label class="contact-modal__label" data-i18n="contact.tel_label">お電話番号 <span class="text-danger">*</span></label>
+                <input type="tel" name="ludoa_tel" class="contact-modal__input" placeholder="090-0000-0000" required />
+              </div>
+            </div>
+
+            <!-- Select field -->
+            <div class="contact-modal__field">
+              <label class="contact-modal__label" data-i18n="contact.subject_label">お問い合わせ内容の種類 <span class="text-danger">*</span></label>
+              <div class="contact-modal__select-wrapper">
+                <select name="ludoa_subject_type" class="contact-modal__select" required>
+                  <option value="" disabled selected hidden data-i18n="contact.subject_opt1">5泊6日プランの仮予約</option>
+                  <option value="5泊6日プランの仮予約" data-i18n="contact.subject_opt1">5泊6日プランの仮予約</option>
+                  <option value="ご相談・その他" data-i18n="contact.subject_opt2">ご相談・その他のお問い合わせ</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Textarea field -->
+            <div class="contact-modal__field">
+              <label class="contact-modal__label" data-i18n="contact.message_label">ご質問・ご要望</label>
+              <textarea name="ludoa_message" class="contact-modal__textarea" placeholder="食事制限やアレルギー、送迎に関するご相談などはこちらにご記入ください。" data-i18n-placeholder="contact.message_placeholder" rows="5"></textarea>
+            </div>
+
+            <!-- Policy agreement text -->
+            <p class="contact-modal__policy-text" data-i18n="contact.policy_text">
+              ご入力いただきました情報は、当社の個人情報保護方針に基づき厳重に管理いたします。<br />
+              当社の<a href="#" class="js-privacy-trigger contact-modal__policy-link">個人情報保護方針</a>をご確認いただき、同意いただいた上で送信ください。
+            </p>
+
+            <!-- Checkbox agree -->
+            <div class="contact-modal__checkbox-container">
+              <label class="contact-modal__checkbox-label">
+                <input type="checkbox" name="ludoa_agree" class="contact-modal__checkbox" required />
+                <span class="contact-modal__checkbox-text" data-i18n="contact.agree">同意する<span class="text-danger">*</span></span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="contact-modal__submit-container">
+              <button type="submit" class="contact-modal__submit-btn" data-i18n="contact.submit">送信する</button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- ===== STEP 2: 確認 (confirm) ===== -->
+        <div class="contact-step" data-step="confirm">
+          <h3 class="contact-modal__step-title">お問い合わせ内容のご確認</h3>
+          <p class="contact-modal__step-lead">以下の内容でお間違いがないかご確認ください。</p>
+
+          <dl class="contact-confirm">
+            <div class="contact-confirm__row">
+              <dt class="contact-confirm__label">お名前</dt>
+              <dd class="contact-confirm__value" data-confirm="name"></dd>
+            </div>
+            <div class="contact-confirm__row">
+              <dt class="contact-confirm__label">メールアドレス</dt>
+              <dd class="contact-confirm__value" data-confirm="email"></dd>
+            </div>
+            <div class="contact-confirm__row">
+              <dt class="contact-confirm__label">お電話番号</dt>
+              <dd class="contact-confirm__value" data-confirm="tel"></dd>
+            </div>
+            <div class="contact-confirm__row">
+              <dt class="contact-confirm__label">お問い合わせ内容の種類</dt>
+              <dd class="contact-confirm__value" data-confirm="subject_type"></dd>
+            </div>
+            <div class="contact-confirm__row">
+              <dt class="contact-confirm__label">ご質問・ご要望</dt>
+              <dd class="contact-confirm__value" data-confirm="message"></dd>
+            </div>
+          </dl>
+
+          <p class="contact-modal__error js-contact-error" role="alert" hidden></p>
+
+          <div class="contact-modal__actions">
+            <button type="button" class="contact-modal__btn contact-modal__btn--back js-contact-back">戻る</button>
+            <button type="button" class="contact-modal__btn contact-modal__btn--send js-contact-send">送信する</button>
+          </div>
+        </div>
+
+        <!-- ===== STEP 3: 完了 (thankyou) ===== -->
+        <div class="contact-step" data-step="thankyou">
+          <div class="contact-thanks">
+            <div class="contact-thanks__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="32" cy="32" r="29" />
+                <path d="M20 33l8 8 16-18" />
+              </svg>
+            </div>
+            <h3 class="contact-modal__step-title">お問い合わせありがとうございます</h3>
+            <p class="contact-thanks__text">
+              お問い合わせを受け付けました。<br />
+              内容を確認のうえ、担当者より追ってご連絡いたします。
+            </p>
+            <div class="contact-modal__actions contact-modal__actions--center">
+              <button type="button" class="contact-modal__btn contact-modal__btn--send js-modal-close">閉じる</button>
             </div>
           </div>
+        </div>
 
-          <!-- Select field -->
-          <div class="contact-modal__field">
-            <label class="contact-modal__label" data-i18n="contact.subject_label">お問い合わせ内容の種類 <span class="text-danger">*</span></label>
-            <div class="contact-modal__select-wrapper">
-              <select name="subject_type" class="contact-modal__select" required>
-                <option value="" disabled selected hidden data-i18n="contact.subject_opt1">5泊6日プランの仮予約</option>
-                <option value="5泊6日プランの仮予約" data-i18n="contact.subject_opt1">5泊6日プランの仮予約</option>
-                <option value="ご相談・その他" data-i18n="contact.subject_opt2">ご相談・その他のお問い合わせ</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Textarea field -->
-          <div class="contact-modal__field">
-            <label class="contact-modal__label" data-i18n="contact.message_label">ご質問・ご要望</label>
-            <textarea name="message" class="contact-modal__textarea" placeholder="食事制限やアレルギー、送迎に関するご相談などはこちらにご記入ください。" data-i18n-placeholder="contact.message_placeholder" rows="5"></textarea>
-          </div>
-
-          <!-- Policy agreement text -->
-          <p class="contact-modal__policy-text" data-i18n="contact.policy_text">
-            ご入力いただきました情報は、当社の個人情報保護方針に基づき厳重に管理いたします。<br />
-            当社の<a href="#" class="js-privacy-trigger contact-modal__policy-link">個人情報保護方針</a>をご確認いただき、同意いただいた上で送信ください。
-          </p>
-
-          <!-- Checkbox agree -->
-          <div class="contact-modal__checkbox-container">
-            <label class="contact-modal__checkbox-label">
-              <input type="checkbox" name="agree" class="contact-modal__checkbox" required />
-              <span class="contact-modal__checkbox-text" data-i18n="contact.agree">同意する<span class="text-danger">*</span></span>
-            </label>
-          </div>
-
-          <!-- Submit Button -->
-          <div class="contact-modal__submit-container">
-            <button type="submit" class="contact-modal__submit-btn" data-i18n="contact.submit">送信する</button>
-          </div>
-
-        </form>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Fallback template. Mirrors the front page for this single-page site.
+ * Template — one-page LP main content.
  *
  * @package Ludoa
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Front page template — one-page LP.
+ * Template — one-page LP main content.
  *
  * @package Ludoa
  */

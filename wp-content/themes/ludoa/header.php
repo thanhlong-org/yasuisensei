@@ -74,3 +74,29 @@
       </div>
     </div>
   </header>
+
+  <!-- Drawer / Hamburger menu (SP) -->
+  <div class="drawer" id="drawer">
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="メニュー">
+      <button type="button" class="drawer__close js-drawer-close" aria-label="メニューを閉じる">✕</button>
+      <nav class="drawer__nav" aria-label="モバイルメニュー">
+        <ul>
+          <li><a href="#program" data-i18n="drawer.program">滞在型健康増進プログラムとは</a></li>
+          <li><a href="#supervision" data-i18n="drawer.supervision">日本健康増進学術機構による総合監修</a></li>
+          <li><a href="#fields" data-i18n="drawer.fields">健康プログラムを構成する6つの分野</a></li>
+          <li><a href="#wishes" data-i18n="drawer.wishes">家族への想い</a></li>
+          <li><a href="#pricing" data-i18n="drawer.pricing">宿泊プランと料金</a></li>
+          <li><a href="#access" data-i18n="drawer.access">アクセス</a></li>
+          <li><a href="#faq" data-i18n="drawer.faq">よくある質問</a></li>
+        </ul>
+      </nav>
+      <div class="drawer__actions">
+        <a href="#" class="btn btn-pill-orange js-reserve" data-i18n="drawer.reserve">今すぐ予約する</a>
+        <a href="#" class="btn btn-pill-outline js-contact" data-i18n="drawer.contact">お問い合わせ・ご相談はこちら</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN — trang chủ (LP 1 trang). Các section dựng dần theo phase.
+       ============================================================ -->
