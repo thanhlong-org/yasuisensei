@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Figma__get_figma_data",
+      "Bash(grep -rl -i \"figma\" \"C:/Users/duong/.claude.json\" \"d:/Freelancer/aso-nature/.mcp.json\" \"C:/Users/duong/.claude/settings.json\" 2>/dev/null; echo \"---search done---\")",
+      "Read(//c/Users/duong/**)",
+      "Bash(rm -f pages/about.html pages/products.html pages/contact.html partials/header.html partials/footer.html assets/js/include.js assets/js/main.js assets/css/style.css)",
+      "Bash(rmdir pages *)",
+      "Bash(ls -R assets pages partials)",
+      "Bash(curl -s -o /dev/null -w \"page %{http_code}\\\\n\" http://localhost:5500/)",
+      "Bash(curl -s -o /dev/null -w \"hero.css %{http_code}\\\\n\" http://localhost:5500/assets/css/hero.css)",
+      "Bash(curl -s -o /dev/null -w \"resort %{http_code}\\\\n\" http://localhost:5500/assets/img/hero-resort.jpg)",
+      "Bash(curl -s -o /dev/null -w \"sp-img %{http_code}\\\\n\" http://localhost:5500/assets/img/hero-resort-sp.jpg)",
+      "mcp__Figma__download_figma_images",
+      "Bash(curl -s -o /dev/null -w \"deco-program.svg %{http_code}\\\\n\" http://localhost:5500/assets/img/deco-program.svg)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\duong"
+    ]
+  }
+}
