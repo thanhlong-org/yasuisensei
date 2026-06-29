@@ -247,13 +247,13 @@
     left: 40px;
   }
   .hero__title-top {
-    font-size: 42px;
+    font-size: 43px;
   }
   .hero__title-of {
     font-size: 30px;
   }
   .hero__title-main {
-    font-size: 73px;
+    font-size: 74px;
   }
   .hero__tag {
     margin-top: 24px;
@@ -291,7 +291,7 @@
     height: 90px;
   }
   .hero__scroll-text {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 

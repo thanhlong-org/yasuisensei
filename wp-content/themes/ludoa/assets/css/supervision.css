@@ -411,11 +411,11 @@
   .supervision__desc {
     text-align: left;
     margin-top: 40px;
-    max-width: 760px;
+    max-width: 800px;
   }
 
   .supervision__desc p {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 2;
   }
 
@@ -495,12 +495,12 @@
   }
 
   .member-card__name {
-    font-size: 22px; /* Tương ứng ~28.7px khi active scale(1.307) */
+    font-size: 25px; /* Tương ứng ~28.7px khi active scale(1.307) */
     margin-bottom: 12px;
   }
 
   .member-card__title {
-    font-size: 11px; /* Tương ứng ~14.4px khi active scale(1.307) */
+    font-size: 16px; /* Tương ứng ~14.4px khi active scale(1.307) */
     line-height: 1.6;
   }
 
@@ -521,6 +521,6 @@
   .supervision__notice {
     text-align: right;
     margin: 0;
-    font-size: 14px;
+    font-size: 18px;
   }
 }

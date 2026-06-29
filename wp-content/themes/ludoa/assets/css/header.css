@@ -30,7 +30,7 @@
 /* ---- Logo (chữ) ---- */
 .logo {
   font-family: var(--font-serif);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   color: var(--color-text);
   white-space: nowrap;
@@ -294,7 +294,7 @@
 /* ---- 1440px (đúng thiết kế gốc) ---- */
 @media (min-width: 1440px) {
   .logo {
-    font-size: 22px;
+    font-size: 25px;
   }
   .nav-pc__list {
     gap: 38px;

@@ -109,10 +109,10 @@
   background-color: var(--color-navy);
   color: var(--color-white);
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 23px;
   font-weight: 700;
-  width: 48px;
-  height: 48px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -128,7 +128,6 @@
 .wish-card__text {
   font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 700;
   color: var(--color-navy);
   line-height: 1.4;
   margin: 0;
@@ -393,7 +392,7 @@
   }
 
   .wishes__text p {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   /* 3 Cards row on PC */
@@ -405,7 +404,7 @@
   }
 
   .wish-card {
-    padding: 36px 12px 20px;
+    padding: 50px 12px 20px;
   }
 
   .wish-card:first-child {
@@ -415,14 +414,9 @@
     max-width: none;
   }
 
-
-
-  .wish-card__text {
-    font-size: 14px;
-  }
-
-  .wishes__note {
-    font-size: 15px;
+  .wish-card__text,
+  .wishes__note  {
+    font-size: 20px;
   }
 
   /* CTA Button PC Position & Sticky behavior */

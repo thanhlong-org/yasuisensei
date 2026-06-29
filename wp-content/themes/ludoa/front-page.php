@@ -511,7 +511,7 @@ get_header();
         <div class="wishes__panel wishes__panel--text wishes__panel--4 reveal-right">
           <h2 class="wishes__title" data-i18n="wishes.title2">健康は一生の付き合い</h2>
           <div class="wishes__text">
-            <p data-i18n="wishes.text2_p1">これからもずっと動ける体と笑顔の毎日を。<br />健康は一度手に入れたら終わりではありません。</p>
+            <p data-i18n="wishes.text2_p1">これからもずっと動ける体と笑顔の毎日を。<br />健康は、一度手に入れたら終わりではありません。</p>
             <p data-i18n="wishes.text2_p2">大切なのは、今の自分の状態を「知ること」。<br />そして、無理のない範囲で新しい知恵を「取り入れること」。</p>
             <p data-i18n="wishes.text2_p3">この積み重ねが、5年後、10年後のあなたを支える<br />大きな安心に変わります。</p>
           </div>
