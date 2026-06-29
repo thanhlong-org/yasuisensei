@@ -549,7 +549,7 @@ get_header();
               <span class="pricing__price-tax" data-i18n="pricing.tax">(税込)</span>
             </div>
             <p class="pricing__plan-desc" data-i18n="pricing.plan_desc">
-              ご夫婦それぞれのペースで、長時間の滞在により、健康的な生活習慣をより深く身につけるプランです。
+              ご夫婦それぞれのペースで、長時間の滞在により、<br class="u-pc">健康的な生活習慣をより深く身につけるプランです。
             </p>
           </div>
 

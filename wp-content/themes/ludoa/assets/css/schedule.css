@@ -112,10 +112,10 @@
     margin-bottom: 80px;
   }
   .schedule__title {
-    font-size: 38px;
+    font-size: 36px;
   }
   .schedule__badge-capsule {
-    font-size: 14px;
+    font-size: 15px;
     padding: 6px 20px;
     margin-bottom: 16px;
   }
@@ -394,7 +394,7 @@
 .schedule__card-title {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--color-navy-deep);
   margin: 0 0 12px;
   letter-spacing: 0.02em;
@@ -402,7 +402,7 @@
 
 .schedule__card-text {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
   color: var(--color-text);
   margin: 0;
@@ -415,6 +415,14 @@
     max-width: 520px;
     box-shadow: 0 15px 45px rgba(0, 0, 80, 0.06);
     transform: translateX(40px);
+  }
+
+  .schedule__card-title {
+    font-size: 24px;
+  }
+
+  .schedule__card-text {
+    font-size: 20px;
   }
 
   .schedule__item--left .schedule__card {

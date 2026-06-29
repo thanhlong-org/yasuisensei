@@ -109,7 +109,7 @@
     font-size: 38px;
   }
   .access__intro {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 56px;
   }
 }
@@ -168,7 +168,7 @@
 .access__block-title {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-navy);
   margin: 0 0 16px 0;
   padding-left: 12px;
@@ -179,7 +179,7 @@
 
 @media (min-width: 1024px) {
   .access__block-title {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 24px;
   }
 }
@@ -193,13 +193,22 @@
 }
 
 .access__zip {
-  font-weight: 700;
+  font-size: 16px;
   margin: 0 0 4px 0;
-  color: var(--color-navy);
 }
 
 .access__address {
   margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .access__zip {
+    font-size: 18px;
+  }
+  .access__address {
+    font-size: 18px;
+    line-height: 1.5;
+  }
 }
 
 /* Transit List */
@@ -243,7 +252,7 @@
 
 .access__transit-title {
   font-family: var(--font-serif);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--color-navy);
   margin: 0 0 8px 0;
@@ -251,15 +260,9 @@
   letter-spacing: 0.02em;
 }
 
-@media (min-width: 1024px) {
-  .access__transit-title {
-    font-size: 16px;
-  }
-}
-
 .access__transit-desc {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--color-text);
   margin: 0 0 4px 0;
@@ -267,6 +270,16 @@
 
 .access__transit-desc:last-child {
   margin-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+  .access__transit-title {
+    font-size: 18px;
+  }
+
+  .access__transit-desc {
+    font-size: 18px;  
+  }
 }
 
 /* Right Column: Map & Buttons */

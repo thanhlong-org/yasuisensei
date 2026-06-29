@@ -108,10 +108,11 @@
 @media (min-width: 1024px) {
   .pricing__card {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 64px;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
     padding: 64px 80px;
-    transform: skewY(-3.5deg); /* -3.5deg matching wishes slant */
+    margin: 0 60px;
+    transform: skewX(-10deg); /* -3.5deg matching wishes slant */
     position: relative;
     z-index: 1; /* Creates parent stacking context */
   }
@@ -121,11 +122,10 @@
     content: "";
     position: absolute;
     top: 24px; /* offset Y from Figma */
-    left: 25px; /* offset X from Figma */
+    left: 16px; /* offset X from Figma */
     width: 100%;
     height: 100%;
     background-color: #6c6794; /* medium slate purple/blue from Figma */
-    border-radius: 8px;
     z-index: -2; /* Under white card */
     pointer-events: none;
   }
@@ -139,16 +139,10 @@
     width: 100%;
     height: 100%;
     background-color: var(--color-white);
-    border-radius: 8px;
     box-shadow: 0 30px 60px rgba(0, 0, 80, 0.18);
     border: 1px solid rgba(255, 255, 255, 0.1);
     z-index: -1; /* Above purple, under text content */
     pointer-events: none;
-  }
-  
-  /* Unskew contents inside the card on PC */
-  .pricing__card > * {
-    transform: skewY(3.5deg);
   }
 }
 
@@ -203,6 +197,8 @@
     border-radius: 0;
     margin-right: 0;
     padding: 0;
+    /* No counter-skew here: keep the column as a parallelogram so each line
+       shifts diagonally with the card's slant (like the mockup). */
     transform: none;
     z-index: auto; /* Reset z-index so parent container handles stacking */
     position: static;
@@ -211,8 +207,10 @@
   .pricing__main-col::after {
     display: none; /* disable SP layers on PC */
   }
+  /* Counter-skew each line individually so glyphs stand upright while the
+     block stays diagonally arranged. (300,000 keeps its own italic lean.) */
   .pricing__main-col > * {
-    transform: none;
+    transform: skewX(10deg);
     position: static;
   }
 }
@@ -237,8 +235,8 @@
 @media (min-width: 1024px) {
   .pricing__badge {
     font-size: 27px;
-    padding: 8px 36px;
-    margin-bottom: 32px;
+    padding: 8px 20px;
+    margin:0 0 54px 20px;
   }
 }
 
@@ -257,8 +255,9 @@
 @media (min-width: 1024px) {
   .pricing__duration {
     font-size: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     text-align: left;
+    margin-left: 15px;
   }
 }
 
@@ -273,6 +272,7 @@
 }
 
 .pricing__price-amount {
+  font-style: italic;
   font-size: 48px;
   font-weight: 300;
   line-height: 1;
@@ -295,7 +295,7 @@
 @media (min-width: 1024px) {
   .pricing__price {
     justify-content: flex-start;
-    margin-bottom: 32px;
+    margin-bottom: 52px;
   }
   .pricing__price-amount {
     font-size: 80px;
@@ -341,6 +341,7 @@
 @media (min-width: 1024px) {
   .pricing__details-col {
     gap: 40px;
+    transform: skewX(10deg); /* counter-skew to keep content upright inside slanted card */
   }
 }
 
@@ -385,8 +386,8 @@
     border-bottom: 1px solid var(--color-line-divider);
   }
   .pricing__sub-title::before {
-    width: 16px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     margin-right: 10px;
   }
 }
@@ -429,7 +430,7 @@
     gap: 16px;
   }
   .pricing__list li {
-    font-size: 16px;
+    font-size: 18px;
     /* Dark grey text on PC card */
     color: #333333;
   }
@@ -465,7 +466,7 @@
 }
 
 .pricing__option-label {
-  font-size: 12px;
+  font-size: 16px;
   margin-right: 6px;
   font-weight: 500;
 }
@@ -477,7 +478,7 @@
 }
 
 .pricing__option-currency {
-  font-size: 13px;
+  font-size: 18px;
   margin-left: 2px;
   font-weight: 500;
 }

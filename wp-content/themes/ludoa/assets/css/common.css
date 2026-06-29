@@ -24,7 +24,7 @@ video {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: var(--container-pad);
+  /* padding-inline: var(--container-pad); */
 }
 
 /* Full-bleed wrapper: nền tràn viền, nội dung canh giữa */
