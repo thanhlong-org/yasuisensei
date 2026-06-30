@@ -65,7 +65,7 @@
             <a href="#access" class="footer__nav-link" data-i18n="footer.nav_access">アクセス</a>
             <a href="#faq" class="footer__nav-link" data-i18n="footer.nav_faq">よくある質問</a>
             <a href="#contact" class="footer__nav-link js-contact" data-i18n="footer.nav_contact">お問い合わせ・ご相談</a>
-            <a href="#" class="footer__nav-link" data-i18n="footer.nav_privacy">プライバシーポリシー</a>
+            <a href="#" class="footer__nav-link js-privacy-trigger" data-i18n="footer.nav_privacy">プライバシーポリシー</a>
           </div>
         </nav>
       </div>

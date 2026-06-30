@@ -88,15 +88,16 @@
     }
 
     // Modal cho phần Privacy Policy (Chính sách bảo mật) - kích hoạt bằng js-privacy-trigger
-    var privacyTriggers = document.querySelectorAll('.js-privacy-trigger');
+    // Dùng event delegation vì link trong contact modal bị i18n tạo lại (đổi ngôn ngữ),
+    // nên không thể gắn listener trực tiếp một lần.
     var privacyModal = document.getElementById('modal-privacy');
     if (privacyModal) {
-      privacyTriggers.forEach(function (trigger) {
-        trigger.addEventListener("click", function (e) {
-          e.preventDefault();
-          privacyModal.classList.add("is-open");
-          document.body.style.overflow = "hidden";
-        });
+      document.addEventListener("click", function (e) {
+        var trigger = e.target.closest(".js-privacy-trigger");
+        if (!trigger) return;
+        e.preventDefault();
+        privacyModal.classList.add("is-open");
+        document.body.style.overflow = "hidden";
       });
 
       var closeElements = privacyModal.querySelectorAll(".js-modal-close");
