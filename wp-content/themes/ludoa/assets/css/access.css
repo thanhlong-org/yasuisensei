@@ -63,7 +63,7 @@
 .access__title {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 26px;
   color: var(--color-white);
   line-height: 1.4;
   margin: 0 0 16px;
@@ -86,7 +86,7 @@
 
 .access__intro {
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.85);
   margin: 0 0 40px 0;
@@ -252,7 +252,7 @@
 
 .access__transit-title {
   font-family: var(--font-serif);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--color-navy);
   margin: 0 0 8px 0;
@@ -332,7 +332,7 @@
   flex: 1;
   border-radius: var(--radius-pill);
   font-family: var(--font-serif);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;

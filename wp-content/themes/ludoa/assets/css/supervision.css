@@ -7,7 +7,7 @@
 .supervision {
   position: relative;
   background-color: var(--color-bg);
-  padding: 100px 0 140px;
+  padding: 100px 0 50px;
   overflow-x: clip;
 }
 
@@ -28,10 +28,8 @@
   z-index: 2;
   max-width: var(--container-max);
   margin-inline: auto;
-  /* padding-inline: var(--container-pad); */
+  padding-inline: 16px;
 }
-
-
 
 .supervision__photo {
   position: relative;
@@ -64,7 +62,7 @@
 
 .supervision__subtitle {
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 16px;
   color: var(--color-text);
   margin-bottom: 6px;
   letter-spacing: 0.05em;
@@ -73,7 +71,7 @@
 .supervision__title {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 22px;
+  font-size: 24px;
   color: var(--color-navy);
   line-height: 1.4;
 }
@@ -133,12 +131,11 @@
 
 /* ---- Mô tả ---- */
 .supervision__desc {
-  text-align: center;
   margin-top: 32px;
 }
 
 .supervision__desc p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   letter-spacing: 0.03em;
   color: var(--color-text);
@@ -218,7 +215,7 @@
 .member-card__en {
   display: block;
   font-family: var(--font-latin);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.65);
   margin-bottom: 2px;
@@ -227,7 +224,7 @@
 
 .member-card__name {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 12px;
   letter-spacing: 0.05em;
@@ -235,7 +232,7 @@
 
 .member-card__title {
   font-family: var(--font-serif);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.02em;
@@ -352,6 +349,10 @@
 @media (min-width: 1024px) {
   .supervision {
     padding: 100px 0 200px;
+  }
+
+  .supervision__inner {
+    padding: 0;
   }
 
   .supervision::after {

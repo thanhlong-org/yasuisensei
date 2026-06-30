@@ -65,7 +65,7 @@
   background: linear-gradient(90deg, #996213 0%, #e7cd59 55%, #996213 100%);
   color: var(--color-navy-deep);
   font-family: var(--font-serif);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   padding: 4px 16px;
   border-radius: var(--radius-pill);
@@ -86,7 +86,7 @@
 .schedule__title {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 26px;
   color: var(--color-navy-deep);
   line-height: 1.4;
   margin: 0 0 16px;
@@ -193,10 +193,10 @@
 /* Round DAY Badge */
 .schedule__badge {
   position: absolute;
-  top: -24px;
+  top: -40px;
   left: 16px;
-  width: 52px;
-  height: 52px;
+  width: 83px;
+  height: 83px;
   background-color: var(--color-navy);
   color: var(--color-white);
   border-radius: 50%;
@@ -225,13 +225,13 @@
 }
 
 .schedule__badge-day {
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.05em;
 }
 
 .schedule__badge-num {
-  font-size: 20px;
+  font-size: 36px;
   font-weight: 700;
 }
 
@@ -398,6 +398,13 @@
   color: var(--color-navy-deep);
   margin: 0 0 12px;
   letter-spacing: 0.02em;
+}
+
+/* SP only: even days (2/4/6 = --right items) align their title to the right. */
+@media (max-width: 1023px) {
+  .schedule__item--right .schedule__card-title {
+    text-align: right;
+  }
 }
 
 .schedule__card-text {

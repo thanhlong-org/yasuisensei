@@ -108,7 +108,7 @@ get_header();
 
         <!-- Mô tả ngắn -->
         <div class="supervision__desc reveal-up">
-          <p data-i18n="supervision.desc1">本滞在型健康増進プログラムでは、プログラム食・医療・予防・自然の力を融合し、<br class="u-pc" />専門家たちが辿り着いた唯一無二 of 健康体験を提供します。</p>
+          <p data-i18n="supervision.desc1">本滞在型健康増進プログラムでは、<br class="u-sp" />プログラム食・医療・予防・自然の力を融合し、<br class="u-pc" />専門家たちが辿り着いた唯一無二 of 健康体験を提供します。</p>
           <p data-i18n="supervision.desc2">あなたの未来の健康を本気で想う、その答えがここにあります。</p>
         </div>
       </div>
@@ -457,6 +457,8 @@ get_header();
     </section>
     <!-- ===================== WISHES ===================== -->
     <section id="wishes" class="wishes">
+      <!-- Vertical background text "WISHES" - anchored to the section so it stays top-right on all breakpoints -->
+      <img class="wishes__deco reveal-deco" src="<?php echo get_template_directory_uri(); ?>/assets/img/deco-wishes.svg" alt="" aria-hidden="true" />
       <div class="wishes__grid">
         <!-- Panel 1 (Top-Left): Text & Cards -->
         <div class="wishes__panel wishes__panel--text wishes__panel--1 reveal-left">
@@ -487,8 +489,6 @@ get_header();
 
         <!-- Panel 2 (Top-Right): Image & CTA -->
         <div class="wishes__panel-wrapper wishes__panel-wrapper--2 reveal-right">
-          <!-- Vertical background text "WISHES" inside the panel wrapper -->
-          <img class="wishes__deco reveal-deco" src="<?php echo get_template_directory_uri(); ?>/assets/img/deco-wishes.svg" alt="" aria-hidden="true" />
           <div class="wishes__panel wishes__panel--media wishes__panel--2">
             <div class="wishes__img-wrapper">
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/wishes-img-01.jpg" alt="家族と砂浜で凧揚げ" class="wishes__img" />
@@ -764,7 +764,7 @@ get_header();
 
         <!-- CTA Button -->
         <div class="schedule__cta">
-          <a href="#" class="btn-booking btn-booking--schedule js-reserve js-schedule-detail-trigger">
+          <a href="#" class="btn-booking btn-booking--schedule js-schedule-detail-trigger">
             <span class="btn-booking__text" data-i18n="schedule.cta">スケジュール詳細を見る</span>
             <span class="btn-booking__arrow"><span>→</span></span>
           </a>

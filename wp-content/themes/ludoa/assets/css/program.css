@@ -55,7 +55,7 @@
   margin-top: 32px;
 }
 .program__text p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 2;
   letter-spacing: 0.03em;
 }
@@ -250,10 +250,6 @@
   letter-spacing: 0.03em;
 }
 
-.fields__title span {
-  font-size: 28px;
-}
-
 .fields__divider {
   display: block;
   width: 40px;
@@ -269,7 +265,7 @@
 }
 
 .fields__desc p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.02em;
@@ -329,9 +325,9 @@
   width: fit-content;
   background-color: rgba(255, 255, 255, 0.6); /* #FFFFFF99 */
   color: #080052;
-  padding: 6px 12px;
+  padding: 2px;
   font-family: var(--font-serif);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
   border-radius: 2px;
@@ -444,8 +440,7 @@
     height: 587px;
   }
 
-  .fields__title,
-  .fields__title span  {
+  .fields__title {
     font-size: 36px;
   }
 

@@ -100,8 +100,8 @@
           <div class="modal__intro">
             <h3 class="modal__title" data-i18n="modal.field1.title">ご夫婦で学び、<br>自分の体を知る</h3>
             <div class="modal__text">
-              <p data-i18n="modal.field1.p1">健康づくりは、まず自分の体を知ることから始まります。<br>日本健康増進学術機構の監修のもと、食事・運動・心のケア・認知機能への配慮など、これからの暮らしに役立つ内容を、テーマごとのカリキュラムでわかりやすく学びます。</p>
-              <p data-i18n="modal.field1.p2">また、各種測定を通して、現在の体の状態や、これから気をつけたいポイントを確認できます。ご夫婦それぞれの状態を知ることで、これからの生活習慣を一緒に見直すきっかけになります。</p>
+              <p data-i18n="modal.field1.p1">健康づくりは、まず自分の体を知ることから始まります。<br>日本健康増進学術機構の監修のもと、<br>食事・運動・心のケア・認知機能への配慮など、<br>これからの暮らしに役立つ内容を、<br>テーマごとのカリキュラムでわかりやすく学びます。</p>
+              <p data-i18n="modal.field1.p2">また、各種測定を通して、現在の体の状態や、<br>これから気をつけたいポイントを確認できます。<br>ご夫婦それぞれの状態を知ることで、<br>これからの生活習慣を一緒に見直すきっかけになります。</p>
             </div>
           </div>
           <div class="modal__image">
@@ -174,10 +174,15 @@
           <div class="modal__intro">
             <h3 class="modal__title" data-i18n="modal.field2.title">15種類の最新機器で<br>健康セルフチェック</h3>
             <div class="modal__text">
-              <p data-i18n="modal.field2.p1">測定には、基本となる8つの測定（セルフ）とスタッフや看護師資格者による7つの測定があります。</p>
-              <p data-i18n="modal.field2.p2">1つの測定が最大でも3〜5分程度の所要時間と身体の負担も少なく、痛みを伴う測定はございません。</p>
-              <p data-i18n="modal.field2.p3">測定時にリラックスして受けて頂くためにも、締め付けの少ない楽な服装でお受けください。</p>
-              <p data-i18n="modal.field2.p4">安心して測定してもらえるようにスタッフが寄り添い、サポート致します。</p>
+              <p data-i18n="modal.field2.p1">測定には、基本となる8つの測定（セルフ）とスタッフや<br>
+                看護師資格者による7つの測定があります。<br>
+                1つの測定が最大でも3〜5分程度の所要時間と<br>
+                身体の負担も少なく、痛みを伴う測定はございません。<br>
+                測定時にリラックスして受けて頂くためにも、<br>
+                締め付けの少ない楽な服装でお受けください。<br>
+                安心して測定してもらえるようにスタッフが寄り添い、<br>
+                サポート致します。
+              </p>
             </div>
           </div>
           <div class="modal__image">
@@ -209,32 +214,31 @@
             <div class="habit-card">
               <div class="habit-card__badge">体</div>
               <h5 class="habit-card__title" data-i18n="modal.field2.card1_title">体成分分析</h5>
-              <p class="habit-card__desc" data-i18n="modal.field2.card1_desc">筋肉、体脂肪、水分バランスを測定</p>
+              <p class="habit-card__desc" data-i18n="modal.field2.card1_desc">筋肉、体脂肪、<br>水分バランスを測定</p>
             </div>
             <!-- Card 2 -->
             <div class="habit-card">
               <div class="habit-card__badge">血</div>
               <h5 class="habit-card__title" data-i18n="modal.field2.card2_title">血管年齢</h5>
-              <p class="habit-card__desc" data-i18n="modal.field2.card2_desc">血管の硬さとつまり具合を評価</p>
+              <p class="habit-card__desc" data-i18n="modal.field2.card2_desc">血管の硬さと<br>つまり具合を評価</p>
             </div>
             <!-- Card 3 -->
             <div class="habit-card">
               <div class="habit-card__badge">脳</div>
               <h5 class="habit-card__title" data-i18n="modal.field2.card3_title">脳年齢</h5>
-              <p class="habit-card__desc" data-i18n="modal.field2.card3_desc">認知機能を多角的にチェック</p>
+              <p class="habit-card__desc" data-i18n="modal.field2.card3_desc">認知機能を<br>多角的にチェック</p>
             </div>
             <!-- Card 4 -->
             <div class="habit-card">
               <div class="habit-card__badge">骨</div>
               <h5 class="habit-card__title" data-i18n="modal.field2.card4_title">骨密度</h5>
-              <p class="habit-card__desc" data-i18n="modal.field2.card4_desc">骨の強さを計測し骨粗鬆症予防</p>
+              <p class="habit-card__desc" data-i18n="modal.field2.card4_desc">骨の強さを計測し<br>骨粗鬆症予防</p>
             </div>
           </div>
 
           <!-- Intro text (Right column) -->
           <div class="modal__visible-intro">
             <h4 class="modal__visible-title" data-i18n="modal.field2.visible_title">体成分分析、血管状態、脳年齢など<br>体の健康状態を<span class="text-gold">見える化</span></h4>
-            <span class="modal__visible-divider"></span>
             <div class="modal__visible-text">
               <p data-i18n="modal.field2.visible_p1">健康状態を見える化することで自身の健康状態を把握し、改善すべきポイントが見えてきます。</p>
               <p class="text-gold" data-i18n="modal.field2.visible_p2">「何が良い」「どこが衰えているか」</p>

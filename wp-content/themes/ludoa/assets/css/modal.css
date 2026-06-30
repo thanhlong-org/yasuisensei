@@ -38,7 +38,7 @@
 .modal__container {
   position: relative;
   width: 90%;
-  max-width: 1040px;
+  max-width: 1294px;
   max-height: 90vh;
   overflow-y: auto;
   background: #f4f7fc;
@@ -78,7 +78,7 @@
   font-family: var(--font-serif);
   font-size: 180px;
   font-weight: 900;
-  color: rgba(12, 27, 64, 0.035);
+  color: #0306591A;
   pointer-events: none;
   z-index: 0;
   user-select: none;
@@ -95,7 +95,7 @@
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 40px;
-  align-items: start;
+  align-items: center;
   margin-bottom: 50px;
 }
 
@@ -122,7 +122,6 @@
 .modal__image img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
   display: block;
   object-fit: cover;
   aspect-ratio: 1.45;
@@ -136,16 +135,15 @@
 }
 
 .modal__habits-subtitle {
-  font-size: 13px;
-  color: #888;
-  margin-bottom: 8px;
+  font-size: 18px;
+  color: #323232;
   letter-spacing: 0.08em;
   font-weight: 500;
 }
 
 .modal__habits-title {
   font-family: var(--font-serif);
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--color-navy-deep);
   margin-bottom: 18px;
@@ -189,12 +187,12 @@
   top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  width: 36px;
-  height: 36px;
+  width: 45px;
+  height: 45px;
   background: var(--color-navy-deep);
   border-radius: 50%;
   color: #fff;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 700;
   display: flex;
   justify-content: center;
@@ -202,7 +200,7 @@
 }
 
 .habit-card__title {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--color-navy-deep);
   margin-bottom: 12px;
@@ -210,17 +208,17 @@
 }
 
 .habit-card__desc {
-  font-size: 13px;
+  font-size: 20px;
   line-height: 1.6;
-  color: #555;
+  color: #030659;
   text-align: center;
 }
 
 /* Close Buttons */
 .modal__close-btn {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 16px;
+  right: 16px;
   background: none;
   border: none;
   cursor: pointer;
@@ -387,7 +385,7 @@
 
 /* Supervisor Box */
 .modal__supervisor-box {
-  background: #080c24;
+  background: linear-gradient(274.29deg, #01043F 41.34%, #112B80 100%);
   border-radius: 8px;
   padding: 30px;
   display: grid;
@@ -401,7 +399,7 @@
 }
 
 .modal__supervisor-text {
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -414,26 +412,25 @@
 }
 
 .modal__supervisor-img img {
-  width: 90px;
-  height: 120px;
-  object-fit: cover;
+  width: auto;
+  height: auto;
   border-radius: 4px;
   display: block;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .modal__supervisor-name {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
-  margin-bottom: 8px;
-  color: #fff;
+  margin-bottom: 25px;
+  color: #DADADA;
   letter-spacing: 0.05em;
 }
 
 .modal__supervisor-title {
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.75);
+  color: #DADADA;
 }
 
 /* Visible Section */
@@ -456,7 +453,7 @@
 
 .modal__visible-title {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--color-navy-deep);
   line-height: 1.4;
@@ -478,11 +475,19 @@
   color: #333;
 }
 
+.modal__visible-text p {
+  font-size: 20px;
+}
+
+.modal__visible-text p.text-gold {
+  font-weight: bold;  
+}
+
 .modal__visible-text p + p {
   margin-top: 16px;
 }
 
-.modal__visible-text .text-gold {
+.text-gold {
   color: #bda054;
 }
 
@@ -1136,7 +1141,7 @@
 
 .contact-modal__label {
   font-family: var(--font-serif);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #030659;
 }
@@ -1149,7 +1154,7 @@
   border: 1px solid #7f8a9e;
   border-radius: 4px;
   padding: 12px 16px;
-  font-size: 15px;
+  font-size: 14px;
   color: #333;
   box-sizing: border-box;
   font-family: var(--font-sans);
@@ -1212,7 +1217,7 @@
 /* Policy agreement text */
 .contact-modal__policy-text {
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.65;
   color: #030659;
   margin-top: 10px;
@@ -1265,7 +1270,7 @@
 }
 
 .contact-modal__submit-btn {
-  background-color: #af934c; /* Gold/Bronze */
+  background: linear-gradient(94.33deg, #BDA054 0%, #9A7D32 100%);
   color: #fff;
   border: none;
   border-radius: 30px;
@@ -1287,7 +1292,7 @@
 /* Responsive styles */
 @media (min-width: 769px) {
   .modal__container--contact {
-    padding: 60px 80px 48px;
+    padding: 60px 35px 48px;
   }
   
   .contact-modal__row {

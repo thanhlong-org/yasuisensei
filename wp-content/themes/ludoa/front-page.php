@@ -68,7 +68,7 @@ get_header();
           <div class="program__text">
             <p data-i18n="program.p1">本プログラムは、<br class="u-sp" />60歳前後の定年退職される方を中心とした<br class="u-pc" />定年退職者向けの滞在型健康増進プログラムです。</p>
             <p data-i18n="program.p2">人生の転換期において「健康を再定義し、習慣化する」ことを目的とし、<br class="u-pc" />科学的根拠（エビデンス）に基づいた実践型の学びと体験を提供します。</p>
-            <p data-i18n="program.p3">単なる健康施設ではなく、悔いのないセカンドステージを実現するための<br class="u-pc" />「健康の登竜門」として、ご夫婦一緒に参加しながら、<br />これからの人生を自立して歩むための土台を築きます。</p>
+            <p data-i18n="program.p3">単なる健康施設ではなく、悔いのないセカンドステージを実現するための<br class="u-pc" />「健康の登竜門」として、ご夫婦一緒に参加しながら、<br class="u-pc" />これからの人生を自立して歩むための土台を築きます。</p>
             <p data-i18n="program.p4">大切な家族のためにも、いつまでも元気で過ごすために。<br class="u-pc" />そして、豊かな老後のために、健康寿命を延ばすことを目指します。</p>
           </div>
         </div>
@@ -108,8 +108,8 @@ get_header();
 
         <!-- Mô tả ngắn -->
         <div class="supervision__desc reveal-up">
-          <p data-i18n="supervision.desc1">本滞在型健康増進プログラムでは、プログラム食・医療・予防・自然の力を融合し、<br class="u-pc" />専門家たちが辿り着いた唯一無二 of 健康体験を提供します。</p>
-          <p data-i18n="supervision.desc2">あなたの未来の健康を本気で想う、その答えがここにあります。</p>
+          <p data-i18n="supervision.desc1">本滞在型健康増進プログラムでは、<br class="u-sp" />プログラム食・医療・予防・自然の力を融合し、<br class="u-pc" />専門家たちが辿り着いた唯一無二 of 健康体験を提供します。</p>
+          <p data-i18n="supervision.desc2">あなたの未来の健康を本気で想う、<br class="u-sp" />その答えがここにあります。</p>
         </div>
       </div>
 
@@ -309,8 +309,8 @@ get_header();
 
         <!-- Description -->
         <div class="fields__desc reveal-up">
-          <p data-i18n="fields.desc1">本プログラムは、「学・測・動・食・癒・宿」の6つの分野を軸に構成された、<br class="u-pc" />滞在型の総合予防医療ウェルネスプログラムです。</p>
-          <p data-i18n="fields.desc2">120名の専門家の知見と、阿蘇の雄大な自然環境が融合した、唯一無二の健康体験をご提供します。</p>
+          <p data-i18n="fields.desc1">本プログラムは、<br class="u-sp">「学・測・動・食・癒・宿」の<br class="u-sp">6つの分野を軸に構成された、<br class="u-pc" />滞在型の<br class="u-sp">総合予防医療ウェルネスプログラムです。</p>
+          <p data-i18n="fields.desc2">120名の専門家の知見と、<br class="u-sp">阿蘇の雄大な自然環境が融合した、<br class="u-sp">唯一無二の健康体験をご提供します。</p>
         </div>
 
         <!-- Grid of 6 Fields -->
@@ -457,13 +457,15 @@ get_header();
     </section>
     <!-- ===================== WISHES ===================== -->
     <section id="wishes" class="wishes">
+      <!-- Vertical background text "WISHES" - anchored to the section so it stays top-right on all breakpoints -->
+      <img class="wishes__deco reveal-deco" src="<?php echo get_template_directory_uri(); ?>/assets/img/deco-wishes.svg" alt="" aria-hidden="true" />
       <div class="wishes__grid">
         <!-- Panel 1 (Top-Left): Text & Cards -->
         <div class="wishes__panel wishes__panel--text wishes__panel--1 reveal-left">
           <h2 class="wishes__title" data-i18n="wishes.title1">家族への想い</h2>
           <div class="wishes__text">
-            <p data-i18n="wishes.text1_p1">本健康プログラムは、単に“健康になる”ためのサービスではありません。<br class="u-pc" />大切な家族やパートナーと、<br class="u-pc" />これから先も安心して豊かに暮らしていくための<br class="u-pc" />「未来への備え」を提供する滞在型ウェルネスプログラムです。</p>
-            <p data-i18n="wishes.text1_p2">健康でいることは、単に自分一人の体が丈夫である<br class="u-pc" />ということにとどまりません。<br class="u-pc" />それは、あなたを取り巻く「大切な人たち」の人生をも守り、<br />支えることにつながっています。</p>
+            <p data-i18n="wishes.text1_p1">本健康プログラムは、<br class="u-sp" />単に“健康になる”ためのサービスではありません。<br />大切な家族やパートナーと、<br />これから先も安心して豊かに暮らしていくための<br />「未来への備え」を提供する<br class="u-sp" />滞在型ウェルネスプログラムです。</p>
+            <p data-i18n="wishes.text1_p2">健康でいることは、単に自分一人の体が<br class="u-sp" />丈夫である<br class="u-pc" />ということにとどまりません。<br />それは、あなたを取り巻く「大切な人たち」の<br class="u-sp" />人生をも守り、<br class="u-pc" />支えることにつながっています。</p>
           </div>
 
           <!-- 3 Cards -->
@@ -482,13 +484,11 @@ get_header();
             </div>
           </div>
 
-          <p class="wishes__note" data-i18n="wishes.note">「大切な家族・パートナー」のためにも、<br />いつまでも元気でいることは、社会的にも大きな価値を持ちます。</p>
+          <p class="wishes__note" data-i18n="wishes.note">「大切な家族・パートナー」のためにも、<br />いつまでも元気でいることは、<br class="u-sp">社会的にも大きな価値を持ちます。</p>
         </div>
 
         <!-- Panel 2 (Top-Right): Image & CTA -->
         <div class="wishes__panel-wrapper wishes__panel-wrapper--2 reveal-right">
-          <!-- Vertical background text "WISHES" inside the panel wrapper -->
-          <img class="wishes__deco reveal-deco" src="<?php echo get_template_directory_uri(); ?>/assets/img/deco-wishes.svg" alt="" aria-hidden="true" />
           <div class="wishes__panel wishes__panel--media wishes__panel--2">
             <div class="wishes__img-wrapper">
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/wishes-img-01.jpg" alt="家族と砂浜で凧揚げ" class="wishes__img" />
@@ -511,9 +511,9 @@ get_header();
         <div class="wishes__panel wishes__panel--text wishes__panel--4 reveal-right">
           <h2 class="wishes__title" data-i18n="wishes.title2">健康は一生の付き合い</h2>
           <div class="wishes__text">
-            <p data-i18n="wishes.text2_p1">これからもずっと動ける体と笑顔の毎日を。<br />健康は、一度手に入れたら終わりではありません。</p>
-            <p data-i18n="wishes.text2_p2">大切なのは、今の自分の状態を「知ること」。<br />そして、無理のない範囲で新しい知恵を「取り入れること」。</p>
-            <p data-i18n="wishes.text2_p3">この積み重ねが、5年後、10年後のあなたを支える<br />大きな安心に変わります。</p>
+            <p data-i18n="wishes.text2_p1">これからもずっと動ける体と笑顔の毎日を。<br />健康は、一度手に入れたら<br class="u-sp">終わりではありません。</p>
+            <p data-i18n="wishes.text2_p2">大切なのは、今の自分の状態を「知ること」。<br />そして、無理のない範囲で新しい知恵を<br class="u-sp">「取り入れること」。</p>
+            <p data-i18n="wishes.text2_p3">この積み重ねが、5年後、10年後の<br class="u-sp">あなたを支える<br class="u-pc" />大きな安心に変わります。</p>
           </div>
         </div>
       </div>
@@ -530,8 +530,8 @@ get_header();
           <span class="pricing__divider"></span>
           <div class="pricing__desc">
             <p data-i18n="pricing.desc">
-              ご滞在を通じて健康習慣を身につける、ヘルスツーリズム認証取得プランです。<br />
-              連続滞在で、講座・測定・運動・温浴・食事・睡眠を日ごとに組み合わせ体験し、<br />
+              ご滞在を通じて健康習慣を身につける、<br class="u-sp" />ヘルスツーリズム認証取得プランです。<br />
+              連続滞在で、講座・測定・運動・温浴・食<br class="u-sp" />事・睡眠を日ごとに組み合わせ体験し、<br />
               習慣化のきっかけをつくることを目的としています。
             </p>
           </div>
@@ -599,7 +599,7 @@ get_header();
         <!-- Header -->
         <div class="schedule__header reveal-up">
           <span class="schedule__badge-capsule" data-i18n="schedule.capsule">ご夫婦でのご利用例</span>
-          <h2 class="schedule__title" data-i18n="schedule.title">5泊6日のモデルスケジュール</h2>
+          <h2 class="schedule__title" data-i18n="schedule.title">5泊6日の<br class="u-sp">モデルスケジュール</h2>
           <span class="schedule__divider"></span>
         </div>
 
@@ -618,7 +618,7 @@ get_header();
             <div class="schedule__card">
               <h3 class="schedule__card-title" data-i18n="schedule.day1_title">健康状態を知るはじまり</h3>
               <p class="schedule__card-text" data-i18n="schedule.day1_text">
-                チェックイン後はオリエンテーションと体の状態測定で体力年齢を確認。温泉と夕食で初日の体をゆっくり整えます。
+                チェックイン後はオリエンテーションと<br class="u-sp">体の状態測定で体力年齢を確認。<br class="u-sp">温泉と夕食で初日の体を<br class="u-sp">ゆっくり整えます。
               </p>
               <div class="schedule__media">
                 <div class="schedule__img-wrap schedule__img-wrap--main">
@@ -644,7 +644,7 @@ get_header();
             <div class="schedule__card">
               <h3 class="schedule__card-title" data-i18n="schedule.day2_title">学びとヨガで整える日</h3>
               <p class="schedule__card-text" data-i18n="schedule.day2_text">
-                朝食後は健康知識を学びフリータイムを。昼食やヨガ、温泉で心体を無理なく整えます。
+                朝食後は健康知識を学びフリータイムを。<br class="u-sp">昼食やヨガ、温泉で<br class="u-sp">心体を無理なく整えます。
               </p>
               <div class="schedule__media">
                 <div class="schedule__img-wrap schedule__img-wrap--main">
@@ -670,7 +670,7 @@ get_header();
             <div class="schedule__card">
               <h3 class="schedule__card-title" data-i18n="schedule.day3_title">運動と温熱で整える日</h3>
               <p class="schedule__card-text" data-i18n="schedule.day3_text">
-                健康トレーニング館で体力に合わせた運動を。昼食後は温熱窯や温泉を楽しみながら、フリータイムでリラックスします。
+                健康トレーニング館で<br class="u-sp">体力に合わせた運動を。<br class="u-sp">昼食後は温熱窯や温泉を楽しみながら、<br class="u-sp">フリータイムでリラックスします。
               </p>
               <div class="schedule__media">
                 <div class="schedule__img-wrap schedule__img-wrap--main">
@@ -696,7 +696,7 @@ get_header();
             <div class="schedule__card">
               <h3 class="schedule__card-title" data-i18n="schedule.day4_title">阿蘇の名所を巡る一日</h3>
               <p class="schedule__card-text" data-i18n="schedule.day4_text">
-                朝食後は菊池渓谷や大観峰など阿蘇周辺の観光地を巡り、温泉と夕食で旅の疲れをゆっくり癒します。
+                朝食後は菊池渓谷や大観峰など<br class="u-sp">阿蘇周辺の観光地を巡り、<br class="u-sp">温泉と夕食で旅の疲れを<br class="u-sp">ゆっくり癒します。
               </p>
               <div class="schedule__media">
                 <div class="schedule__img-wrap schedule__img-wrap--main">
@@ -722,7 +722,7 @@ get_header();
             <div class="schedule__card">
               <h3 class="schedule__card-title" data-i18n="schedule.day5_title">ご夫婦で自由に過ごす日</h3>
               <p class="schedule__card-text" data-i18n="schedule.day5_text">
-                早朝はフリータイムから始まります。朝食後はドーム還元浴や観光、昼食を楽しみ、温泉と夕食で穏やかに過ごします。
+                早朝はフリータイムから始まります。<br class="u-sp">朝食後はドーム還元浴や観光、<br class="u-sp">昼食を楽しみ、<br class="u-sp">温泉と夕食で穏やかに過ごします。
               </p>
               <div class="schedule__media">
                 <div class="schedule__img-wrap schedule__img-wrap--main">
@@ -748,7 +748,7 @@ get_header();
             <div class="schedule__card">
               <h3 class="schedule__card-title" data-i18n="schedule.day6_title">変化を確認し旅を結ぶ日</h3>
               <p class="schedule__card-text" data-i18n="schedule.day6_text">
-                朝食後はチェックアウトし最終測定をします。健康キャンパスでの滞在を振り返り、出発までフリータイムを楽しめます。
+                朝食後はチェックアウトし<br class="u-sp">最終測定をします。<br class="u-sp">健康キャンパスでの滞在を振り返り、<br class="u-sp">出発までフリータイムを楽しめます。
               </p>
               <div class="schedule__media">
                 <div class="schedule__img-wrap schedule__img-wrap--main">
@@ -764,7 +764,7 @@ get_header();
 
         <!-- CTA Button -->
         <div class="schedule__cta">
-          <a href="#" class="btn-booking btn-booking--schedule js-reserve js-schedule-detail-trigger">
+          <a href="#" class="btn-booking btn-booking--schedule js-schedule-detail-trigger">
             <span class="btn-booking__text" data-i18n="schedule.cta">スケジュール詳細を見る</span>
             <span class="btn-booking__arrow"><span>→</span></span>
           </a>
@@ -780,8 +780,7 @@ get_header();
           <span class="access__divider"></span>
         </div>
         <p class="access__intro reveal-up" data-i18n="access.intro">
-          阿蘇の雄大な自然に包まれた特別なロケーションでありながら、<br />
-          主要空港や駅からもアクセスしやすい環境です。
+          阿蘇の雄大な自然に包まれた特別な<br class="u-sp" />ロケーションでありながら、<br class="u-pc" />主要空港や<br class="u-sp" />駅からもアクセスしやすい環境です。
         </p>
 
         <div class="access__card reveal-fade">
@@ -881,7 +880,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a1">
-                    本プログラムは、5泊6日以上の滞在を推奨しております。短期滞在ではなく、食事・運動・温熱・睡眠を通じて生活習慣を整えることで、より深い健康体験をご提供します。
+                    本プログラムは、5泊6日以上の滞在を推奨しております。<br />短期滞在ではなく、食事・運動・温熱・睡眠を通じて生活習慣を整えることで、より深い健康体験をご提供します。
                   </p>
                 </div>
               </div>
@@ -900,7 +899,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a2">
-                    はい。ご夫婦でのご参加を推奨しております。お互いの健康状態を見つめ直しながら、これから先の人生をより豊かに過ごすための時間としてご利用いただけます。
+                    はい。ご夫婦でのご参加を推奨しております。<br />お互いの健康状態を見つめ直しながら、これから先の人生をより豊かに過ごすための時間としてご利用いただけます。
                   </p>
                 </div>
               </div>
@@ -919,7 +918,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a3">
-                    本プログラムは、病気の治療を目的とした医療施設ではありません。予防医療・ウェルネス・生活習慣改善を目的とした滞在型健康増進プログラムです。
+                    本プログラムは、病気の治療を目的とした医療施設ではありません。<br />予防医療・ウェルネス・生活習慣改善を目的とした滞在型健康増進プログラムです。
                   </p>
                 </div>
               </div>
@@ -938,7 +937,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a4">
-                    もちろん可能です。年齢や体力に合わせて、無理なく取り組めるプログラムをご用意しております。健康測定をもとに、ご自身に合ったペースでご参加いただけます。
+                    もちろん可能です。年齢や体力に合わせて、無理なく取り組めるプログラムをご用意しております。<br />健康測定をもとに、ご自身に合ったペースでご参加いただけます。
                   </p>
                 </div>
               </div>
@@ -957,7 +956,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a5">
-                    可能な限り対応しております。アレルギーや食事制限、ベジタリアン対応などについては、ご予約時に事前にご相談ください。
+                    可能な限り対応しております。<br />アレルギーや食事制限、ベジタリアン対応などについては、ご予約時に事前にご相談ください。
                   </p>
                 </div>
               </div>
@@ -976,7 +975,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a6">
-                    海外からのお客様にも安心してご滞在いただけるよう、英語対応を順次整備しております。事前にご相談いただければ、できる限りサポートいたします。
+                    海外からのお客様にも安心してご滞在いただけるよう、英語対応を順次整備しております。<br />事前にご相談いただければ、できる限りサポートいたします。
                   </p>
                 </div>
               </div>
@@ -995,7 +994,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a7">
-                    宿泊費、ご指定のお食事、健康施設利用料が含まれております。詳細は<a href="#pricing" class="faq__link">プラン内容</a>をご確認ください。
+                    宿泊費、ご指定のお食事、健康施設利用料が含まれております。<br />詳細は<a href="#pricing" class="faq__link">プラン内容</a>をご確認ください。
                   </p>
                 </div>
               </div>
@@ -1014,7 +1013,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a8">
-                    はい。より快適な滞在をサポートするコンシェルジュサービスをご用意しております。ご利用をご希望の場合は、予約ページにてコンシェルジュオプションを選択してください。
+                    はい。より快適な滞在をサポートするコンシェルジュサービスをご用意しております。<br />ご利用をご希望の場合は、予約ページにてコンシェルジュオプションを選択してください。
                   </p>
                 </div>
               </div>
@@ -1033,7 +1032,7 @@ get_header();
                 <div class="faq__answer-content">
                   <span class="faq__answer-num">A.</span>
                   <p class="faq__answer-text" data-i18n="faq.a9">
-                    はい。ご不安な点や健康状態、滞在目的などについて、事前相談を承っております。<a href="#contact" class="faq__link faq__link--underline">お問い合わせはこちら</a>
+                    はい。ご不安な点や健康状態、滞在目的などについて、事前相談を承っております。<br />お問い合わせは<a href="#contact" class="faq__link faq__link--underline">こちら</a>
                   </p>
                 </div>
               </div>

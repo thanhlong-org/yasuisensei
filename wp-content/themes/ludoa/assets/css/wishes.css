@@ -31,6 +31,28 @@
   z-index: 5;
 }
 
+/* On SP the area under the deco is white, so the white SVG is invisible.
+   Hide the raster and redraw the "WISHES" shape with a soft gradient via a
+   masked pseudo-element (the gradient only shows inside the letters). */
+@media (max-width: 1023px) {
+  .wishes__deco {
+    display: none;
+  }
+  .wishes::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 480px;
+    background: linear-gradient(0deg, rgba(8, 0, 82, 0) 0%, rgba(18, 0, 184, 0.3) 100%);
+    -webkit-mask: url(../img/deco-wishes.svg) no-repeat center / contain;
+            mask: url(../img/deco-wishes.svg) no-repeat center / contain;
+    pointer-events: none;
+    z-index: 5;
+  }
+}
+
 /* Container and Grid */
 .wishes__grid {
   position: relative;
@@ -49,7 +71,7 @@
 /* Text Panels */
 .wishes__panel--text {
   background-color: var(--color-white);
-  padding: 56px 24px;
+  padding: 56px 16px;
 }
 
 .wishes__title {
@@ -63,7 +85,7 @@
 }
 
 .wishes__text p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
   color: var(--color-text);
   letter-spacing: 0.02em;
@@ -86,7 +108,7 @@
 .wish-card {
   position: relative;
   background-color: var(--color-white);
-  padding: 36px 12px 16px;
+  padding: 42px 12px 16px;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(8, 0, 82, 0.06);
   border: 1px solid rgba(8, 0, 82, 0.05);
@@ -109,10 +131,10 @@
   background-color: var(--color-navy);
   color: var(--color-white);
   font-family: var(--font-serif);
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 700;
-  width: 70px;
-  height: 70px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -123,6 +145,14 @@
   justify-content: center;
   letter-spacing: 0;
   box-shadow: 0 4px 10px rgba(8, 0, 82, 0.15);
+}
+
+@media (min-width: 1024px) {
+  .wish-card__capsule {
+    font-size: 24px;
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .wish-card__text {
@@ -176,7 +206,19 @@
 
 /* Mobile slanted cuts (clip-path parallelogram shape) */
 .wishes__panel {
+  clip-path: polygon(0 0, 100% var(--wishes-slant-y), 100% 100%, 0 calc(100% - var(--wishes-slant-y)));
+}
+
+.wishes__panel--1 {
+  clip-path: polygon(0 var(--wishes-slant-y), 100% 0, 100% 100%, 0 calc(100% - var(--wishes-slant-y)));
+}
+
+.wishes__panel--3 {
   clip-path: polygon(0 var(--wishes-slant-y), 100% 0, 100% calc(100% - var(--wishes-slant-y)), 0 100%);
+}
+
+.wishes__panel--4 {
+  clip-path: polygon(0 0, 100% var(--wishes-slant-y), 100% 0, 100% calc(100% - var(--wishes-slant-y)), 0 100%);
 }
 
 /* Apply negative margin-top between all grid direct children on mobile */
