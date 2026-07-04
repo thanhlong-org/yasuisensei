@@ -1,13 +1,13 @@
 /*
 Theme Name: Ludoa
-Theme URI: https://asofarm.test/
+Theme URI: https://yasuitax.test/
 Author: Ludoa
-Description: 大自然阿蘇 健康の森 — 滞在型健康増進プログラム LP。HTML/CSS から変換したカスタムワンページテーマ。多言語 (ja/zh-Hant/ko/en) 対応。
+Description: 安井税理士事務所 コーポレートサイト — 「守りの税務から、攻めの経営へ。」 html_asset の静的デザインから変換したカスタムテーマ。
 Version: 1.0.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: ludoa
-Tags: one-page, landing-page, custom, multilingual
+Tags: corporate, business, custom
 */
 
-/* Actual styles live in /assets/css/* and are enqueued via functions.php. */
+/* Actual styles live in /static/css/* and /static/{page}/css/* and are enqueued via functions.php. */

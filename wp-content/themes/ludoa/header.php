@@ -1,102 +1,75 @@
 <?php
 /**
- * Header template.
+ * Header template — site <head>, opening <body> and the shared site header.
+ * Converted from html_asset/partials/header.html.
  *
  * @package Ludoa
  */
 ?>
 <!DOCTYPE html>
-<html lang="ja">
+<html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="大自然阿蘇 健康の森 — 世界最高水準の総合予防医療施設。定年退職後の新しい健康習慣を提案する滞在型健康増進プログラム。" />
-
-  <!-- hreflang alternates (single-page, query-param strategy) -->
-  <link rel="alternate" hreflang="ja" href="?lang=ja" />
-  <link rel="alternate" hreflang="zh-Hant" href="?lang=zh-Hant" />
-  <link rel="alternate" hreflang="ko" href="?lang=ko" />
-  <link rel="alternate" hreflang="en" href="?lang=en" />
-  <link rel="alternate" hreflang="x-default" href="?lang=ja" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="大自然阿蘇 健康の森" />
-  <meta property="og:description" content="世界最高水準の総合予防医療施設。" />
-  <meta property="og:type" content="website" />
-
+<?php if ( is_front_page() ) : ?>
+  <meta name="description" content="安井税理士事務所 — 守りの税務から、攻めの経営へ。" />
+<?php endif; ?>
   <?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-  <!-- ============================================================
-       HEADER  (→ tương lai: header.php của WordPress)
-       ============================================================ -->
-  <header class="site-header" id="siteHeader">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="site-header">
     <div class="site-header__inner">
-      <a href="#top" class="logo" aria-label="大自然阿蘇 健康の森">
-        <span>大自然</span><span class="logo__aso">阿蘇</span><span> 健康の森</span>
+      <!-- Logo -->
+      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" aria-label="安井税理士事務所 トップへ">
+        <img src="<?php echo esc_url( ludoa_static_uri() ); ?>/assets/img/logo.svg" alt="安井税理士事務所" class="site-logo__img" width="264" height="48" />
       </a>
 
-      <!-- Nav PC -->
-      <nav class="nav-pc" aria-label="メインナビゲーション">
-        <ul class="nav-pc__list">
-          <li><a href="#program" data-i18n="nav.program">健康プログラムの詳細</a></li>
-          <li><a href="#pricing" data-i18n="nav.pricing">ご宿泊プランと料金</a></li>
-          <li><a href="#access" data-i18n="nav.access">アクセス</a></li>
-          <li><a href="#faq" data-i18n="nav.faq">よくある質問</a></li>
+      <!-- Main navigation (PC) -->
+      <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
+        <ul class="site-nav__list">
+          <li><a href="<?php echo esc_url( home_url( '/#features' ) ); ?>">私たちの強み</a></li>
+          <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">サービス</a></li>
+          <li><a href="<?php echo esc_url( home_url( '/#company' ) ); ?>">企業情報</a></li>
+          <li><a href="<?php echo esc_url( ludoa_url( 'case' ) ); ?>">事例紹介</a></li>
+          <li><a href="<?php echo esc_url( ludoa_url( 'infomation' ) ); ?>">お知らせ</a></li>
         </ul>
       </nav>
 
-      <div class="header-actions">
-        <!-- お問合せ (PC) → mở modal liên hệ (làm sau) -->
-        <a href="#" class="btn btn-outline header-contact js-contact" data-i18n="header.contact">お問合せ</a>
-
-        <!-- Dropdown ngôn ngữ -->
-        <div class="lang" data-lang>
-          <button type="button" class="btn btn-outline lang__toggle" aria-haspopup="true" aria-expanded="false">
-            <span class="lang__label">JP</span><span class="lang__caret">▼</span>
-          </button>
-          <ul class="lang__menu" role="menu" hidden>
-            <li role="none"><button type="button" role="menuitem" class="lang__item is-active" data-lang-code="ja">日本語</button></li>
-            <li role="none"><button type="button" role="menuitem" class="lang__item" data-lang-code="en">English</button></li>
-            <li role="none"><button type="button" role="menuitem" class="lang__item" data-lang-code="zh-Hant">中文（繁体）</button></li>
-            <li role="none"><button type="button" role="menuitem" class="lang__item" data-lang-code="ko">한국어</button></li>
-          </ul>
+      <!-- Right cluster: TEL block + CTA button (PC) -->
+      <div class="site-header__actions">
+        <div class="site-header__tel">
+          <a href="tel:03XXXXXXXX" class="site-header__tel--tel">TEL<span class="site-header__tel--num">03-xxx-xxx</span></a>
+          <p class="site-header__tel-hours">受付時間：平日9:00〜18:00</p>
         </div>
+        <a href="<?php echo esc_url( ludoa_url( 'contact' ) ); ?>" class="header-cta-btn">お問い合わせ</a>
+      </div>
 
-        <!-- ご予約はこちら → BOOKING_URL -->
-        <a href="#" class="btn btn-reserve js-reserve" data-i18n="header.reserve">ご予約はこちら</a>
-
-        <!-- Hamburger (SP) -->
-        <button type="button" class="hamburger js-drawer-open" aria-label="メニューを開く" aria-controls="drawer" aria-expanded="false">
-          <span></span><span></span><span></span>
+      <!-- Icon cluster + hamburger (SP only) -->
+      <div class="site-header__sp-actions" aria-hidden="false">
+        <a href="tel:03XXXXXXXX" class="sp-icon-btn" aria-label="電話する">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </a>
+        <a href="#" class="sp-icon-btn" aria-label="LINEで問い合わせ">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+        </a>
+        <a href="mailto:info@example.com" class="sp-icon-btn" aria-label="メールで問い合わせ">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+        <button type="button" class="hamburger" id="hamburger" aria-label="メニューを開く" aria-controls="site-nav" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </div>
   </header>
-
-  <!-- Drawer / Hamburger menu (SP) -->
-  <div class="drawer" id="drawer">
-    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="メニュー">
-      <button type="button" class="drawer__close js-drawer-close" aria-label="メニューを閉じる">✕</button>
-      <nav class="drawer__nav" aria-label="モバイルメニュー">
-        <ul>
-          <li><a href="#program" data-i18n="drawer.program">滞在型健康増進プログラムとは</a></li>
-          <li><a href="#supervision" data-i18n="drawer.supervision">日本健康増進学術機構による総合監修</a></li>
-          <li><a href="#fields" data-i18n="drawer.fields">健康プログラムを構成する6つの分野</a></li>
-          <li><a href="#wishes" data-i18n="drawer.wishes">家族への想い</a></li>
-          <li><a href="#pricing" data-i18n="drawer.pricing">宿泊プランと料金</a></li>
-          <li><a href="#access" data-i18n="drawer.access">アクセス</a></li>
-          <li><a href="#faq" data-i18n="drawer.faq">よくある質問</a></li>
-        </ul>
-      </nav>
-      <div class="drawer__actions">
-        <a href="#" class="btn btn-pill-orange js-reserve" data-i18n="drawer.reserve">今すぐ予約する</a>
-        <a href="#" class="btn btn-pill-outline js-contact" data-i18n="drawer.contact">お問い合わせ・ご相談はこちら</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       MAIN — trang chủ (LP 1 trang). Các section dựng dần theo phase.
-       ============================================================ -->

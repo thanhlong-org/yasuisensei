@@ -1,6 +1,10 @@
 <?php
 /**
- * Ludoa theme functions.
+ * Ludoa theme functions — 安井税理士事務所 corporate site.
+ *
+ * Converted from the static html_asset design. Global CSS + per-page CSS live
+ * under /static/ with their original folder structure so every relative url()
+ * inside the CSS keeps resolving.
  *
  * @package Ludoa
  */
@@ -12,6 +16,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'LUDOA_VERSION', '1.0.0' );
 
 /**
+ * Base URI for the copied static asset tree.
+ *
+ * @return string
+ */
+function ludoa_static_uri() {
+	return get_template_directory_uri() . '/static';
+}
+
+/**
+ * Map of provisioned pages.
+ *
+ * slug => [ title, css ] where `css` is the folder under /static/ that holds
+ * `css/style.css` for that page ( null = home root css/style.css ).
+ *
+ * @return array
+ */
+function ludoa_pages() {
+	return array(
+		'features'            => array( 'title' => '私たちの強み', 'css' => 'features' ),
+		'service'             => array( 'title' => 'サービス', 'css' => 'service' ),
+		'advisory'            => array( 'title' => '税務顧問', 'css' => 'advisory' ),
+		'case'                => array( 'title' => '事例紹介', 'css' => 'case' ),
+		'case-detail'         => array( 'title' => '事例詳細', 'css' => 'case/detail' ),
+		'company'             => array( 'title' => '企業情報', 'css' => 'company' ),
+		'message'             => array( 'title' => '代表あいさつ', 'css' => 'message' ),
+		'office'              => array( 'title' => '事務所概要', 'css' => 'office' ),
+		'infomation'          => array( 'title' => 'お知らせ', 'css' => 'infomation' ),
+		'infomation-year-end' => array( 'title' => '年末年始休業のお知らせ', 'css' => 'infomation' ),
+		'contact'             => array( 'title' => 'お問い合わせ', 'css' => 'contact' ),
+		'contact-confirm'     => array( 'title' => '入力内容の確認', 'css' => 'contact' ),
+		'contact-complete'    => array( 'title' => '送信完了', 'css' => 'contact' ),
+		'privacy'             => array( 'title' => 'プライバシーポリシー', 'css' => 'privacy' ),
+	);
+}
+
+/**
+ * Permalink for a provisioned page by slug (falls back to /slug/).
+ *
+ * @param string $slug Page slug.
+ * @return string
+ */
+function ludoa_url( $slug ) {
+	$page = get_page_by_path( $slug );
+	return $page ? get_permalink( $page ) : home_url( "/$slug/" );
+}
+
+/**
  * Theme setup.
  */
 function ludoa_setup() {
@@ -19,99 +70,46 @@ function ludoa_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
 	add_theme_support( 'automatic-feed-links' );
-
-	register_nav_menus(
-		array(
-			'primary' => __( 'Primary Menu', 'ludoa' ),
-		)
-	);
 }
 add_action( 'after_setup_theme', 'ludoa_setup' );
 
 /**
- * Enqueue styles and scripts.
+ * Enqueue fonts, global stylesheets, the page-specific stylesheet and the site script.
  */
 function ludoa_assets() {
-	$uri = get_template_directory_uri();
-	$css = $uri . '/assets/css';
-	$js  = $uri . '/assets/js';
+	$static = ludoa_static_uri();
 
-	// Google Fonts.
+	// Google Fonts (matches the static design).
 	wp_enqueue_style(
 		'ludoa-fonts',
-		'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;500&display=swap',
+		'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Nova+Cut&family=Padyakke+Expanded+One&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap',
 		array(),
 		null
 	);
 
-	// Swiper (CDN).
-	wp_enqueue_style( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11' );
+	// Global stylesheets, in the same order as the static <head>.
+	wp_enqueue_style( 'ludoa-reset', "$static/css/reset.css", array(), LUDOA_VERSION );
+	wp_enqueue_style( 'ludoa-tokens', "$static/css/tokens.css", array( 'ludoa-reset' ), LUDOA_VERSION );
+	wp_enqueue_style( 'ludoa-common', "$static/css/common.css", array( 'ludoa-tokens' ), LUDOA_VERSION );
 
-	// Stylesheets in load order. Each depends on the previous so order is preserved.
-	$styles = array(
-		'reset'       => null,
-		'variables'   => null,
-		'common'      => null,
-		'header'      => null,
-		'home'        => null,
-		'hero'        => null,
-		'program'     => '9',
-		'supervision' => '8',
-		'wishes'      => '12',
-		'pricing'     => '3',
-		'schedule'    => '3',
-		'access'      => '2',
-		'faq'         => '2',
-		'footer'      => '3',
-		'modal'       => '2',
-		'animation'   => '2',
-	);
-
-	$prev = array( 'ludoa-fonts', 'swiper' );
-	foreach ( $styles as $name => $ver ) {
-		$handle = 'ludoa-' . $name;
-		wp_enqueue_style( $handle, "$css/$name.css", $prev, $ver ? $ver : LUDOA_VERSION );
-		$prev = array( $handle );
+	// Page-specific stylesheet.
+	if ( is_front_page() ) {
+		wp_enqueue_style( 'ludoa-page', "$static/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	} else {
+		$slug  = get_post_field( 'post_name', get_queried_object_id() );
+		$pages = ludoa_pages();
+		if ( isset( $pages[ $slug ] ) ) {
+			wp_enqueue_style( 'ludoa-page', "$static/{$pages[ $slug ]['css']}/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+		}
 	}
 
-	// Main stylesheet (theme header only).
-	wp_enqueue_style( 'ludoa-style', get_stylesheet_uri(), array(), LUDOA_VERSION );
-
-	// Scripts (footer). config first, swiper, then feature scripts; i18n last.
-	wp_enqueue_script( 'ludoa-config', "$js/config.js", array(), LUDOA_VERSION, true );
-	wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11', true );
-
-	$scripts = array(
-		'slider'    => array( '8', array( 'ludoa-config', 'swiper' ) ),
-		'nav'       => array( null, array( 'ludoa-config' ) ),
-		'main'      => array( '10', array( 'ludoa-config' ) ),
-		'schedule'  => array( '1', array( 'ludoa-config' ) ),
-		'access'    => array( '1', array( 'ludoa-config' ) ),
-		'faq'       => array( '1', array( 'ludoa-config' ) ),
-		'animation' => array( '1', array( 'ludoa-config' ) ),
-		'i18n'      => array( '2', array( 'ludoa-config' ) ),
-	);
-
-	foreach ( $scripts as $name => $cfg ) {
-		list( $ver, $deps ) = $cfg;
-		wp_enqueue_script( 'ludoa-' . $name, "$js/$name.js", $deps, $ver ? $ver : LUDOA_VERSION, true );
-	}
-
-	// Contact modal flow (入力 → 確認 → 完了, AJAX submit).
-	wp_enqueue_script( 'ludoa-contact', "$js/contact.js", array(), LUDOA_VERSION, true );
-	wp_localize_script(
-		'ludoa-contact',
-		'ludoaContact',
-		array(
-			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-			'nonce'   => wp_create_nonce( 'ludoa_contact' ),
-		)
-	);
+	// Site script (footer).
+	wp_enqueue_script( 'ludoa-script', "$static/js/script.js", array(), LUDOA_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'ludoa_assets' );
 
 /**
- * Static one-page LP: drop WordPress block-library bloat on the front.
+ * Static site: drop WordPress block-library bloat on the front end.
  */
 function ludoa_dequeue_block_styles() {
 	wp_dequeue_style( 'wp-block-library' );
@@ -122,116 +120,53 @@ function ludoa_dequeue_block_styles() {
 add_action( 'wp_enqueue_scripts', 'ludoa_dequeue_block_styles', 100 );
 
 /* ============================================================
- * Contact flow: single modal, 入力 → 確認 → 完了 (AJAX submit)
+ * Auto-provision pages on theme activation.
  * ============================================================ */
 
 /**
- * Stylesheet for the contact modal steps (confirm / thankyou).
+ * Create the fixed pages (idempotent) and set a static front page.
  */
-function ludoa_contact_styles() {
-	wp_enqueue_style(
-		'ludoa-contact-pages',
-		get_template_directory_uri() . '/assets/css/contact-pages.css',
-		array( 'ludoa-modal' ),
-		LUDOA_VERSION
-	);
-}
-add_action( 'wp_enqueue_scripts', 'ludoa_contact_styles', 20 );
-
-/**
- * Sanitize raw contact input into a normalized field set.
- *
- * @param array $src Raw $_POST.
- * @return array
- */
-function ludoa_contact_sanitize( $src ) {
-	// Fields are prefixed `ludoa_` to avoid collision with reserved WP query
-	// vars (notably `name`, which would hijack the main query and 404 the page).
-	return array(
-		'name'         => isset( $src['ludoa_name'] ) ? sanitize_text_field( wp_unslash( $src['ludoa_name'] ) ) : '',
-		'email'        => isset( $src['ludoa_email'] ) ? sanitize_email( wp_unslash( $src['ludoa_email'] ) ) : '',
-		'tel'          => isset( $src['ludoa_tel'] ) ? sanitize_text_field( wp_unslash( $src['ludoa_tel'] ) ) : '',
-		'subject_type' => isset( $src['ludoa_subject_type'] ) ? sanitize_text_field( wp_unslash( $src['ludoa_subject_type'] ) ) : '',
-		'message'      => isset( $src['ludoa_message'] ) ? sanitize_textarea_field( wp_unslash( $src['ludoa_message'] ) ) : '',
-		'agree'        => empty( $src['ludoa_agree'] ) ? '' : '1',
-	);
-}
-
-/**
- * Validate sanitized contact data. Returns array of field keys that failed.
- *
- * @param array $d Sanitized data.
- * @return array
- */
-function ludoa_contact_validate( $d ) {
-	$errors = array();
-	if ( '' === $d['name'] ) {
-		$errors[] = 'name';
-	}
-	if ( '' === $d['email'] || ! is_email( $d['email'] ) ) {
-		$errors[] = 'email';
-	}
-	if ( '' === $d['tel'] ) {
-		$errors[] = 'tel';
-	}
-	if ( '' === $d['subject_type'] ) {
-		$errors[] = 'subject_type';
-	}
-	if ( '1' !== $d['agree'] ) {
-		$errors[] = 'agree';
-	}
-	return $errors;
-}
-
-/**
- * Human label for each field (Japanese).
- *
- * @return array
- */
-function ludoa_contact_labels() {
-	return array(
-		'subject_type' => 'お問い合わせ内容の種類',
-		'name'         => 'お名前',
-		'email'        => 'メールアドレス',
-		'tel'          => 'お電話番号',
-		'message'      => 'ご質問・ご要望',
-	);
-}
-
-/**
- * AJAX submit handler. Validates, mails, returns JSON.
- */
-function ludoa_contact_submit() {
-	if ( ! isset( $_POST['nonce'] )
-		|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'ludoa_contact' ) ) {
-		wp_send_json_error( array( 'message' => 'invalid_nonce' ), 403 );
-	}
-
-	$data   = ludoa_contact_sanitize( $_POST );
-	$errors = ludoa_contact_validate( $data );
-	if ( $errors ) {
-		wp_send_json_error(
+function ludoa_provision_pages() {
+	// Home page (front).
+	$home = get_page_by_path( 'home' );
+	if ( ! $home ) {
+		$home_id = wp_insert_post(
 			array(
-				'message' => 'validation_failed',
-				'fields'  => $errors,
-			),
-			422
+				'post_title'   => 'ホーム',
+				'post_name'    => 'home',
+				'post_status'  => 'publish',
+				'post_type'    => 'page',
+				'post_content' => '',
+			)
+		);
+	} else {
+		$home_id = $home->ID;
+	}
+
+	if ( $home_id && ! is_wp_error( $home_id ) ) {
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', $home_id );
+	}
+
+	foreach ( ludoa_pages() as $slug => $data ) {
+		if ( get_page_by_path( $slug ) ) {
+			continue;
+		}
+		wp_insert_post(
+			array(
+				'post_title'   => $data['title'],
+				'post_name'    => $slug,
+				'post_status'  => 'publish',
+				'post_type'    => 'page',
+				'post_content' => '',
+			)
 		);
 	}
 
-	$to      = get_option( 'admin_email' );
-	$subject = '【お問い合わせ】' . $data['subject_type'];
-	$body    = "お問い合わせを受け付けました。\n\n";
-	foreach ( ludoa_contact_labels() as $key => $label ) {
-		$body .= $label . "：\n" . ( '' !== $data[ $key ] ? $data[ $key ] : '（なし）' ) . "\n\n";
+	// Pretty permalinks are required for /slug/ URLs.
+	if ( '' === get_option( 'permalink_structure' ) ) {
+		update_option( 'permalink_structure', '/%postname%/' );
 	}
-	$headers = array(
-		'Content-Type: text/plain; charset=UTF-8',
-		'Reply-To: ' . $data['name'] . ' <' . $data['email'] . '>',
-	);
-	wp_mail( $to, $subject, $body, $headers );
-
-	wp_send_json_success( array( 'message' => 'ok' ) );
+	flush_rewrite_rules();
 }
-add_action( 'wp_ajax_ludoa_contact_submit', 'ludoa_contact_submit' );
-add_action( 'wp_ajax_nopriv_ludoa_contact_submit', 'ludoa_contact_submit' );
+add_action( 'after_switch_theme', 'ludoa_provision_pages' );

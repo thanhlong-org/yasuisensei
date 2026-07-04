@@ -1,7 +1,7 @@
 # ============================================================
 # WordPress - chỉ track custom theme (ludoa) và custom plugins
 # ============================================================
-
+html_asset
 # === CRITICAL: WordPress config (chứa DB credentials, secret keys) ===
 wp-config.php
 

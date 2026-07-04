@@ -1,0 +1,2548 @@
+/* =============================================
+   Infomation (Ã£ÂÅ Ã§Å¸Â¥Ã£â€šâ€°Ã£Ââ€º)
+   ============================================= */
+.info {
+  width: 100%;
+  padding: 0 100px 100px; /* Figma: no top padding (connects to Company section above) */
+  background-color: #ffffff;
+  /* background-image: url("../assets/img/company-bg-pattern.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat; */
+}
+
+.info__inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 802.02px; /* Figma spec */
+}
+
+/* h2 group (left side) */
+.info__heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1240px;
+  height: 129.35px;
+  margin: 0;
+}
+.info__heading-en {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 100px;
+  line-height: 1.07;
+  color: rgba(0, 0, 0, 0.1); /* fill_Y7MEAN */
+  white-space: nowrap;
+}
+.info__heading-jp {
+  position: absolute;
+  top: 80.35px;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: 5.25px;
+  color: #868181; /* fill_JUHZIY */
+}
+
+/* Top-right button (PC) */
+.detail-btn.info__btn {
+  position: absolute;
+  top: 48.65px;
+  left: 967px;
+}
+.detail-btn.info__btn-sp {
+  display: none; /* SP only */
+}
+
+/* Decorative logo (bottom-left, faint Ã¢â‚¬â€ opacity baked into SVG) */
+.info__logo-deco {
+  position: absolute;
+  top: 245px;
+  left: 50px;
+  cursor: pointer;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  object-fit: contain;
+}
+/* Hover: full 360Ã‚Â° spin */
+.info__logo-deco:hover {
+  transform: rotate(360deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .info__logo-deco { transition: none; }
+  .info__logo-deco:hover { transform: none; }
+}
+
+/* News items list (right column) */
+.info__list {
+  position: absolute;
+  top: 193.97px;
+  left: 531px;
+  width: 707.21px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 47px;
+}
+
+.info-item {
+  position: relative;
+  width: 707.21px;
+  height: 171.35px;
+  cursor: pointer;
+}
+
+.info-item__date {
+  position: absolute;
+  top: 0;
+  left: 0.06px;
+  width: 299.94px;
+  height: 48px;
+  margin: 0;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 18px; /* style_CEBEAI */
+  line-height: 48px;
+  color: #000;
+  white-space: nowrap;
+}
+
+.info-item__tag {
+  position: absolute;
+  top: 55px;
+  left: 0.06px;
+  width: 97.31px;
+  height: 26px;
+  border-radius: 13px;
+  background: #4E5D76; /* fill_OJKZYL */
+}
+
+.info-item__desc {
+  position: absolute;
+  top: 81px;
+  left: 0.06px;
+  width: 548.72px;
+  height: 48px;
+  margin: 0;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 48px;
+  color: #000;
+}
+
+.info-item__line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(76, 72, 72, 0.7);
+}
+
+.info-item__accent {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 70px;
+  height: 4px;
+  background: #0340A4; /* fill_OBYFMG */
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Hover: blue accent extends to full block width */
+.info-item:hover .info-item__accent {
+  width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .info-item__accent { transition: none; }
+}
+
+/* =============================================
+   Infomation Ã¢â‚¬â€ Tablet (Ã¢â€°Â¤ 1200px)
+   ============================================= */
+@media (max-width: 1200px) {
+  .info {
+    padding: 0 48px 80px;
+  }
+  .info__inner {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .info__heading {
+    position: static;
+    width: auto;
+    height: 100px;
+  }
+  .info__heading-en {
+    font-size: 70px;
+  }
+  .info__heading-jp {
+    top: 60px;
+    font-size: 24px;
+    letter-spacing: 3.6px;
+  }
+  .detail-btn.info__btn {
+    position: relative;
+    top: auto;
+    left: auto;
+    align-self: flex-end;
+  }
+  .info__logo-deco {
+    display: none;
+  }
+  .info__list {
+    position: static;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .info-item {
+    width: 100%;
+    height: auto;
+    min-height: 130px;
+    padding-bottom: 20px;
+  }
+  .info-item__date,
+  .info-item__tag,
+  .info-item__desc {
+    position: static;
+    width: auto;
+    height: auto;
+    white-space: normal;
+  }
+  .info-item__date {
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .info-item__tag {
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .info-item__desc {
+    line-height: 1.7;
+  }
+}
+
+/* =============================================
+   Infomation Ã¢â‚¬â€ SP (< 768px)
+   ============================================= */
+@media (max-width: 767px) {
+  .info {
+    padding: 0 20px 40px;
+  }
+  .info__inner {
+    gap: 24px;
+  }
+  .info__heading {
+    height: 67px;
+  }
+  .info__heading-en {
+    font-size: 50px;
+  }
+  .info__heading-jp {
+    top: 41px;
+    font-size: 18px;
+    letter-spacing: 2.7px;
+  }
+
+  /* Hide PC button, show SP-only button */
+  .detail-btn.info__btn {
+    display: none;
+  }
+  .detail-btn.info__btn-sp {
+    display: flex;
+    margin: 24px auto 0;
+    width: 272px;
+    height: 50px;
+    font-size: 14px;
+  }
+  .info__btn-sp .detail-btn__edge--l,
+  .info__btn-sp .detail-btn__edge--r {
+    height: 30px;
+  }
+  /* SP button accent uses green per Figma (fill_I23QIS) */
+  .info__btn-sp .detail-btn__accent {
+    background: #2CA5A1;
+  }
+
+  .info__list {
+    gap: 16px;
+  }
+  .info-item {
+    min-height: 0;
+    padding-bottom: 16px;
+  }
+  .info-item__date {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .info-item__tag {
+    width: 48.43px;
+    height: 14.72px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .info-item__desc {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  /* SP accent color: teal green */
+  .info-item__accent {
+    background: #2CA5A1;
+  }
+}
+
+/* =============================================
+   Company (ä¼æ¥­æƒ…å ±) â€” redesigned (Figma node 4179:509)
+   Heading + intro text (left) and link rows (right) that expand to
+   reveal a photo on hover. Frame deco (slash corners + sparkles).
+   ============================================= */
+.company {
+  width: 100%;
+  padding: 100px;
+  background-color: #ffffff;
+}
+.company__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Heading (top-left, bilingual) â€” char reveal handled in shared block */
+.company__heading {
+  position: relative;
+  min-height: 144px;
+  margin: 0 0 55px;
+}
+.company__heading-en {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 100px;
+  line-height: 1.25;
+  color: rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+.company__heading-jp {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: 5.25px;
+  color: #868181;
+}
+
+/* Body: intro (left) + links (right) */
+.company__body {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  padding: 44px 0;
+}
+.company__intro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 0;
+  margin-left: 35px;
+}
+.company__intro-p {
+  margin: 0;
+  /* Each paragraph fills the same 150px band as its matching link, centred to align with the link title */
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #323232;
+}
+
+/* Link list (right) */
+.company__list {
+  flex: 1.25;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-right: 35px;
+}
+.company-item {
+  position: relative;
+}
+.company-item__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 150px;           /* consistent height — no expand; image just fades in on hover */
+  overflow: hidden;
+  text-decoration: none;
+}
+
+/* Photo background â€” revealed on hover (with a white scrim for legibility) */
+.company-item__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.55s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.company-item--01 .company-item__media { background-image: url("../assets/img/company-img01.jpg"); }
+.company-item--02 .company-item__media { background-image: url("../assets/img/company-img02.jpg"); }
+.company-item--03 .company-item__media { background-image: url("../assets/img/company-img03.jpg"); }
+.company-item__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
+.company-item:hover .company-item__media { opacity: 1; transform: scale(1); }
+
+/* Title + EN subtitle */
+.company-item__text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding-left: 0;
+  transition: padding-left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.company-item:hover .company-item__text { padding-left: 40px; }
+.company-item__title {
+  font-family: var(--font-jp-serif);
+  font-weight: 700;
+  font-size: 24px;          /* Figma style_2d603e4c */
+  color: #868181;
+  transition: font-size 0.4s ease, color 0.4s ease;
+}
+.company-item:hover .company-item__title {
+  font-size: 30px;          /* Figma style_2b141508 */
+  color: #5B5B5B;
+}
+.company-item__en {
+  font-family: "Padyakke Expanded One", var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 18px;          /* Figma style_d4c1fe93 */
+  color: #000000;
+}
+
+/* Circle arrow â€” faint blue â†’ solid blue on hover */
+.company-item__arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.company-item:hover .company-item__arrow { transform: translate(-16px, -50%); }
+.company-item__arrow img,
+.company-item__arrow svg { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* Separator line + blue accents */
+.company-item__line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #767676;       /* Figma fill_b52d9af0 */
+  z-index: 1;
+}
+.company-item__line--top {
+  top: 0;
+  bottom: auto;
+}
+.company-item__accent {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 70px;
+  height: 4px;
+  background: #0340A4;       /* Figma fill_639c7493 */
+  z-index: 2;
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.company-item:hover .company-item__accent { width: 100%; }
+.company-item__bar-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: #0340A4;
+  z-index: 2;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ----- Frame deco around the body (slash corners + lines + sparkles) ----- */
+.company__frame { position: absolute; pointer-events: none; z-index: 0; }
+.company__frame--tline { top: 0; left: 15px; right: 5px; height: 1px; background: rgba(76, 72, 72, 0.7); }
+.company__frame--bline { bottom: 0; left: 5px; right: 15px; height: 1px; background: rgba(76, 72, 72, 0.7); }
+.company__frame--tl,
+.company__frame--br { width: 54px; height: 54px; }
+.company__frame--tl { top: -27px; left: -12px; }
+.company__frame--br { bottom: -27px; right: -12px; }
+.company__frame--tl::before,
+.company__frame--br::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right,
+    transparent calc(50% - 0.5px),
+    rgba(76, 72, 72, 0.7) calc(50% - 0.5px),
+    rgba(76, 72, 72, 0.7) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px));
+}
+.company__frame--star-tr,
+.company__frame--star-bl {
+  width: 16px;
+  height: 16px;
+  background-color: #B1B1B1;
+  -webkit-mask: url("../assets/img/slossy-icon.svg") center / contain no-repeat;
+          mask: url("../assets/img/slossy-icon.svg") center / contain no-repeat;
+}
+.company__frame--star-tr { top: -8px; right: -8px; }
+.company__frame--star-bl { bottom: -8px; left: -8px; }
+
+/* ===== Scroll-into-view animation for the frame (same as Case) =====
+   Don't fade the body block itself — only draw the frame in. */
+.company__body[data-reveal] { opacity: 1; transform: none; transition: none; }
+/* Slash corners rotate + scale in */
+.company__frame--tl,
+.company__frame--br {
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    opacity   0.5s ease 0.15s;
+}
+.company__body[data-reveal]:not(.is-visible) .company__frame--tl,
+.company__body[data-reveal]:not(.is-visible) .company__frame--br {
+  transform: rotate(-180deg) scale(0.3);
+  opacity: 0;
+}
+/* Horizontal lines draw out (top: L→R, bottom: R→L) */
+.company__frame--tline {
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+}
+.company__frame--bline {
+  transform-origin: right center;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+}
+.company__body[data-reveal]:not(.is-visible) .company__frame--tline,
+.company__body[data-reveal]:not(.is-visible) .company__frame--bline {
+  transform: scaleX(0);
+}
+/* Stars spin + pop */
+.company__frame--star-tr,
+.company__frame--star-bl {
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
+    opacity   0.5s ease 0.6s;
+}
+.company__body[data-reveal]:not(.is-visible) .company__frame--star-tr,
+.company__body[data-reveal]:not(.is-visible) .company__frame--star-bl {
+  transform: rotate(-180deg) scale(0);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company__body[data-reveal],
+  .company__frame--tl, .company__frame--br,
+  .company__frame--tline, .company__frame--bline,
+  .company__frame--star-tr, .company__frame--star-bl { transition: none; }
+  .company-item__link,
+  .company-item__media,
+  .company-item__text,
+  .company-item__title,
+  .company-item__arrow,
+  .company-item__accent,
+  .company-item__bar-top { transition: none; }
+}
+
+/* =============================================
+   Company â€” Tablet (â‰¤ 1024px): stack intro over links
+   ============================================= */
+@media (max-width: 1024px) {
+  .company { padding: 80px 48px; }
+  .company__heading { min-height: 0; margin-bottom: 32px; }
+  .company__heading-en { position: static; font-size: 70px; }
+  .company__heading-jp { position: static; margin-top: -24px; font-size: 28px; letter-spacing: 3.6px; }
+  .company__body { flex-direction: column; align-items: stretch; gap: 40px; padding: 36px 0; }
+  .company__intro { gap: 24px; margin-left: 0; }
+  .company__list { margin: 0 20px; }
+  /* Stacked layout: paragraphs flow normally, no 150px band */
+  .company__intro-p { height: auto; display: block; }
+}
+
+/* =============================================
+   Company â€” SP (< 768px)
+   ============================================= */
+@media (max-width: 767px) {
+  .company { padding: 40px 20px; }
+  .company__heading-en { font-size: 50px; }
+  .company__heading-jp { font-size: 18px; margin-top: -18px; letter-spacing: 2.7px; }
+  .company__body { gap: 28px; padding: 56px 0; }
+  .company__intro { display: none; }
+  .company__intro-p { font-size: 15px; }
+  .company-item__link { height: 120px; }
+  .company-item__title { font-size: 18px; }
+  .company-item:hover .company-item__title { font-size: 20px; }
+  .company-item__en { font-size: 14px; }
+  .company-item__arrow { width: 32px; height: 32px; right: 8px; }
+  .company-item:hover .company-item__text { padding-left: 20px; }
+  .company__frame--tl,
+  .company__frame--br {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .company__frame--tl {
+    top: 0;
+    left: 0;
+  }
+  .company__frame--br {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: auto;
+  }
+  .company__frame--tline {
+    top: 20px;
+    left: 20px;
+    right: 10px;
+    width: auto;
+  }
+  .company__frame--bline {
+    top: auto;
+    bottom: 20px;
+    left: 10px;
+    right: 20px;
+    width: auto;
+  }
+  .company__frame--star-tr,
+  .company__frame--star-bl {
+    width: 12px;
+    height: 12px;
+  }
+  .company__frame--star-tr {
+    top: 14px;
+    right: 0;
+  }
+  .company__frame--star-bl {
+    top: auto;
+    bottom: 14px;
+    left: 0;
+  }
+}
+
+/* =============================================
+   Service (Ã£â€šÂµÃ£Æ’Â¼Ã£Æ’â€œÃ£â€šÂ¹)
+   ============================================= */
+/* Shared gradient wrapper for Service + Case */
+.service-case-bg {
+  width: 100%;
+  /* Figma Ã£â€šÂµÃ£Æ’Â¼Ã£Æ’â€œÃ£â€šÂ¹Ã£â€šÂ»Ã£â€šÂ¯Ã£â€šÂ·Ã£Æ’Â§Ã£Æ’Â³ fill: gradient spanning both inner blocks */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(74, 129, 199, 1) 47%,
+    rgba(36, 63, 97, 1) 100%
+  );
+}
+
+.service {
+  width: 100%;
+  /* top + sides padding only Ã¢â‚¬â€ bottom gap comes from .case padding-top */
+  padding: 100px 100px 0;
+  background: transparent;
+}
+
+.service__inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 1044.38px; /* Figma spec */
+}
+
+/* h2: "Service" decorative big + "Ã£â€šÂµÃ£Æ’Â¼Ã£Æ’â€œÃ£â€šÂ¹" smaller */
+.service__heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 597.06px;
+  height: 127px;
+  margin: 0;
+}
+.service__heading-en {
+  position: absolute;
+  top: 0;
+  left: 0.26px;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 100px;
+  line-height: 1.25;
+  color: rgba(65, 99, 136, 0.2); /* fill_JKUYCN */
+  white-space: nowrap;
+}
+.service__heading-jp {
+  position: absolute;
+  top: 83.86px;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: 5.25px;
+  color: #868181; /* fill_JUHZIY */
+}
+
+/* Top-right button "Ã¤Âºâ€¹Ã¤Â¾â€¹Ã¤Â¸â‚¬Ã¨Â¦Â§Ã£â€šâ€™Ã¨Â¦â€¹Ã£â€šâ€¹" Ã¢â‚¬â€ increased specificity to beat .detail-btn defined later */
+.detail-btn.service__btn {
+  position: absolute;
+  top: 54px; /* Figma spec */
+  left: 967px; /* Figma spec */
+}
+.detail-btn.service__btn-sp {
+  display: none; /* shown only on SP */
+}
+
+/* Consultant image (left, below heading) */
+.service__image {
+  position: absolute;
+  top: 344px;
+  left: 35px;
+  width: 528px;
+  height: 395px;
+  background: url("../assets/img/service-consultant.png") center/cover no-repeat;
+}
+
+/* Description text below image */
+.service__desc {
+  position: absolute;
+  top: 763px;
+  left: 35px;
+  width: 528px;
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 40px; /* Figma spec absolute lh */
+  color: #000;
+}
+
+/* Decorative logo (semi-transparent, behind list) */
+.service__logo-deco {
+  position: absolute;
+  top: 282px;
+  left: 628px;
+  width: 610.53px;
+  height: 693px;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+/* ===== Decorative frame lines around the service list =====
+   All positions are within .service__inner, derived from Figma:
+   list group origin (y=241.34) + child y offset within group. */
+.service__deco {
+  position: absolute;
+  pointer-events: none;
+}
+/* Disable generic data-reveal slide on the section Ã¢â‚¬â€  we use per-deco reveal instead */
+.service[data-reveal] {
+  opacity: 1; transform: none; transition: none;
+}
+/* Service decorations: slash corners rotate in, horizontal lines draw out */
+.service__deco--slash-tl,
+.service__deco--slash-br {
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+    opacity   0.5s ease 0.2s;
+}
+.service[data-reveal]:not(.is-visible) .service__deco--slash-tl,
+.service[data-reveal]:not(.is-visible) .service__deco--slash-br {
+  transform: rotate(-180deg) scale(0.3);
+  opacity: 0;
+}
+.service__deco--top-line {
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+.service__deco--bottom-line {
+  transform-origin: right center;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+.service[data-reveal]:not(.is-visible) .service__deco--top-line,
+.service[data-reveal]:not(.is-visible) .service__deco--bottom-line {
+  transform: scaleX(0);
+}
+
+/* Star sparkle reveal animations (mirror Case block) */
+.service__deco--star-tr,
+.service__deco--star-bl {
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
+    opacity   0.5s ease 0.6s;
+}
+.service[data-reveal]:not(.is-visible) .service__deco--star-tr,
+.service[data-reveal]:not(.is-visible) .service__deco--star-bl {
+  transform: rotate(-180deg) scale(0);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service__deco--slash-tl, .service__deco--slash-br,
+  .service__deco--top-line, .service__deco--bottom-line,
+  .service__deco--star-tr, .service__deco--star-bl {
+    transition: none;
+  }
+}
+/* Top horizontal line: list-relative (29, 40.66) → inner (29, 282) */
+.service__deco--top-line {
+  top: 282px;
+  left: 29px;
+  width: 1211px;
+  height: 1px;
+  background: rgba(76, 72, 72, 0.7);
+}
+/* Bottom horizontal line: list-relative (0.24, 767.66) → inner (0.24, 1009) */
+.service__deco--bottom-line {
+  top: 1009px;
+  left: 0.24px;
+  width: 1202.77px;
+  height: 1px;
+  background: rgba(76, 72, 72, 0.7);
+}
+/* Top-left diagonal slash: `\` slope */
+.service__deco--slash-tl {
+  top: 241.34px;
+  left: 0;
+  width: 69.38px;
+  height: 69.3px;
+}
+.service__deco--slash-tl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 0.5px),
+    rgba(76, 72, 72, 0.7) calc(50% - 0.5px),
+    rgba(76, 72, 72, 0.7) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
+}
+/* Bottom-right diagonal slash: `\` slope */
+.service__deco--slash-br {
+  top: 974.99px;
+  left: 1169.05px;
+  width: 69.43px;
+  height: 69.39px;
+}
+.service__deco--slash-br::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 0.5px),
+    rgba(76, 72, 72, 0.7) calc(50% - 0.5px),
+    rgba(76, 72, 72, 0.7) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
+}
+
+/* Star sparkle decorations at top-right + bottom-left corners */
+.service__deco--star-tr,
+.service__deco--star-bl {
+  width: 16px;
+  height: 16px;
+  background-color: rgba(76, 72, 72, 0.7);
+  -webkit-mask: url("../assets/img/slossy-icon.svg") center / contain no-repeat;
+          mask: url("../assets/img/slossy-icon.svg") center / contain no-repeat;
+  display: block;
+}
+.service__deco--star-tr {
+  top: 274px; /* aligned with top horizontal line (y=282) */
+  right: -8px; /* extend slightly past right edge */
+}
+.service__deco--star-bl {
+  top: 1001px; /* aligned with bottom horizontal line (y=1009) */
+  left: -8px; /* extend slightly past left edge */
+}
+
+/* ===== Service items list (right column) ===== */
+.service__list {
+  position: absolute;
+  top: 241.34px; /* Figma spec: Ã£â€šÂµÃ£Æ’Â¼Ã£Æ’â€œÃ£â€šÂ¹Ã¤Â¸â‚¬Ã¨Â¦Â§ group y */
+  left: 0;
+  width: 1240px;
+  height: 803.04px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Each service item: number + Japanese name + English label + accent line */
+.service-item {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 33px max-content 1fr; /* num | name (auto) | english label */
+  align-items: center;
+  column-gap: 30px;
+  width: 100%;
+  height: 82px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(76, 72, 72, 0.7); /* fill_GFB5R9 - divider */
+}
+/* Figma y-positions for each item */
+.service-item:nth-of-type(1) { top: 65.55px; }
+.service-item:nth-of-type(2) { top: 172.66px; }
+.service-item:nth-of-type(3) { top: 279.66px; }
+.service-item:nth-of-type(4) { top: 386.66px; }
+.service-item:nth-of-type(5) { top: 494.34px; }
+.service-item:nth-of-type(6) { top: 601.54px; }
+
+/* All items start at x=617-618 from list origin */
+.service-item {
+  left: 618px;
+  /* limit width so divider doesn't cross logo decoration or border slashes */
+  width: 587px;
+}
+
+.service-item__num {
+  font-family: "Nova Cut", serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+  /* Linear gradient text fill */
+  background: linear-gradient(180deg, #00457C 0%, #007DE2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.service-item__name {
+  font-family: var(--font-jp-serif);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  color: #4C4848;
+  white-space: nowrap;
+}
+.service-item__en {
+  font-family: "Padyakke Expanded One", serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1;
+  color: #000;
+}
+/* Blue accent line under each item, aligned with number */
+.service-item__accent {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 70px;
+  height: 4px;
+  background: #0340A4;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Hover: extend the blue underline to full item width */
+.service-item:hover .service-item__accent {
+  width: 100%;
+}
+.service-item { cursor: pointer; }
+
+/* ===== Slot-machine text reveal (per-char) ===== */
+.slot-mask {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.15;
+  vertical-align: top;
+}
+.slot-orig,
+.slot-clone {
+  display: inline-block;
+  transition:
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity   0.45s ease;
+  transition-delay: calc(var(--i, 0) * 0.025s);
+}
+.slot-clone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.service-item:hover .slot-orig {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.service-item:hover .slot-clone {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Scroll-into-view reveal: chars start hidden below mask, slide up when item enters viewport */
+.service-item[data-reveal] {
+  /* Disable generic data-reveal opacity/translate; we use per-char reveal */
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.service-item[data-reveal]:not(.is-visible) .slot-orig {
+  transform: translateY(100%);
+  opacity: 0;
+}
+/* When .is-visible class is added by IntersectionObserver, the override is dropped
+   and existing .slot-orig transition (with per-char stagger) animates back to default. */
+@media (prefers-reduced-motion: reduce) {
+  .slot-orig, .slot-clone { transition: none; }
+  .service-item__accent { transition: none; }
+}
+
+/* =============================================
+   Service Ã¢â‚¬â€ Tablet (Ã¢â€°Â¤ 1200px)
+   ============================================= */
+@media (max-width: 1200px) {
+  .service {
+    padding: 80px 48px;
+  }
+  .service__inner {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .service__heading,
+  .service__image,
+  .service__desc,
+  .service__list,
+  .service__logo-deco {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+  .detail-btn.service__btn {
+    position: static;
+    top: auto;
+    left: auto;
+    align-self: flex-end;
+  }
+  .service__image {
+    width: 100%;
+    max-width: 600px;
+    height: 360px;
+    align-self: center;
+  }
+  .service__logo-deco,
+  .service__deco {
+    display: none;
+  }
+  .service__list {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .service-item {
+    position: relative;
+    top: auto !important;
+    left: auto;
+    width: 100%;
+  }
+}
+
+/* =============================================
+   Service Ã¢â‚¬â€ SP (< 768px)
+   ============================================= */
+@media (max-width: 767px) {
+  .service {
+    padding: 40px 20px;
+  }
+  .service__inner {
+    gap: 24px;
+  }
+
+  /* Heading: scaled down per Features SP pattern */
+  .service__heading {
+    position: relative;
+    width: auto;
+    height: 67px;
+  }
+  .service__heading-en {
+    font-size: 50px;
+  }
+  .service__heading-jp {
+    top: 41px;
+    font-size: 18px;
+    letter-spacing: 2.7px;
+  }
+
+  /* Hide top-right button on SP; show SP-only bottom button */
+  .detail-btn.service__btn {
+    display: none;
+  }
+  .detail-btn.service__btn-sp {
+    display: flex; /* block-level so margin auto works */
+    margin: 40px auto 0;
+    width: 272px;
+    height: 50px;
+    font-size: 14px;
+  }
+  .service__btn-sp .detail-btn__edge--l,
+  .service__btn-sp .detail-btn__edge--r {
+    height: 30px;
+  }
+
+  /* Hide image + description text on SP (not in Figma SP design) */
+  .service__image,
+  .service__desc {
+    display: none;
+  }
+
+  /* Items: smaller per Figma SP spec */
+  .service__list {
+    width: auto;
+    gap: 0;
+    margin: 20px;
+    z-index: 1;
+  }
+  .service-item {
+    grid-template-columns: 28px max-content 1fr;
+    column-gap: 14px;
+    height: 54px;
+    padding-bottom: 16px;
+  }
+  .service-item__num {
+    font-size: 18px;
+  }
+  .service-item__name {
+    font-size: 14px;
+  }
+  .service-item__en {
+    font-size: 14px;
+  }
+  .service-item__accent {
+    width: 60px;
+    height: 4px;
+  }
+
+  /* Show and position decorative frame on SP */
+  .service__deco {
+    display: block;
+  }
+  .service__deco--slash-tl,
+  .service__deco--slash-br {
+    width: 40px;
+    height: 40px;
+  }
+  .service__deco--slash-tl {
+    top: 71px;
+    left: 0;
+  }
+  .service__deco--slash-br {
+    top: 440px;
+    left: auto;
+    right: 0;
+  }
+  .service__deco--top-line {
+    top: 91px;
+    left: 20px;
+    right: 10px;
+    width: auto;
+    height: 1px;
+  }
+  .service__deco--bottom-line {
+    top: 460px;
+    left: 10px;
+    right: 20px;
+    width: auto;
+    height: 1px;
+  }
+  .service__deco--star-tr {
+    top: 85px;
+    right: 0;
+    left: auto;
+    width: 12px;
+    height: 12px;
+  }
+  .service__deco--star-bl {
+    top: 454px;
+    left: 0;
+    right: auto;
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Center decorative background logo on SP */
+  .service__logo-deco {
+    display: block;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 280px;
+    opacity: 0.08;
+    z-index: 0;
+  }
+}
+
+/* =============================================
+   Case (Ã¤Âºâ€¹Ã¤Â¾â€¹Ã§Â´Â¹Ã¤Â»â€¹)
+   ============================================= */
+.case {
+  width: 100%;
+  padding: 100px 100px;
+  background: transparent;
+}
+
+.case__inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Case heading Ã¢â‚¬â€ same bilingual pattern as Service */
+.case__heading {
+  position: relative;
+  width: 960px;
+  height: 115.22px;
+  margin: 0 0 100px 0;
+}
+.case__heading-en {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 100px;
+  line-height: 1.06; /* tight to match Figma 115px box */
+  color: rgba(255, 255, 255, 0.2); /* fill_V0IQ1B */
+  white-space: nowrap;
+}
+.case__heading-jp {
+  position: absolute;
+  top: 74.62px;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: 5.25px;
+  color: #ffffff; /* fill_MKQD8L */
+}
+
+/* Top-right button "Ã¤Âºâ€¹Ã¤Â¾â€¹Ã¤Â¸â‚¬Ã¨Â¦Â§Ã£â€šâ€™Ã¨Â¦â€¹Ã£â€šâ€¹" */
+.detail-btn.case__btn {
+  position: absolute;
+  top: 52px; /* Figma spec */
+  right: 0; /* x=967 in 1240 Ã¢â€ â€™ right edge: 1240-967-272 = 1 Ã¢â€°Ë† 0 */
+}
+/* White text variant Ã¢â‚¬â€ case section is dark, button needs white text/borders */
+.detail-btn.case__btn,
+.detail-btn.case-item__btn--light,
+.detail-btn.case__btn-sp {
+  color: #ffffff;
+}
+.detail-btn.case__btn .detail-btn__edge,
+.detail-btn.case-item__btn--light .detail-btn__edge,
+.detail-btn.case__btn-sp .detail-btn__edge {
+  background: rgba(255, 255, 255, 0.7); /* fill_BJMUJA */
+}
+
+/* SP-only bottom button Ã¢â‚¬â€ green accent per Figma (fill_8Q82Q4 = #2D73E7 in Figma but visually green-cyan) */
+.detail-btn.case__btn-sp {
+  display: none; /* shown only on SP */
+}
+
+/* ===== Case items list ===== */
+.case__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 100px; /* gap between case items */
+}
+
+.case-item {
+  position: relative;
+  width: 1239px; /* Figma spec */
+  height: 457.06px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+/* Decorations: 4 lines around each case (top-line + tl-slash, bottom-line + br-slash) */
+.case-deco {
+  position: absolute;
+  pointer-events: none;
+}
+.case-deco--tl {
+  top: 0;
+  left: 2.75px; /* Figma: layout_JY2WOU x=2.75, y=0 */
+  width: 69.32px;
+  height: 69.32px;
+}
+.case-deco--tl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* `\` slope: from top-left to bottom-right corner */
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 0.5px),
+    rgba(255, 244, 244, 0.7) calc(50% - 0.5px),
+    rgba(255, 244, 244, 0.7) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
+}
+.case-deco--tline {
+  top: 40.53px; /* Figma: layout_TSB51E y=40.53 */
+  left: 30px;
+  width: 1209px;
+  height: 1px;
+  background: rgba(255, 244, 244, 0.7);
+}
+.case-deco--bline {
+  top: 421.67px; /* Figma: layout_2S7Q1N y=421.67 */
+  left: 0;
+  width: 1202px;
+  height: 1px;
+  background: rgba(255, 244, 244, 0.7);
+}
+.case-deco--br {
+  top: 387.67px; /* Figma: layout_8G7CZN y=387.67 */
+  left: 1168.1px;
+  width: 69.38px;
+  height: 69.38px;
+}
+.case-deco--br::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* `\` slope: from top-left to bottom-right corner */
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 0.5px),
+    rgba(255, 244, 244, 0.7) calc(50% - 0.5px),
+    rgba(255, 244, 244, 0.7) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
+}
+
+/* Star sparkle decorations at top-right + bottom-left corners */
+.case-deco--star-tr,
+.case-deco--star-bl {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
+}
+.case-deco--star-tr {
+  top: 33px; /* aligned with top horizontal line (y=40.53) */
+  right: -8px; /* extend slightly past right edge */
+}
+.case-deco--star-bl {
+  top: 414px; /* aligned with bottom horizontal line (y=421.67) */
+  left: -8px; /* extend slightly past left edge */
+}
+
+/* ===== Scroll-into-view animation for case-item decorations =====
+   Each item already has data-reveal. When .is-visible is added by IntersectionObserver,
+   the slash corners rotate in, the horizontal lines draw out, the stars spin & pop. */
+.case-deco--tl,
+.case-deco--br {
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    opacity   0.5s ease 0.15s;
+}
+.case-item[data-reveal]:not(.is-visible) .case-deco--tl,
+.case-item[data-reveal]:not(.is-visible) .case-deco--br {
+  transform: rotate(-180deg) scale(0.3);
+  opacity: 0;
+}
+
+.case-deco--tline {
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+}
+.case-deco--bline {
+  transform-origin: right center;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+}
+.case-item[data-reveal]:not(.is-visible) .case-deco--tline,
+.case-item[data-reveal]:not(.is-visible) .case-deco--bline {
+  transform: scaleX(0);
+}
+
+.case-deco--star-tr,
+.case-deco--star-bl {
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
+    opacity   0.5s ease 0.6s;
+}
+.case-item[data-reveal]:not(.is-visible) .case-deco--star-tr,
+.case-item[data-reveal]:not(.is-visible) .case-deco--star-bl {
+  transform: rotate(-180deg) scale(0);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-deco--tl, .case-deco--br,
+  .case-deco--tline, .case-deco--bline,
+  .case-deco--star-tr, .case-deco--star-bl {
+    transition: none;
+  }
+}
+
+/* Case image — left side */
+.case-item__image {
+  position: absolute;
+  top: 85.56px; /* Figma layout_WGWDQ8 */
+  left: 35px;
+  width: 480px;
+  height: 287px;
+  background: url("../assets/img/service-consultant.png") center/cover no-repeat;
+}
+
+/* Case title Ã¢â‚¬â€ right side, top */
+.case-item__title {
+  position: absolute;
+  top: 98.14px; /* Figma layout_MPQHDW */
+  left: 601px;
+  width: 604px;
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 24px; /* style_WYS6UW */
+  line-height: 1.4;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Blue tag/chip below title */
+.case-item__tag {
+  position: absolute;
+  top: 176.14px; /* Figma layout_07UAD1 */
+  left: 601.5px;
+  width: 97.31px;
+  height: 26px;
+  border-radius: 13px;
+  background: #498ABF; /* fill_1VV192 */
+}
+
+/* Description text below tag */
+.case-item__desc {
+  position: absolute;
+  top: 211.56px; /* Figma layout_7GMMLP */
+  left: 601px;
+  width: 539px;
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 18px; /* style_J331TP */
+  line-height: 1.7;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Footer wrapper: client + button, centered under desc area (right column) */
+.case-item__footer {
+  position: absolute;
+  top: 330px; /* below the description text */
+  left: 601px; /* align with desc.left */
+  width: 539px; /* match desc.width */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+/* Client name */
+.case-item__client {
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+}
+
+/* "Ã¨Â©Â³Ã£Ââ€”Ã£ÂÂÃ¨Â¦â€¹Ã£â€šâ€¹" button Ã¢â‚¬â€ centered via parent .case-item__footer */
+.detail-btn.case-item__btn {
+  position: relative;
+}
+
+/* =============================================
+   Case Ã¢â‚¬â€ Tablet (Ã¢â€°Â¤ 1200px)
+   ============================================= */
+@media (max-width: 1200px) {
+  .case {
+    padding: 80px 48px;
+  }
+  .case__heading {
+    width: auto;
+    height: auto;
+    margin-bottom: 60px;
+  }
+  .case__heading-en {
+    position: static;
+    font-size: 70px;
+  }
+  .case__heading-jp {
+    position: static;
+    margin-top: -28px;
+    font-size: 24px;
+    letter-spacing: 3.6px;
+  }
+  .detail-btn.case__btn {
+    position: relative; /* keep relative so edge lines position correctly */
+    top: auto;
+    right: auto;
+    left: auto;
+    align-self: flex-end;
+    margin-bottom: 32px;
+  }
+
+  /* Case items: stack vertically, simpler layout */
+  .case-item {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: auto;
+    padding: 60px 40px;
+  }
+  .case-item__image,
+  .case-item__title,
+  .case-item__tag,
+  .case-item__desc,
+  .case-item__client,
+  .case-item__footer {
+    position: static;
+    width: auto;
+  }
+  /* Footer wrapper: keep items centered when stacked */
+  .case-item__footer {
+    align-items: center;
+    margin-top: 8px;
+  }
+  .case-item__image {
+    width: 100%;
+    height: 280px;
+    margin-bottom: 24px;
+  }
+  .case-item__title {
+    margin-bottom: 16px;
+  }
+  .case-item__tag {
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .case-item__desc {
+    margin-bottom: 24px;
+  }
+  .case-item__client {
+    margin-bottom: 16px;
+  }
+
+  /* Decoration lines: span case-item width using left+right (override hardcoded PC widths) */
+  .case-deco--tline {
+    top: 0;
+    left: 40px;
+    right: 0;
+    width: auto;
+  }
+  .case-deco--bline {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 40px;
+    width: auto;
+  }
+  .case-deco--tl {
+    top: -16px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+  }
+  .case-deco--br {
+    top: auto;
+    bottom: -16px;
+    left: auto;
+    right: 0;
+    width: 50px;
+    height: 50px;
+  }
+  /* Stars: align with the corner where horizontal line meets */
+  .case-deco--star-tr {
+    top: -8px;
+    right: -8px;
+  }
+  .case-deco--star-bl {
+    top: auto;
+    bottom: -8px;
+    left: -8px;
+  }
+}
+
+/* =============================================
+   Case Ã¢â‚¬â€ SP (< 768px)
+   ============================================= */
+@media (max-width: 767px) {
+  .case {
+    padding: 40px 20px 60px;
+  }
+
+  .case__heading {
+    height: 67px;
+    margin-bottom: 32px;
+  }
+  .case__heading-en {
+    font-size: 50px;
+  }
+  .case__heading-jp {
+    position: absolute;
+    top: 41px;
+    margin-top: 0;
+    font-size: 18px;
+    letter-spacing: 2.7px;
+  }
+
+  /* Hide top-right button on SP; show SP-only bottom button */
+  .detail-btn.case__btn {
+    display: none;
+  }
+  .detail-btn.case__btn-sp {
+    display: flex; /* block-level so margin auto works */
+    margin: 32px auto 0; /* center horizontally */
+    width: 272px;
+    height: 50px;
+    font-size: 14px;
+  }
+  .case__btn-sp .detail-btn__edge--l,
+  .case__btn-sp .detail-btn__edge--r {
+    height: 30px;
+  }
+  /* SP bottom button has green accent in design (fill_8Q82Q4 = #2D73E7) */
+  .case__btn-sp .detail-btn__accent {
+    background: #2D73E7;
+  }
+
+  .case__list {
+    gap: 60px;
+  }
+  .case-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    border-radius: 0; /* SP design: no rounded case-item, only image has radius */
+    max-width: 100%;
+    width: 100%;
+  }
+  .case-item__image {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 24px;
+  }
+  .case-item__tag {
+    /* Explicit dimensions (Figma SP spec: 97.31 Ãƒâ€” 26) */
+    width: 97.31px;
+    height: 26px;
+    margin-bottom: 16px;
+    align-self: center;
+  }
+  .case-item__title {
+    font-size: 16px; /* style_7VH8ZX */
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+  }
+  .case-item__desc {
+    display: none; /* SP design hides description */
+  }
+  .case-item__client {
+    text-align: center;
+    font-size: 14px;
+  }
+  /* Footer wrapper on SP: stack center, tighter gap */
+  .case-item__footer {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .detail-btn.case-item__btn {
+    align-self: center;
+    width: 272px;
+    height: 50px;
+    font-size: 14px;
+  }
+  .case-item__btn .detail-btn__edge--l,
+  .case-item__btn .detail-btn__edge--r {
+    height: 30px;
+  }
+
+  /* SP decoration sizes Ã¢â‚¬â€ smaller, repositioned closer to corners */
+  .case-deco--tl,
+  .case-deco--br {
+    width: 40px;
+    height: 40px;
+  }
+  .case-deco--tl {
+    top: 0;
+    left: 0;
+  }
+  .case-deco--br {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: auto;
+  }
+  .case-deco--tline {
+    top: 20px;
+    left: 20px;
+    right: 10px;
+    width: auto;
+  }
+  .case-deco--bline {
+    top: auto;
+    bottom: 20px;
+    left: 10px;
+    right: 20px;
+    width: auto;
+  }
+  /* SP stars: at corners of horizontal lines */
+  .case-deco--star-tr,
+  .case-deco--star-bl {
+    width: 12px;
+    height: 12px;
+  }
+  .case-deco--star-tr {
+    top: 14px; /* aligned with top line at y=20 */
+    right: 0;
+  }
+  .case-deco--star-bl {
+    top: auto;
+    bottom: 14px; /* aligned with bottom line at bottom=20 */
+    left: 0;
+  }
+}
+
+/* =============================================
+   Features (Ã§Â§ÂÃ£ÂÅ¸Ã£ÂÂ¡Ã£ÂÂ®Ã¥Â¼Â·Ã£ÂÂ¿ - 3Ã£ÂÂ¤Ã£ÂÂ®Ã£ÂÅ Ã§Â´â€žÃ¦ÂÅ¸)
+   ============================================= */
+.features {
+  width: 100%;
+  height: 916px; /* Figma spec */
+  padding: 100px 100px 0; /* Figma spec */
+  background: #ffffff;
+}
+
+.features__inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 698px; /* Figma spec */
+}
+
+/* Bilingual heading: large "Features" behind smaller Japanese */
+.features__heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 638.93px;
+  height: 151px;
+  margin: 0;
+}
+/* Per-character mask reveal for ALL section headings (Features, Service, Case, Company, Info) */
+[class$="__heading-en"],
+[class$="__heading-jp"],
+[class*="__heading-sub"] {
+  overflow: hidden;            /* mask for per-char slide-up reveal */
+  padding-bottom: 0.12em;      /* room so descenders aren't clipped */
+}
+/* Disable the generic data-reveal slide on section headings; per-char reveal handles it */
+.features__heading[data-reveal],
+.service__heading[data-reveal],
+.case__heading[data-reveal],
+.company__heading[data-reveal],
+.info__heading[data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.heading-char {
+  display: inline-block;
+  transform: translateY(110%);
+}
+.features__heading.is-visible .heading-char,
+.service__heading.is-visible .heading-char,
+.case__heading.is-visible .heading-char,
+.company__heading.is-visible .heading-char,
+.info__heading.is-visible .heading-char {
+  animation: heading-char-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes heading-char-reveal {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heading-char { transform: none; animation: none !important; }
+}
+
+.features__heading-en {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 100px; /* Figma spec */
+  line-height: 1.25;
+  color: rgba(65, 99, 136, 0.1); /* fill_4RQH8U */
+  white-space: nowrap;
+}
+.features__heading-jp {
+  position: absolute;
+  top: 79px; /* Figma spec */
+  left: 10px;
+  display: block;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 35px; /* Figma spec */
+  line-height: 1;
+  letter-spacing: 5.25px; /* 15% of 35 */
+  color: #868181; /* fill_JUHZIY */
+  white-space: nowrap;
+}
+.features__heading-sub {
+  font-size: 30px; /* Figma spec ts2 */
+}
+
+/* Description paragraphs */
+.features__desc {
+  position: absolute;
+  left: 0;
+  width: 596px;
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 18px; /* Figma spec */
+  line-height: 1.9;
+  color: #000;
+}
+.features__desc:nth-of-type(1) {
+  top: 229px; /* Figma spec */
+}
+.features__desc:nth-of-type(2) {
+  top: 397px; /* approx after first paragraph */
+}
+
+/* Detail button (272 Ãƒâ€” 60) Ã¢â‚¬â€ 4 separate edge lines with open corners + accent line */
+.detail-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 272px;
+  height: 60px;
+  color: #4C4848; /* fill_0HV3C5 */
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1;
+  background: transparent;
+}
+.detail-btn__edge {
+  position: absolute;
+  background: rgba(76, 72, 72, 0.7); /* fill_GFB5R9 */
+  transition: left 0.35s ease, right 0.35s ease, top 0.35s ease, bottom 0.35s ease, width 0.35s ease, height 0.35s ease;
+}
+.detail-btn__edge--t {
+  left: 10.07px;
+  top: 0;
+  width: 251.83px;
+  height: 1px;
+}
+.detail-btn__edge--b {
+  left: 10.07px;
+  bottom: 0;
+  width: 251.83px;
+  height: 1px;
+}
+.detail-btn__edge--l {
+  left: 0;
+  top: 10px;
+  width: 1px;
+  height: 40px;
+}
+.detail-btn__edge--r {
+  right: 0;
+  top: 10px;
+  width: 1px;
+  height: 40px;
+}
+/* Hover: edges extend to corners, forming a closed rectangle */
+.detail-btn:hover .detail-btn__edge--t,
+.detail-btn:hover .detail-btn__edge--b {
+  left: 0;
+  width: 100%;
+}
+.detail-btn:hover .detail-btn__edge--l,
+.detail-btn:hover .detail-btn__edge--r {
+  top: 0;
+  height: 100%;
+}
+.detail-btn__accent {
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  width: 70px;
+  height: 4px;
+  background: #0340A4; /* fill_OBYFMG */
+  transition: width 0.35s ease, left 0.35s ease;
+}
+.detail-btn:hover .detail-btn__accent {
+  left: 0;
+  width: 100%;
+}
+.features__btn {
+  position: absolute;
+  top: 638px; /* Figma spec */
+  left: 0;
+}
+
+/* SP-only conditional <br> for line break before "Ã£â€šâ€™Ã¥Ââ€“Ã£â€šÅ Ã¦â€°â€¢Ã£Ââ€ Ã£ÂÅ¸Ã£â€šÂÃ£ÂÂ«Ã£â‚¬Â" */
+.features__br--sp {
+  display: none;
+}
+
+/* ===== Right column: 3-circle Venn diagram ===== */
+.features__venn {
+  position: absolute;
+  top: 88.7px;
+  left: 579px;
+  width: 661px;
+  height: 611px;
+  margin: 0 auto;
+}
+
+.venn-circle {
+  position: absolute;
+  width: 370px;
+  height: 370px;
+  border-radius: 50%;
+  color: #fff;
+  overflow: hidden; /* clip shine overlay to circle */
+}
+
+/* Watermark logo behind text Ã¢â‚¬â€ positioned in each circle's UNIQUE (non-overlap) zone */
+.venn-circle::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  background-image: url("../assets/img/logo-small-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+/* Circle 01 (top): logo in TOP-CENTER (its non-overlap region) */
+.venn-circle--01::after {
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Circle 02 (bottom-left): logo in LEFT side */
+.venn-circle--02::after {
+  top: 40%;
+  left: 18%;
+  transform: translateY(-50%);
+}
+/* Circle 03 (bottom-right): logo in RIGHT side */
+.venn-circle--03::after {
+  top: 40%;
+  right: 20%;
+  transform: translateY(-50%);
+}
+
+/* Glossy "shine" overlay using promise-stripe.png Ã¢â‚¬â€ single image drift */
+.venn-circle__shine {
+  position: absolute;
+  z-index: 0;          /* sits behind logo (::after z1) and text (z2) */
+  inset: -10%;
+  pointer-events: none;
+  background-image: url("../assets/img/promise-stripe.png");
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+  /* Long, slow alternate Ã¢â‚¬â€ back-and-forth so gentle it reads as continuous drift, no jarring snap */
+  animation: venn-shine 24s ease-in-out infinite alternate;
+}
+.venn-circle--02 .venn-circle__shine { animation-duration: 28s; animation-delay: -7s; }
+.venn-circle--03 .venn-circle__shine { animation-duration: 32s; animation-delay: -15s; }
+
+@keyframes venn-shine {
+  from { background-position:   0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venn-circle__shine { animation: none; }
+}
+.venn-circle--01 {
+  top: 0;
+  left: 145px;            /* centered: (720-430)/2 */
+  background-color: #0A87C6;
+  z-index: 3;
+}
+.venn-circle--02 {
+  top: 240px;
+  left: 0;
+  background-color: #7A9AD3;
+  z-index: 2;
+}
+.venn-circle--03 {
+  top: 240px;
+  left: 290px;            /* 720-430 */
+  background-color: #8DACBB;
+  z-index: 1;
+}
+/* Slight opacity so overlapping areas blend visibly */
+.venn-circle--02,
+.venn-circle--03 {
+  opacity: 0.92;
+}
+
+/* Promise / number / desc text inside each circle */
+.venn-circle__promise,
+.venn-circle__num,
+.venn-circle__desc {
+  position: absolute;
+  z-index: 2; /* sit above stripe (::before, z:0) and logo watermark (::after, z:1) */
+  margin: 0;
+  color: #fff;
+}
+.venn-circle__promise {
+  font-family: var(--font-jp-serif);
+  font-weight: 700; /* style_HAOZD1 */
+  font-size: 24px;
+  line-height: 1;
+}
+.venn-circle__num {
+  font-family: "Nova Cut", serif; /* style_EH2QY0 */
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+}
+.venn-circle__desc {
+  font-family: var(--font-jp-serif);
+  font-weight: 400; /* style_IJLBFS */
+  font-size: 22px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ----- Per-circle text positions (scaled for 430px circles) ----- */
+/* Circle 01 (top) */
+.venn-circle--01 .venn-circle__promise {
+  left: 136px;
+  top: 35px;
+}
+.venn-circle--01 .venn-circle__num {
+  left: 160px;
+  top: 78px;
+}
+.venn-circle--01 .venn-circle__desc {
+  left: 0;
+  top: 175px;
+  width: 370px;
+}
+/* Circle 02 (bottom-left) */
+.venn-circle--02 .venn-circle__promise {
+  left: 72px;
+  top: 118px;
+}
+.venn-circle--02 .venn-circle__num {
+  left: 90px;
+  top: 155px;
+}
+.venn-circle--02 .venn-circle__desc {
+  left: 0;
+  top: 220px;
+  width: 370px;
+}
+/* Circle 03 (bottom-right) */
+.venn-circle--03 .venn-circle__promise {
+  left: 200px;
+  top: 118px;
+}
+.venn-circle--03 .venn-circle__num {
+  left: 220px;
+  top: 160px;
+}
+.venn-circle--03 .venn-circle__desc {
+  left: 45px;
+  top: 220px;
+  width: 370px;
+}
+
+/* =============================================
+   Features Ã¢â‚¬â€ Tablet (Ã¢â€°Â¤ 1200px)
+   ============================================= */
+@media (max-width: 1200px) {
+  .features {
+    padding: 80px 48px;
+    height: auto;
+  }
+  .features__inner {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+  .features__heading,
+  .features__venn,
+  .features__desc {
+    position: static;
+  }
+  .features__btn {
+    position: relative; /* keep relative so edge lines position correctly */
+    top: auto;
+    left: auto;
+  }
+  .features__heading {
+    align-self: flex-start;
+    width: auto;
+  }
+}
+
+/* =============================================
+   Features Ã¢â‚¬â€ SP (< 768px)
+   ============================================= */
+@media (max-width: 767px) {
+  .features {
+    padding: 40px 20px; /* Figma spec */
+    height: auto;
+  }
+  .features__inner {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Show SP-only line break inside description */
+  .features__br--sp {
+    display: inline;
+  }
+
+  /* Heading: 50px en + 18px jp */
+  .features__heading {
+    position: relative;
+    width: 352.93px; /* Figma spec */
+    height: 67px;
+    align-self: flex-start;
+  }
+  .features__heading-en {
+    font-size: 50px;
+    line-height: 1;
+  }
+  .features__heading-jp {
+    top: 41px; /* Figma spec */
+    left: 0.47px;
+    font-size: 18px;
+    letter-spacing: 2.7px; /* 15% of 18 */
+  }
+  .features__heading-sub {
+    font-size: 14px; /* Figma spec ts1 */
+  }
+
+  /* Venn diagram smaller */
+  .features__venn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 350.51px; /* Figma spec */
+    height: 332.7px;
+  }
+  .venn-circle {
+    width: 208.92px;
+    height: 209.6px;
+  }
+  .venn-circle--01 {
+    top: 0;
+    left: 68.75px;
+  }
+  .venn-circle--02 {
+    top: 123.1px;
+    left: 0;
+  }
+  .venn-circle--03 {
+    top: 123.1px;
+    left: 141.59px;
+  }
+  /* Promise text */
+  .venn-circle__promise {
+    font-size: 18px;
+  }
+  .venn-circle__num {
+    font-size: 20px;
+  }
+  .venn-circle__desc {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  /* Circle 01 SP positions */
+  .venn-circle--01 .venn-circle__promise {
+    left: 70px;
+    top: 18px;
+  }
+  .venn-circle--01 .venn-circle__num {
+    left: 92px;
+    top: 40px;
+  }
+  .venn-circle--01 .venn-circle__desc {
+    left: 0;
+    top: 90px;
+    width: 209px;
+  }
+  /* Circle 02 SP positions */
+  .venn-circle--02 .venn-circle__promise {
+    left: 19.79px;
+    top: 43.9px;
+  }
+  .venn-circle--02 .venn-circle__num {
+    left: 42.79px;
+    top: 67.9px;
+  }
+  .venn-circle--02 .venn-circle__desc {
+    left: 8px;
+    top: 116.9px;
+    width: 194.87px;
+  }
+  /* Circle 03 SP positions */
+  .venn-circle--03 .venn-circle__promise {
+    left: 112.2px;
+    top: 43.9px;
+  }
+  .venn-circle--03 .venn-circle__num {
+    left: 135.2px;
+    top: 67.9px;
+  }
+  .venn-circle--03 .venn-circle__desc {
+    left: 65.2px;
+    top: 116.9px;
+    width: 142.75px;
+  }
+
+  .venn-circle::after {
+    width: 55px;
+    height: 55px;
+  }
+
+  /* Description text under venn on SP */
+  .features__desc {
+    position: static;
+    width: 346px; /* Figma spec */
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .features__desc + .features__desc {
+    margin-top: 20px;
+  }
+
+  /* SP button: 272 Ãƒâ€” 50 */
+  .features__btn {
+    position: relative; /* keep relative so edge lines position correctly */
+    top: auto;
+    left: auto;
+    margin-top: 20px;
+    width: 272px;
+    height: 50px;
+    font-size: 14px;
+  }
+  /* Scale vertical edge lines to fit SP button height (50 - 10*2 = 30) */
+  .features__btn .detail-btn__edge--l,
+  .features__btn .detail-btn__edge--r {
+    height: 30px;
+  }
+}
+
+/* =============================================
+   Hero / FV
+   ============================================= */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 660px; /* Figma spec */
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Background image Ã¢â‚¬â€ right 75%, leaves 25% white on left */
+.hero__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: 100%;
+  background-image: url("../assets/img/banner-pc.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Entrance: slow scale-out + faster blur fade (ushijima-style) */
+  animation:
+    hero-scale-out 11.5s ease-out forwards,
+    hero-blur-out   1.5s ease-out forwards,
+    hero-float     10s ease-in-out 11.5s infinite;
+}
+
+@keyframes hero-scale-out {
+  0%   { transform: scale(1.125); }
+  100% { transform: scale(1); }
+}
+@keyframes hero-blur-out {
+  0%   { filter: blur(15px); }
+  100% { filter: blur(0); }
+}
+/* Subtle continuous breathing after entrance Ã¢â‚¬â€ soft floating feel */
+@keyframes hero-float {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* SCROLL indicator on far-left edge Ã¢â‚¬â€ aligned to title/tagline via Figma absolute coords */
+.hero__scroll {
+  position: absolute;
+  left: 35px; /* Figma spec: line x=42, text x=37 Ã¢â‚¬â€ use leftmost edge */
+  top: 274px; /* Figma spec: line top, aligned with title line 1 (y=272) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px; /* Figma spec: gap between line bottom (y=427) and SCROLL text (y=461) */
+  z-index: 3;
+  animation: hero-scroll-bob 2.4s ease-in-out infinite;
+}
+/* Gentle up-down bobbing Ã¢â‚¬â€ hint that user should scroll */
+@keyframes hero-scroll-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll { animation: none; }
+}
+.hero__scroll-line {
+  width: 1px;
+  height: 153px; /* Figma spec */
+  background: var(--color-text);
+}
+.hero__scroll-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: var(--font-jp-serif);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 6.3px;
+  color: var(--color-text);
+}
+
+/* Overlay container with slogan + tagline */
+.hero__inner {
+  position: relative;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+  z-index: 2;
+}
+
+.hero__title {
+  position: absolute;
+  top: 272px; /* Figma spec: y position */
+  left: 100px; /* Figma spec: x position */
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: 50px; /* Figma spec */
+  line-height: 1.5;
+  letter-spacing: 3px;
+  color: var(--color-text);
+}
+.hero__title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.15em; /* room so descenders/diacritics aren't clipped by overflow */
+}
+.hero__title-line--indent {
+  padding-left: 70px;
+}
+/* Mask-reveal: each character slides up from below (ushijima-style)
+   .hero__title-char wrappers are injected by JS (script.js > initHeroTitleChars) */
+.hero__title-text {
+  display: inline-block;
+}
+.hero__title-char {
+  display: inline-block;
+  animation: hero-title-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* animation-delay is set inline by JS, per char index */
+}
+@keyframes hero-title-reveal {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__title-char { transform: none; animation: none; }
+}
+
+.hero__tagline {
+  position: absolute;
+  top: 500px; /* Figma spec: y position */
+  left: 100px; /* Figma spec: x position */
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 18px; /* Figma spec */
+  line-height: 1.9;
+  letter-spacing: 0.4px;
+  color: var(--color-text);
+}
+
+/* ----- Hero tablet (Ã¢â€°Â¤ 1200px) ----- */
+@media (max-width: 1200px) {
+  .hero {
+    height: 560px;
+  }
+  .hero__inner {
+    padding: 0 48px;
+  }
+  .hero__scroll {
+    left: 40px;
+  }
+  .hero__scroll-line {
+    height: 160px;
+  }
+  .hero__title {
+    top: 25%;
+    left: 100px;
+    font-size: 3.25rem;
+  }
+  .hero__tagline {
+    bottom: 60px;
+    left: 100px;
+    font-size: 14px;
+  }
+}
+
+/* ----- Hero SP (< 768px) ----- */
+@media (max-width: 767px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  /* Flatten the inner wrapper so tagline + title become direct flex items */
+  .hero__inner {
+    display: contents;
+  }
+  .hero__tagline {
+    position: static;
+    order: 1;
+    padding: 32px 24px 0;
+    font-family: var(--font-jp-serif);
+    font-size: 12px; /* Figma spec */
+    line-height: 1.7;
+    letter-spacing: 0.24px;
+    text-align: left;
+  }
+  .hero__title {
+    position: static;
+    order: 2;
+    padding: 20px 24px 28px;
+    font-size: 25px; /* Figma spec */
+    line-height: 1.7;
+    letter-spacing: 1.5px;
+    text-align: center; /* Figma spec: SP slogan center-aligned */
+  }
+  .hero__title-line--indent {
+    padding-left: 0; /* center align Ã¢â€ â€™ no indent needed */
+  }
+  .hero__bg {
+    position: relative;
+    order: 3;
+    width: 100%;
+    height: 342px; /* Figma spec */
+    background-image: url("../assets/img/banner-sp.png");
+  }
+  /* SCROLL aligned to left edge of the image on SP */
+  .hero__scroll {
+    position: absolute;
+    left: 16px;
+    bottom: 10px;
+    top: auto;
+    transform: none;
+    gap: 12px;
+    height: auto;
+  }
+  .hero__scroll-line {
+    height: 100px;
+  }
+  .hero__scroll-text {
+    font-size: 14px; /* Figma spec */
+    letter-spacing: 4.9px;
+  }
+}
+

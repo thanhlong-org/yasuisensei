@@ -1,0 +1,47 @@
+<?php
+/**
+ * Template part: cta
+ * Converted from html_asset/partials/cta.html
+ *
+ * @package Ludoa
+ */
+$s = ludoa_static_uri();
+?>
+    <!-- ============ CTA (お問い合わせ) ============ -->
+    <section class="cta" id="cta" aria-label="お問い合わせ">
+      <div class="cta__inner">
+        <!-- Row 1: 3 cards, transparent style with ghost icon bg -->
+        <div class="cta__row cta__row--light">
+          <a href="tel:03XXXXXXXX" class="cta-card" data-reveal>
+            <span class="cta-card__edge cta-card__edge--t" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--b" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--r" aria-hidden="true"></span>
+            <img src="<?php echo $s; ?>/assets/img/phone-icon.svg" alt="" class="cta-card__bg-icon" aria-hidden="true" />
+            <h3 class="cta-card__title">お電話でのお問い合わせ</h3>
+            <p class="cta-card__desc">受付時間：平日9:00〜18:00<br />定休日：土日祝</p>
+            <span class="cta-card__btn">公式LINEを追加する</span>
+          </a>
+          <a href="#" class="cta-card" data-reveal data-reveal-delay="1">
+            <span class="cta-card__edge cta-card__edge--t" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--b" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--r" aria-hidden="true"></span>
+            <img src="<?php echo $s; ?>/assets/img/line-icon.svg" alt="" class="cta-card__bg-icon" aria-hidden="true" />
+            <h3 class="cta-card__title">LINEでのお問い合わせ</h3>
+            <p class="cta-card__desc">LINEアカウントの[友だち追加]<br />またはQRコードから追加ください。</p>
+            <span class="cta-card__btn">公式LINEを追加する</span>
+          </a>
+          <a href="#" class="cta-card" data-reveal data-reveal-delay="2">
+            <span class="cta-card__edge cta-card__edge--t" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--b" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
+            <span class="cta-card__edge cta-card__edge--r" aria-hidden="true"></span>
+            <img src="<?php echo $s; ?>/assets/img/mail-icon.svg" alt="" class="cta-card__bg-icon" aria-hidden="true" />
+            <h3 class="cta-card__title">メールでのお問い合わせ</h3>
+            <p class="cta-card__desc">お問い合わせページのフォームから<br />お気軽にご相談ください。</p>
+            <span class="cta-card__btn">お問い合わせ</span>
+          </a>
+        </div>
+      </div>
+    </section>
