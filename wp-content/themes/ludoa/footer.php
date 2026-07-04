@@ -822,7 +822,7 @@
     <div class="modal__overlay js-modal-close"></div>
     <div class="modal__container modal__container--schedule-detail">
       <!-- Close Button Top Right -->
-      <button type="button" class="modal__close-btn js-modal-close" aria-label="閉じる">
+      <button type="button" class="modal__close-btn js-modal-close" aria-label="閉じる" data-i18n-aria-label="common.close">
         <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="16" cy="16" r="14" />
           <path d="M11 11l10 10M21 11L11 21" />
@@ -831,8 +831,8 @@
 
       <div class="modal__content schedule-modal">
         <!-- Title & Subtitle -->
-        <h3 class="schedule-modal__title">健康プログラム <span>(5泊6日)</span><br />詳細スケジュール</h3>
-        <p class="schedule-modal__note">※画面を拡大してご確認ください</p>
+        <h3 class="schedule-modal__title" data-i18n="smodal.title">健康プログラム <span>(5泊6日)</span><br />詳細スケジュール</h3>
+        <p class="schedule-modal__note" data-i18n="smodal.note">※画面を拡大してご確認ください</p>
 
         <!-- Day Rows Wrapper -->
         <div class="schedule-modal__rows">
@@ -847,7 +847,7 @@
               <!-- Card 01 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">01</span>
-                <h4 class="schedule-modal__card-title">チェックイン</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.checkin">チェックイン</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-01.svg" alt="チェックイン" />
                 </div>
@@ -855,7 +855,7 @@
               <!-- Card 02 -->
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">02</span>
-                <h4 class="schedule-modal__card-title">健康パビリオン<br />(測定)</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.pavilion_measure">健康パビリオン<br />(測定)</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-02.svg" alt="健康パビリオン(測定)" />
                 </div>
@@ -863,7 +863,7 @@
               <!-- Card 03 -->
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">03</span>
-                <h4 class="schedule-modal__card-title">体力年齢測定</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.fitness_age">体力年齢測定</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-03.svg" alt="体力年齢測定" />
                 </div>
@@ -871,7 +871,7 @@
               <!-- Card 04 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">04</span>
-                <h4 class="schedule-modal__card-title">温泉</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.onsen">温泉</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-04.svg" alt="温泉" />
                 </div>
@@ -879,7 +879,7 @@
               <!-- Card 05 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">05</span>
-                <h4 class="schedule-modal__card-title">夕食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.dinner">夕食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-05.svg" alt="夕食" />
                 </div>
@@ -887,7 +887,7 @@
               <!-- Card 06 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">06</span>
-                <h4 class="schedule-modal__card-title">睡眠</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.sleep">睡眠</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-06.svg" alt="睡眠" />
                 </div>
@@ -904,56 +904,56 @@
             <div class="schedule-modal__cards-wrapper">
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">01</span>
-                <h4 class="schedule-modal__card-title">朝食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.breakfast">朝食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-07.svg" alt="朝食" />
                 </div>
               </div>
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">02</span>
-                <h4 class="schedule-modal__card-title">健康<br />キャンパス</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.campus">健康<br />キャンパス</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-08.svg" alt="健康キャンパス" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">03</span>
-                <h4 class="schedule-modal__card-title">フリータイム<br />(散歩など)</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.freetime_walk">フリータイム<br />(散歩など)</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-09.svg" alt="フリータイム" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">04</span>
-                <h4 class="schedule-modal__card-title">昼食<br />バイキング</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.lunch_buffet">昼食<br />バイキング</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-10.svg" alt="昼食バイキング" />
                 </div>
               </div>
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">05</span>
-                <h4 class="schedule-modal__card-title">ヨガ</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.yoga">ヨガ</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-11.svg" alt="ヨガ" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">06</span>
-                <h4 class="schedule-modal__card-title">温泉</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.onsen">温泉</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-12.svg" alt="温泉" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">07</span>
-                <h4 class="schedule-modal__card-title">夕食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.dinner">夕食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-13.svg" alt="夕食" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">08</span>
-                <h4 class="schedule-modal__card-title">睡眠</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.sleep">睡眠</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-14.svg" alt="睡眠" />
                 </div>
@@ -970,49 +970,49 @@
             <div class="schedule-modal__cards-wrapper">
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">01</span>
-                <h4 class="schedule-modal__card-title">朝食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.breakfast">朝食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-15.svg" alt="朝食" />
                 </div>
               </div>
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">02</span>
-                <h4 class="schedule-modal__card-title">健康<br />トレーニング館</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.training">健康<br />トレーニング館</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-16.svg" alt="健康トレーニング館" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">03</span>
-                <h4 class="schedule-modal__card-title">昼食<br />バイキング</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.lunch_buffet">昼食<br />バイキング</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-17.svg" alt="昼食バイキング" />
                 </div>
               </div>
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">04</span>
-                <h4 class="schedule-modal__card-title">温熱棟<br />13種</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.thermal">温熱棟<br />13種</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-18.svg" alt="温熱棟13種" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">05</span>
-                <h4 class="schedule-modal__card-title">フリータイム</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.freetime">フリータイム</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-19.svg" alt="フリータイム" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">06</span>
-                <h4 class="schedule-modal__card-title">夕食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.dinner">夕食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-20.svg" alt="夕食" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">07</span>
-                <h4 class="schedule-modal__card-title">睡眠</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.sleep">睡眠</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-21.svg" alt="睡眠" />
                 </div>
@@ -1030,7 +1030,7 @@
               <!-- Regular Card 01 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">01</span>
-                <h4 class="schedule-modal__card-title">朝食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.breakfast">朝食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-22.svg" alt="朝食" />
                 </div>
@@ -1038,32 +1038,32 @@
               <!-- Giant Wide Card 02 -->
               <div class="schedule-modal__card schedule-modal__card--wide">
                 <span class="schedule-modal__card-num">02</span>
-                <h4 class="schedule-modal__card-title">1日観光</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.day_tour">1日観光</h4>
                 <div class="schedule-modal__wide-content">
                   <!-- Spot 1 -->
                   <div class="schedule-modal__wide-spot">
-                    <span class="schedule-modal__spot-name">・大観峰</span>
+                    <span class="schedule-modal__spot-name" data-i18n="smodal.spot_daikanbo">・大観峰</span>
                     <div class="schedule-modal__spot-img">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-23.svg" alt="大観峰" />
                     </div>
                   </div>
                   <!-- Spot 2 -->
                   <div class="schedule-modal__wide-spot">
-                    <span class="schedule-modal__spot-name">・白川水源</span>
+                    <span class="schedule-modal__spot-name" data-i18n="smodal.spot_shirakawa">・白川水源</span>
                     <div class="schedule-modal__spot-img">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-24.svg" alt="白川水源" />
                     </div>
                   </div>
                   <!-- Spot 3 -->
                   <div class="schedule-modal__wide-spot">
-                    <span class="schedule-modal__spot-name">・明神池名水公園</span>
+                    <span class="schedule-modal__spot-name" data-i18n="smodal.spot_myojin">・明神池名水公園</span>
                     <div class="schedule-modal__spot-img">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-25.svg" alt="明神池名水公園" />
                     </div>
                   </div>
                   <!-- Spot 4 -->
                   <div class="schedule-modal__wide-spot">
-                    <span class="schedule-modal__spot-name">・菊池渓谷</span>
+                    <span class="schedule-modal__spot-name" data-i18n="smodal.spot_kikuchi">・菊池渓谷</span>
                     <div class="schedule-modal__spot-img">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-26.svg" alt="菊池渓谷" />
                     </div>
@@ -1073,7 +1073,7 @@
               <!-- Regular Card 03 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">03</span>
-                <h4 class="schedule-modal__card-title">温泉</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.onsen">温泉</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-27.svg" alt="温泉" />
                 </div>
@@ -1081,7 +1081,7 @@
               <!-- Regular Card 04 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">04</span>
-                <h4 class="schedule-modal__card-title">夕食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.dinner">夕食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-28.svg" alt="夕食" />
                 </div>
@@ -1089,7 +1089,7 @@
               <!-- Regular Card 05 -->
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">05</span>
-                <h4 class="schedule-modal__card-title">睡眠</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.sleep">睡眠</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-29.svg" alt="睡眠" />
                 </div>
@@ -1106,28 +1106,28 @@
             <div class="schedule-modal__cards-wrapper">
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">01</span>
-                <h4 class="schedule-modal__card-title">夫婦早朝散歩</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.couple_walk">夫婦早朝散歩</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-30.svg" alt="夫婦早朝散歩" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">02</span>
-                <h4 class="schedule-modal__card-title">朝食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.breakfast">朝食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-31.svg" alt="朝食" />
                 </div>
               </div>
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">03</span>
-                <h4 class="schedule-modal__card-title">ドーム還元浴</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.dome_bath">ドーム還元浴</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-32.svg" alt="ドーム還元浴" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">04</span>
-                <h4 class="schedule-modal__card-title">きのこ亭昼食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.kinokotei_lunch">きのこ亭昼食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-33.svg" alt="きのこ亭昼食" />
                 </div>
@@ -1135,29 +1135,29 @@
               <!-- Special Gold Bordered Card 05 -->
               <div class="schedule-modal__card schedule-modal__card--gold-bordered">
                 <span class="schedule-modal__card-num">05</span>
-                <h4 class="schedule-modal__card-title">現地観光</h4>
-                <p class="schedule-modal__card-subtitle">上色見熊野<br />座神社</p>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.local_tour">現地観光</h4>
+                <p class="schedule-modal__card-subtitle" data-i18n="smodal.local_tour_sub">上色見熊野<br />座神社</p>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-34.svg" alt="現地観光 上色見熊野座神社" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">06</span>
-                <h4 class="schedule-modal__card-title">温泉</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.onsen">温泉</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-35.svg" alt="温泉" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">07</span>
-                <h4 class="schedule-modal__card-title">夕食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.dinner">夕食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-36.svg" alt="夕食" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">08</span>
-                <h4 class="schedule-modal__card-title">睡眠</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.sleep">睡眠</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-37.svg" alt="睡眠" />
                 </div>
@@ -1174,35 +1174,35 @@
             <div class="schedule-modal__cards-wrapper">
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">01</span>
-                <h4 class="schedule-modal__card-title">朝食</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.breakfast">朝食</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-38.svg" alt="朝食" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">02</span>
-                <h4 class="schedule-modal__card-title">チェックアウト</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.checkout">チェックアウト</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-39.svg" alt="チェックアウト" />
                 </div>
               </div>
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">03</span>
-                <h4 class="schedule-modal__card-title">健康パビリオン<br />(最終測定)</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.pavilion_final">健康パビリオン<br />(最終測定)</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-40.svg" alt="健康パビリオン(最終測定)" />
                 </div>
               </div>
               <div class="schedule-modal__card schedule-modal__card--gold">
                 <span class="schedule-modal__card-num">04</span>
-                <h4 class="schedule-modal__card-title">健康キャンパス<br />(滞在振り返り)</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.campus_review">健康キャンパス<br />(滞在振り返り)</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-41.svg" alt="健康キャンパス(滞在振り返り)" />
                 </div>
               </div>
               <div class="schedule-modal__card">
                 <span class="schedule-modal__card-num">05</span>
-                <h4 class="schedule-modal__card-title">フリータイム<br />・ご出発</h4>
+                <h4 class="schedule-modal__card-title" data-i18n="smodal.freetime_departure">フリータイム<br />・ご出発</h4>
                 <div class="schedule-modal__card-icon">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/modal-icon-42.svg" alt="フリータイム・ご出発" />
                 </div>

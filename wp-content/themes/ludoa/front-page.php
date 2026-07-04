@@ -38,7 +38,7 @@ get_header();
             </div>
             <a class="hero__reserve js-reserve" href="#">
               <span class="hero__reserve-tag" data-i18n="hero.reserve_tag">滞在型健康増進プログラム</span>
-              <span class="hero__reserve-label" data-i18n="hero.reserve_label">今すぐ予約する<span class="hero__reserve-arrow" aria-hidden="true">›</span></span>
+              <span class="hero__reserve-label" data-i18n="hcero.reserve_label">今すぐ予約する<span class="hero__reserve-arrow" aria-hidden="true">›</span></span>
             </a>
           </div>
         </div>
