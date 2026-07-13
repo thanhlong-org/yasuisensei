@@ -102,54 +102,77 @@ $s = ludoa_static_uri();
           </p>
         </div>
 
+        <?php $cf_errors = ludoa_contact_errors(); ?>
+        <?php if ( $cf_errors ) : ?>
+          <ul class="contact-form__errors" role="alert">
+            <?php foreach ( $cf_errors as $cf_error ) : ?>
+              <li><?php echo esc_html( $cf_error ); ?></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+
         <!-- Form -->
-        <form class="contact-form" action="#" method="post" novalidate data-reveal>
+        <form class="contact-form" action="<?php echo esc_url( ludoa_url( 'contact-confirm' ) ); ?>" method="post" novalidate data-reveal>
           <div class="contact-form__row">
             <label class="contact-form__label" for="cf-name">名前<span class="req">*</span></label>
             <div class="contact-form__field">
-              <input type="text" id="cf-name" name="name" placeholder="山田　花子" required />
+              <input type="text" id="cf-name" name="name" placeholder="山田　花子" value="<?php echo esc_attr( ludoa_contact_old( 'name' ) ); ?>" class="<?php echo isset( $cf_errors['name'] ) ? 'is-invalid' : ''; ?>" required />
+              <?php ludoa_contact_field_error( 'name' ); ?>
             </div>
           </div>
           <div class="contact-form__row">
             <label class="contact-form__label" for="cf-kana">ふりがな<span class="req">*</span></label>
             <div class="contact-form__field">
-              <input type="text" id="cf-kana" name="kana" placeholder="やまだ　はなこ" required />
+              <input type="text" id="cf-kana" name="kana" placeholder="やまだ　はなこ" value="<?php echo esc_attr( ludoa_contact_old( 'kana' ) ); ?>" class="<?php echo isset( $cf_errors['kana'] ) ? 'is-invalid' : ''; ?>" required />
+              <?php ludoa_contact_field_error( 'kana' ); ?>
             </div>
           </div>
           <div class="contact-form__row">
             <label class="contact-form__label" for="cf-tel">電話番号<span class="req">*</span></label>
             <div class="contact-form__field">
-              <input type="tel" id="cf-tel" name="tel" placeholder="xxx-xxxx-xxxxx" required />
+              <input type="tel" id="cf-tel" name="tel" placeholder="xxx-xxxx-xxxxx" value="<?php echo esc_attr( ludoa_contact_old( 'tel' ) ); ?>" class="<?php echo isset( $cf_errors['tel'] ) ? 'is-invalid' : ''; ?>" required />
+              <?php ludoa_contact_field_error( 'tel' ); ?>
             </div>
           </div>
           <div class="contact-form__row">
             <label class="contact-form__label" for="cf-email">メールアドレス<span class="req">*</span></label>
             <div class="contact-form__field">
-              <input type="email" id="cf-email" name="email" placeholder="xxx@xxxxxxxxxx.co.jp" required />
+              <input type="email" id="cf-email" name="email" placeholder="xxx@xxxxxxxxxx.co.jp" value="<?php echo esc_attr( ludoa_contact_old( 'email' ) ); ?>" class="<?php echo isset( $cf_errors['email'] ) ? 'is-invalid' : ''; ?>" required />
+              <?php ludoa_contact_field_error( 'email' ); ?>
             </div>
           </div>
           <div class="contact-form__row">
             <label class="contact-form__label" for="cf-type">お問い合わせ種別<span class="req">*</span></label>
             <div class="contact-form__field">
-              <input type="text" id="cf-type" name="type" placeholder="東京都品川区豊町１丁目10" required />
+              <input type="text" id="cf-type" name="type" placeholder="税務顧問" value="<?php echo esc_attr( ludoa_contact_old( 'type' ) ); ?>" class="<?php echo isset( $cf_errors['type'] ) ? 'is-invalid' : ''; ?>" required />
+              <?php ludoa_contact_field_error( 'type' ); ?>
             </div>
           </div>
           <div class="contact-form__row">
             <label class="contact-form__label" for="cf-message">ご質問・その他</label>
             <div class="contact-form__field">
-              <textarea id="cf-message" name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+              <textarea id="cf-message" name="message" placeholder="お問い合わせ内容をご記入ください"><?php echo esc_textarea( ludoa_contact_old( 'message' ) ); ?></textarea>
             </div>
           </div>
 
+          <!-- Honeypot (spam trap, hidden from humans) -->
+          <p class="ludoa-hp" aria-hidden="true">
+            <label for="cf-hp">このフィールドは空のままにしてください</label>
+            <input type="text" id="cf-hp" name="ludoa_hp" tabindex="-1" autocomplete="off" />
+          </p>
+
+          <?php wp_nonce_field( LUDOA_CONTACT_NONCE_ACTION, LUDOA_CONTACT_NONCE_FIELD ); ?>
+          <input type="hidden" name="ludoa_contact_step" value="confirm" />
+
           <div class="contact-form__submit">
-            <a href="<?php echo esc_url( ludoa_url( 'contact-confirm' ) ); ?>" class="detail-btn">
+            <button type="submit" class="detail-btn">
               <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
               <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
               <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
               <span class="detail-btn__edge detail-btn__edge--r" aria-hidden="true"></span>
               <span class="detail-btn__accent" aria-hidden="true"></span>
               <span class="detail-btn__label">内容を確認する</span>
-            </a>
+            </button>
           </div>
         </form>
       </div>

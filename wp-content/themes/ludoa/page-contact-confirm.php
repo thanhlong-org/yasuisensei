@@ -79,45 +79,49 @@ $s = ludoa_static_uri();
           <p class="contact-form__intro-note">ご入力いただいた内容をご確認いただき、問題なければ「送信ボタン」を押下してください。</p>
         </div>
 
+        <?php $cf_data = ludoa_contact_data(); ?>
+
         <!-- Review table -->
         <div class="confirm-table" data-reveal>
           <div class="confirm-row">
             <div class="confirm-row__label">名前</div>
-            <div class="confirm-row__value">山田　花子</div>
+            <div class="confirm-row__value"><?php echo esc_html( $cf_data['name'] ?? '' ); ?></div>
           </div>
           <div class="confirm-row">
             <div class="confirm-row__label">ふりがな</div>
-            <div class="confirm-row__value">やまだ　はなこ</div>
+            <div class="confirm-row__value"><?php echo esc_html( $cf_data['kana'] ?? '' ); ?></div>
           </div>
           <div class="confirm-row">
             <div class="confirm-row__label">電話番号</div>
-            <div class="confirm-row__value">080-1234-5678</div>
+            <div class="confirm-row__value"><?php echo esc_html( $cf_data['tel'] ?? '' ); ?></div>
           </div>
           <div class="confirm-row">
             <div class="confirm-row__label">メールアドレス</div>
-            <div class="confirm-row__value">abcde@gmail.com</div>
+            <div class="confirm-row__value"><?php echo esc_html( $cf_data['email'] ?? '' ); ?></div>
           </div>
           <div class="confirm-row">
             <div class="confirm-row__label">お問い合わせ種別</div>
-            <div class="confirm-row__value">税務顧問</div>
+            <div class="confirm-row__value"><?php echo esc_html( $cf_data['type'] ?? '' ); ?></div>
           </div>
           <div class="confirm-row">
             <div class="confirm-row__label">お問い合わせ内容</div>
-            <div class="confirm-row__value">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</div>
+            <div class="confirm-row__value"><?php echo nl2br( esc_html( $cf_data['message'] ?? '' ) ); ?></div>
           </div>
         </div>
 
         <!-- Actions -->
-        <div class="confirm-actions" data-reveal>
-          <a href="<?php echo esc_url( ludoa_url( 'contact-complete' ) ); ?>" class="detail-btn">
+        <form class="confirm-actions" method="post" action="" data-reveal>
+          <?php wp_nonce_field( LUDOA_CONTACT_NONCE_ACTION, LUDOA_CONTACT_NONCE_FIELD ); ?>
+          <button type="submit" name="ludoa_contact_step" value="back" class="confirm-actions__back">入力画面に戻る</button>
+          <button type="submit" name="ludoa_contact_step" value="send" class="detail-btn">
             <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
             <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
             <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
             <span class="detail-btn__edge detail-btn__edge--r" aria-hidden="true"></span>
             <span class="detail-btn__accent" aria-hidden="true"></span>
             <span class="detail-btn__label">送信する</span>
-          </a>
-        </div>
+          </button>
+        </form>
       </div>
     </section>
 

@@ -15,6 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'LUDOA_VERSION', '1.0.0' );
 
+// お問い合わせフォーム — validation / confirm flow / mail sending.
+require get_template_directory() . '/inc/contact-form.php';
+
 /**
  * Base URI for the copied static asset tree.
  *
