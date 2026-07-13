@@ -1,12 +1,14 @@
 <?php
 /**
- * Template: 年末年始休業のお知らせ
- * Converted from html_asset/infomation/year-end/index.html
+ * Single: お知らせ詳細 (news CPT)
+ * Layout from html_asset/infomation/year-end/index.html — data from the news post.
  *
  * @package Ludoa
  */
 get_header();
-$s = ludoa_static_uri();
+
+the_post();
+$archive_url = get_post_type_archive_link( 'news' );
 ?>
 <main>
     <!-- ============ PAGE BANNER (FV) ============ -->
@@ -35,13 +37,13 @@ $s = ludoa_static_uri();
             <span class="breadcrumb__sep" aria-hidden="true">
               <svg viewBox="0 0 10 10" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,1 7,5 3,9"/></svg>
             </span>
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>">お知らせ</a>
+            <a href="<?php echo esc_url( $archive_url ); ?>">お知らせ</a>
           </li>
           <li>
             <span class="breadcrumb__sep" aria-hidden="true">
               <svg viewBox="0 0 10 10" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,1 7,5 3,9"/></svg>
             </span>
-            <span class="breadcrumb__current" aria-current="page">年末年始休業のご案内</span>
+            <span class="breadcrumb__current" aria-current="page"><?php the_title(); ?></span>
           </li>
         </ol>
       </nav>
@@ -59,21 +61,18 @@ $s = ludoa_static_uri();
 
         <div class="news-detail__body">
           <div class="news-detail__meta">
-            <time class="news-detail__date" datetime="2026-12-01">2026.12.01</time>
+            <time class="news-detail__date" datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time>
             <span class="news-detail__tag">お知らせ</span>
           </div>
-          <h2 class="news-detail__title">年末年始休業のご案内</h2>
+          <h2 class="news-detail__title"><?php the_title(); ?></h2>
           <div class="news-detail__text">
-            <p>平素は格別のご高配を賜り、厚くお礼申し上げます。<br />誠に勝手ながら、以下の期間を年末年始休業とさせていただきます。</p>
-            <p>【年末年始休業期間】<br />2025年12月26日(金)〜2026年1月4日(日)<br />最終営業日は12月25日(木)でございます。<br />休業期間中のお問い合わせにつきましては、1月5日(月)以降に順次回答させていただきます。</p>
-            <p>ご不便をおかけいたしますが、何卒よろしくお願いいたします。</p>
-            <p>年末ご多忙の折ではございますが、<br />みなさまが穏やかな新年を迎えられますようお祈り申し上げます。</p>
+            <?php the_content(); ?>
           </div>
         </div>
       </article>
 
       <div class="news-detail__back">
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="detail-btn">
+        <a href="<?php echo esc_url( $archive_url ); ?>" class="detail-btn">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>

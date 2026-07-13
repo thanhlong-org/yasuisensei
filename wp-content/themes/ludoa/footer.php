@@ -70,8 +70,8 @@ $ludoa_static = ludoa_static_uri();
               <li><a href="<?php echo esc_url( ludoa_url( 'office' ) ); ?>">事務所概要</a></li>
             </ul>
             <div class="sitemap__standalone">
-              <a href="<?php echo esc_url( ludoa_url( 'case' ) ); ?>" class="sitemap__title">事例紹介</a>
-              <a href="<?php echo esc_url( ludoa_url( 'infomation' ) ); ?>" class="sitemap__title">お知らせ</a>
+              <a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>" class="sitemap__title">事例紹介</a>
+              <a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="sitemap__title">お知らせ</a>
               <a href="<?php echo esc_url( ludoa_url( 'privacy' ) ); ?>" class="sitemap__title sitemap__privacy-sp">プライバシーポリシー</a>
             </div>
           </div>

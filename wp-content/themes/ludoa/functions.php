@@ -18,6 +18,9 @@ define( 'LUDOA_VERSION', '1.0.0' );
 // お問い合わせフォーム — validation / confirm flow / mail sending.
 require get_template_directory() . '/inc/contact-form.php';
 
+// CPT (case / news) + Smart Custom Fields + template helpers.
+require get_template_directory() . '/inc/cpt.php';
+
 /**
  * Base URI for the copied static asset tree.
  *
@@ -40,13 +43,9 @@ function ludoa_pages() {
 		'features'            => array( 'title' => '私たちの強み', 'css' => 'features' ),
 		'service'             => array( 'title' => 'サービス', 'css' => 'service' ),
 		'advisory'            => array( 'title' => '税務顧問', 'css' => 'advisory' ),
-		'case'                => array( 'title' => '事例紹介', 'css' => 'case' ),
-		'case-detail'         => array( 'title' => '事例詳細', 'css' => 'case/detail' ),
 		'company'             => array( 'title' => '企業情報', 'css' => 'company' ),
 		'message'             => array( 'title' => '代表あいさつ', 'css' => 'message' ),
 		'office'              => array( 'title' => '事務所概要', 'css' => 'office' ),
-		'infomation'          => array( 'title' => 'お知らせ', 'css' => 'infomation' ),
-		'infomation-year-end' => array( 'title' => '年末年始休業のお知らせ', 'css' => 'infomation' ),
 		'contact'             => array( 'title' => 'お問い合わせ', 'css' => 'contact' ),
 		'contact-confirm'     => array( 'title' => '入力内容の確認', 'css' => 'contact' ),
 		'contact-complete'    => array( 'title' => '送信完了', 'css' => 'contact' ),
@@ -98,6 +97,12 @@ function ludoa_assets() {
 	// Page-specific stylesheet.
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'ludoa-page', "$static/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	} elseif ( is_singular( 'case' ) ) {
+		wp_enqueue_style( 'ludoa-page', "$static/case/detail/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	} elseif ( is_post_type_archive( 'case' ) ) {
+		wp_enqueue_style( 'ludoa-page', "$static/case/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	} elseif ( is_singular( 'news' ) || is_post_type_archive( 'news' ) ) {
+		wp_enqueue_style( 'ludoa-page', "$static/infomation/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	} else {
 		$slug  = get_post_field( 'post_name', get_queried_object_id() );
 		$pages = ludoa_pages();

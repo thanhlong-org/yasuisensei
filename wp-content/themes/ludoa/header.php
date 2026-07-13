@@ -33,8 +33,8 @@
           <li><a href="<?php echo esc_url( home_url( '/#features' ) ); ?>">私たちの強み</a></li>
           <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">サービス</a></li>
           <li><a href="<?php echo esc_url( home_url( '/#company' ) ); ?>">企業情報</a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'case' ) ); ?>">事例紹介</a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'infomation' ) ); ?>">お知らせ</a></li>
+          <li><a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>">事例紹介</a></li>
+          <li><a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>">お知らせ</a></li>
         </ul>
       </nav>
 
