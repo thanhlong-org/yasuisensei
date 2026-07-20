@@ -41,7 +41,7 @@
       <!-- Right cluster: TEL block + CTA button (PC) -->
       <div class="site-header__actions">
         <div class="site-header__tel">
-          <a href="tel:03XXXXXXXX" class="site-header__tel--tel">TEL<span class="site-header__tel--num">03-xxx-xxx</span></a>
+          <a href="<?php echo esc_attr( ludoa_tel_href() ); ?>" class="site-header__tel--tel">TEL<span class="site-header__tel--num"><?php echo esc_html( ludoa_tel_display() ); ?></span></a>
           <p class="site-header__tel-hours">受付時間：平日9:00〜18:00</p>
         </div>
         <a href="<?php echo esc_url( ludoa_url( 'contact' ) ); ?>" class="header-cta-btn">お問い合わせ</a>
@@ -49,17 +49,17 @@
 
       <!-- Icon cluster + hamburger (SP only) -->
       <div class="site-header__sp-actions" aria-hidden="false">
-        <a href="tel:03XXXXXXXX" class="sp-icon-btn" aria-label="電話する">
+        <a href="<?php echo esc_attr( ludoa_tel_href() ); ?>" class="sp-icon-btn" aria-label="電話する">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
           </svg>
         </a>
-        <a href="#" class="sp-icon-btn" aria-label="LINEで問い合わせ">
+        <a href="<?php echo esc_url( ludoa_line_url() ); ?>" class="sp-icon-btn" aria-label="LINEで問い合わせ"<?php echo '#' !== ludoa_line_url() ? ' target="_blank" rel="noopener"' : ''; ?>>
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
           </svg>
         </a>
-        <a href="mailto:info@example.com" class="sp-icon-btn" aria-label="メールで問い合わせ">
+        <a href="<?php echo esc_url( ludoa_url( 'contact' ) ); ?>" class="sp-icon-btn" aria-label="メールで問い合わせ">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
@@ -111,7 +111,7 @@
 
       <!-- 事例紹介 -->
       <div class="sp-menu__single">
-        <a class="sp-menu__head" href="<?php echo esc_url( ludoa_url( 'case' ) ); ?>">
+        <a class="sp-menu__head" href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>">
           <span class="sp-menu__head-title">事例紹介</span>
           <span class="sp-menu__head-box" aria-hidden="true"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 8,8 2,14"/></svg></span>
         </a>
@@ -119,7 +119,7 @@
 
       <!-- お知らせ -->
       <div class="sp-menu__single">
-        <a class="sp-menu__head" href="<?php echo esc_url( ludoa_url( 'infomation' ) ); ?>">
+        <a class="sp-menu__head" href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>">
           <span class="sp-menu__head-title">お知らせ</span>
           <span class="sp-menu__head-box" aria-hidden="true"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 8,8 2,14"/></svg></span>
         </a>
@@ -128,7 +128,7 @@
       <!-- CTA + TEL -->
       <div class="sp-menu__foot">
         <a href="<?php echo esc_url( ludoa_url( 'contact' ) ); ?>" class="sp-menu__cta">お問い合わせはこちら</a>
-        <a href="tel:03XXXXXXXX" class="sp-menu__tel">TEL<span class="sp-menu__tel-num">03-xxx-xxxx</span></a>
+        <a href="<?php echo esc_attr( ludoa_tel_href() ); ?>" class="sp-menu__tel">TEL<span class="sp-menu__tel-num"><?php echo esc_html( ludoa_tel_display() ); ?></span></a>
         <p class="sp-menu__hours">受付時間：平日9:00〜18:00</p>
       </div>
     </div>

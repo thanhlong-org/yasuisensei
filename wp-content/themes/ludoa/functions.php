@@ -24,6 +24,9 @@ require get_template_directory() . '/inc/contact-mail.php';
 // CPT (case / news) + Smart Custom Fields + template helpers.
 require get_template_directory() . '/inc/cpt.php';
 
+// Theme options (Customizer) — phone / LINE contact settings.
+require get_template_directory() . '/inc/theme-options.php';
+
 /**
  * Base URI for the copied static asset tree.
  *

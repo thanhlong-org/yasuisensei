@@ -12,7 +12,7 @@ $s = ludoa_static_uri();
       <div class="cta__inner">
         <!-- Row 1: 3 cards, transparent style with ghost icon bg -->
         <div class="cta__row cta__row--light">
-          <a href="tel:03XXXXXXXX" class="cta-card" data-reveal>
+          <a href="<?php echo esc_attr( ludoa_tel_href() ); ?>" class="cta-card" data-reveal>
             <span class="cta-card__edge cta-card__edge--t" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--b" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
@@ -20,9 +20,9 @@ $s = ludoa_static_uri();
             <img src="<?php echo $s; ?>/assets/img/phone-icon.svg" alt="" class="cta-card__bg-icon" aria-hidden="true" />
             <h3 class="cta-card__title">お電話でのお問い合わせ</h3>
             <p class="cta-card__desc">受付時間：平日9:00〜18:00<br />定休日：土日祝</p>
-            <span class="cta-card__btn">公式LINEを追加する</span>
+            <span class="cta-card__btn"><?php echo esc_html( ludoa_tel_display() ); ?>にかける</span>
           </a>
-          <a href="#" class="cta-card" data-reveal data-reveal-delay="1">
+          <a href="<?php echo esc_url( ludoa_line_url() ); ?>" class="cta-card" data-reveal data-reveal-delay="1"<?php echo '#' !== ludoa_line_url() ? ' target="_blank" rel="noopener"' : ''; ?>>
             <span class="cta-card__edge cta-card__edge--t" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--b" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
@@ -32,7 +32,7 @@ $s = ludoa_static_uri();
             <p class="cta-card__desc">LINEアカウントの[友だち追加]<br />またはQRコードから追加ください。</p>
             <span class="cta-card__btn">公式LINEを追加する</span>
           </a>
-          <a href="#" class="cta-card" data-reveal data-reveal-delay="2">
+          <a href="<?php echo esc_url( ludoa_url( 'contact' ) ); ?>" class="cta-card" data-reveal data-reveal-delay="2">
             <span class="cta-card__edge cta-card__edge--t" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--b" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
