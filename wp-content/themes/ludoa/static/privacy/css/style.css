@@ -32,7 +32,7 @@
                       screens (like the homepage hero), so no white gap appears */
   width: 74.24%;   /* left edge lands at the design x371 (25.76% of 1440) */
   height: 100%;
-  background: url("../img/banner-pc.png") center top / cover no-repeat;
+  background: url("../../assets/img/banner-pc.png") center top / cover no-repeat;
   -webkit-mask-image: linear-gradient(90deg, transparent 4%, #000 44%);
           mask-image: linear-gradient(90deg, transparent 4%, #000 44%);
 }
@@ -219,7 +219,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../img/banner-sp.png");
+    background-image: url("../../assets/img/banner-sp.png");
     -webkit-mask-image: none;
             mask-image: none;
   }

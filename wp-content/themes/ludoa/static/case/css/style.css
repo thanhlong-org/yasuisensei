@@ -312,7 +312,7 @@
 .cs-item__inner { display: flex; align-items: center; gap: 56px; }
 .cs-item__image {
   flex-shrink: 0; width: 460px; aspect-ratio: 480 / 287;
-  background: url("../../assets/img/case-01-5c100c.png") center / cover no-repeat;
+  background: url("../../assets/img/case.png") center / cover no-repeat;
 }
 .cs-item__body { flex: 1; min-width: 0; }
 .cs-item__title {

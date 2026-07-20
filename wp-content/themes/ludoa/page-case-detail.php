@@ -14,7 +14,7 @@ $s = ludoa_static_uri();
       <div class="page-banner__media" aria-hidden="true">
         <!-- WP: replace the inline url with the post's featured image -->
         <div class="page-banner__photo" role="img" aria-label="お客様の様子"
-             style="background-image: url('<?php echo $s; ?>/assets/img/service-01.jpg')"></div>
+             style="background-image: url('<?php echo $s; ?>/assets/img/service-detail.jpg')"></div>
         <div class="page-banner__scroll">
           <span class="page-banner__scroll-line"></span>
           <span class="page-banner__scroll-text">SCROLL</span>
@@ -86,7 +86,7 @@ $s = ludoa_static_uri();
             <span class="cd-frame cd-frame--br" aria-hidden="true"></span>
             <span class="cd-frame cd-frame--star-tr" aria-hidden="true"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg></span>
             <span class="cd-frame cd-frame--star-bl" aria-hidden="true"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg></span>
-            <span class="cd-more-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-02.jpg')" aria-hidden="true"></span>
+            <span class="cd-more-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/case.png')" aria-hidden="true"></span>
             <span class="cd-more-card__tag">税務顧問</span>
             <h3 class="cd-more-card__title">見出しが入ります。見出しが入ります。見出しが入ります。見出しが入ります。</h3>
             <span class="cd-more-card__client">○○様</span>
@@ -99,7 +99,7 @@ $s = ludoa_static_uri();
             <span class="cd-frame cd-frame--br" aria-hidden="true"></span>
             <span class="cd-frame cd-frame--star-tr" aria-hidden="true"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg></span>
             <span class="cd-frame cd-frame--star-bl" aria-hidden="true"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg></span>
-            <span class="cd-more-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-03.jpg')" aria-hidden="true"></span>
+            <span class="cd-more-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/case.png')" aria-hidden="true"></span>
             <span class="cd-more-card__tag">税務顧問</span>
             <h3 class="cd-more-card__title">見出しが入ります。見出しが入ります。見出しが入ります。</h3>
             <span class="cd-more-card__client">○○様</span>
@@ -112,7 +112,7 @@ $s = ludoa_static_uri();
             <span class="cd-frame cd-frame--br" aria-hidden="true"></span>
             <span class="cd-frame cd-frame--star-tr" aria-hidden="true"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg></span>
             <span class="cd-frame cd-frame--star-bl" aria-hidden="true"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg></span>
-            <span class="cd-more-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-04.jpg')" aria-hidden="true"></span>
+            <span class="cd-more-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/case.png')" aria-hidden="true"></span>
             <span class="cd-more-card__tag">税務顧問</span>
             <h3 class="cd-more-card__title">見出しが入ります。見出しが入ります。見出しが入ります。</h3>
             <span class="cd-more-card__client">○○様</span>
