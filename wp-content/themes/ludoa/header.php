@@ -31,7 +31,7 @@
       <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
         <ul class="site-nav__list">
           <li><a href="<?php echo esc_url( home_url( '/#features' ) ); ?>">私たちの強み</a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">サービス</a></li>
+          <li><a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>">サービス</a></li>
           <li><a href="<?php echo esc_url( home_url( '/#company' ) ); ?>">企業情報</a></li>
           <li><a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>">事例紹介</a></li>
           <li><a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>">お知らせ</a></li>
@@ -85,17 +85,14 @@
     <div class="sp-menu__scroll">
       <!-- サービス -->
       <div class="sp-menu__group">
-        <a class="sp-menu__head" href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">
+        <a class="sp-menu__head" href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>">
           <span class="sp-menu__head-title">サービス</span>
           <span class="sp-menu__head-box" aria-hidden="true"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 8,8 2,14"/></svg></span>
         </a>
         <ul class="sp-menu__sub">
-          <li><a href="<?php echo esc_url( ludoa_url( 'advisory' ) ); ?>">税務顧問<span class="sp-menu__chev" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,1.5 6.5,7 1.5,12.5"/></svg></span></a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">決算・記帳代行<span class="sp-menu__chev" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,1.5 6.5,7 1.5,12.5"/></svg></span></a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">確定申告代行<span class="sp-menu__chev" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,1.5 6.5,7 1.5,12.5"/></svg></span></a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">月次給与・賞与計算<span class="sp-menu__chev" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,1.5 6.5,7 1.5,12.5"/></svg></span></a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">起業・スタートアップ支援<span class="sp-menu__chev" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,1.5 6.5,7 1.5,12.5"/></svg></span></a></li>
-          <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">節税対策<span class="sp-menu__chev" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,1.5 6.5,7 1.5,12.5"/></svg></span></a></li>
+          <?php foreach ( ludoa_services() as $ludoa_service ) : ?>
+          <li><a href="<?php echo esc_url( get_permalink( $ludoa_service ) ); ?>"><?php echo esc_html( get_the_title( $ludoa_service ) ); ?><span class="sp-menu__chev" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,1.5 6.5,7 1.5,12.5"/></svg></span></a></li>
+          <?php endforeach; ?>
         </ul>
       </div>
 

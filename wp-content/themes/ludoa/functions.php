@@ -44,8 +44,6 @@ function ludoa_static_uri() {
 function ludoa_pages() {
 	return array(
 		'features'            => array( 'title' => '私たちの強み', 'css' => 'features' ),
-		'service'             => array( 'title' => 'サービス', 'css' => 'service' ),
-		'advisory'            => array( 'title' => '税務顧問', 'css' => 'advisory' ),
 		'company'             => array( 'title' => '企業情報', 'css' => 'company' ),
 		'message'             => array( 'title' => '代表あいさつ', 'css' => 'message' ),
 		'office'              => array( 'title' => '事務所概要', 'css' => 'office' ),
@@ -96,6 +94,8 @@ function ludoa_assets() {
 	wp_enqueue_style( 'ludoa-reset', "$static/css/reset.css", array(), LUDOA_VERSION );
 	wp_enqueue_style( 'ludoa-tokens', "$static/css/tokens.css", array( 'ludoa-reset' ), LUDOA_VERSION );
 	wp_enqueue_style( 'ludoa-common', "$static/css/common.css", array( 'ludoa-tokens' ), LUDOA_VERSION );
+	// The static service-list rows are not links — cover each row with one.
+	wp_add_inline_style( 'ludoa-common', '.service-item{cursor:pointer}.service-item__cover{position:absolute;inset:0;z-index:2}' );
 
 	// Page-specific stylesheet.
 	if ( is_front_page() ) {
@@ -106,6 +106,10 @@ function ludoa_assets() {
 		wp_enqueue_style( 'ludoa-page', "$static/case/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	} elseif ( is_singular( 'news' ) || is_post_type_archive( 'news' ) ) {
 		wp_enqueue_style( 'ludoa-page', "$static/infomation/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	} elseif ( is_singular( 'service' ) ) {
+		wp_enqueue_style( 'ludoa-page', "$static/advisory/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	} elseif ( is_post_type_archive( 'service' ) ) {
+		wp_enqueue_style( 'ludoa-page', "$static/service/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	} else {
 		$slug  = get_post_field( 'post_name', get_queried_object_id() );
 		$pages = ludoa_pages();

@@ -55,6 +55,25 @@ function ludoa_register_post_types() {
 			'rewrite'       => array( 'slug' => 'infomation' ),
 		)
 	);
+
+	register_post_type(
+		'service',
+		array(
+			'labels'        => array(
+				'name'          => 'サービス',
+				'singular_name' => 'サービス',
+				'add_new_item'  => 'サービスを追加',
+				'edit_item'     => 'サービスを編集',
+			),
+			'public'        => true,
+			'has_archive'   => true,
+			'menu_position' => 22,
+			'menu_icon'     => 'dashicons-clipboard',
+			'supports'      => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+			'show_in_rest'  => true,
+			'rewrite'       => array( 'slug' => 'service' ),
+		)
+	);
 }
 add_action( 'init', 'ludoa_register_post_types' );
 
@@ -72,6 +91,11 @@ function ludoa_archive_query( $query ) {
 	}
 	if ( $query->is_post_type_archive( 'news' ) ) {
 		$query->set( 'posts_per_page', 10 );
+	}
+	if ( $query->is_post_type_archive( 'service' ) ) {
+		$query->set( 'posts_per_page', -1 );
+		$query->set( 'orderby', 'menu_order' );
+		$query->set( 'order', 'ASC' );
 	}
 }
 add_action( 'pre_get_posts', 'ludoa_archive_query' );
@@ -106,6 +130,60 @@ function ludoa_scf_register_fields( $settings, $type, $id, $meta_type ) {
 					'name'  => 'case_client',
 					'label' => 'お客様名（例：株式会社○○○様）',
 					'type'  => 'text',
+				),
+			)
+		);
+		$settings[] = $setting;
+	}
+
+	if ( 'service' === $type ) {
+		$setting = SCF::add_setting( 'ludoa-service-fields', 'サービス情報' );
+		$setting->add_group(
+			'service-meta',
+			false,
+			array(
+				array(
+					'name'  => 'service_en',
+					'label' => '英語表記（例：advisory）',
+					'type'  => 'text',
+				),
+			)
+		);
+		$setting->add_group(
+			'service-support',
+			true,
+			array(
+				array(
+					'name'  => 'support_name',
+					'label' => '支援内容',
+					'type'  => 'text',
+				),
+			)
+		);
+		$setting->add_group(
+			'service-issues',
+			true,
+			array(
+				array(
+					'name'  => 'issue_text',
+					'label' => '解決できる課題',
+					'type'  => 'text',
+				),
+			)
+		);
+		$setting->add_group(
+			'service-flow',
+			true,
+			array(
+				array(
+					'name'  => 'flow_title',
+					'label' => 'ステップ名',
+					'type'  => 'text',
+				),
+				array(
+					'name'  => 'flow_desc',
+					'label' => 'ステップ説明',
+					'type'  => 'textarea',
 				),
 			)
 		);
@@ -146,6 +224,40 @@ function ludoa_scf( $name, $post_id = null, $default = '' ) {
 function ludoa_bg_style( $post_id = null, $size = 'large' ) {
 	$url = get_the_post_thumbnail_url( $post_id, $size );
 	return $url ? ' style="background-image: url(\'' . esc_url( $url ) . '\')"' : '';
+}
+
+/**
+ * All service posts in menu_order (01, 02, …).
+ *
+ * @return WP_Post[]
+ */
+function ludoa_services() {
+	return get_posts(
+		array(
+			'post_type'      => 'service',
+			'posts_per_page' => -1,
+			'orderby'        => 'menu_order',
+			'order'          => 'ASC',
+			'no_found_rows'  => true,
+		)
+	);
+}
+
+/**
+ * Permalink for a service post by slug (falls back to the archive).
+ *
+ * @param string $slug Service slug (e.g. 'advisory').
+ * @return string
+ */
+function ludoa_service_url( $slug ) {
+	$posts = get_posts(
+		array(
+			'post_type'      => 'service',
+			'name'           => $slug,
+			'posts_per_page' => 1,
+		)
+	);
+	return $posts ? get_permalink( $posts[0] ) : get_post_type_archive_link( 'service' );
 }
 
 /**
@@ -235,6 +347,66 @@ function ludoa_cpt_migrate() {
 	update_option( 'ludoa_cpt_migrated', 1 );
 }
 add_action( 'init', 'ludoa_cpt_migrate', 20 );
+
+/**
+ * Second migration: the service / advisory fixed pages become the service CPT
+ * (archive-service.php + single-service.php). Runs once.
+ */
+function ludoa_service_migrate() {
+	if ( get_option( 'ludoa_service_migrated' ) ) {
+		return;
+	}
+
+	foreach ( array( 'service', 'advisory' ) as $slug ) {
+		$page = get_page_by_path( $slug );
+		if ( $page ) {
+			wp_trash_post( $page->ID );
+		}
+	}
+
+	ludoa_seed_services();
+
+	flush_rewrite_rules();
+	update_option( 'ludoa_service_migrated', 1 );
+}
+add_action( 'init', 'ludoa_service_migrate', 21 );
+
+/**
+ * Sample サービス posts matching the static design (only when none exist yet).
+ */
+function ludoa_seed_services() {
+	$existing = get_posts( array( 'post_type' => 'service', 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids' ) );
+	if ( $existing ) {
+		return;
+	}
+
+	$lead = "税務顧問とは、税金の申告や会計処理だけでなく、事業運営に関するさまざまな課題を継続的にサポートするサービスです。\n\n毎月の業績確認や税務相談を通じて、経営状況を正しく把握し、適切な意思決定を支援します。\n\n税制改正への対応や節税対策はもちろん、資金繰りや事業計画などについても気軽に相談できる身近なパートナーとして、お客様の事業を支えます。";
+
+	$services = array(
+		array( 'title' => '税務顧問', 'slug' => 'advisory', 'en' => 'advisory', 'content' => $lead ),
+		array( 'title' => '決算・記帳代行', 'slug' => 'accounting', 'en' => 'accounting', 'content' => str_repeat( 'テキストが入ります。', 12 ) ),
+		array( 'title' => '確定申告代行', 'slug' => 'tax-return', 'en' => 'tax-return', 'content' => str_repeat( 'テキストが入ります。', 12 ) ),
+		array( 'title' => '月次給与・賞与計算', 'slug' => 'payroll', 'en' => 'payroll', 'content' => str_repeat( 'テキストが入ります。', 12 ) ),
+		array( 'title' => '起業・スタートアップの支援', 'slug' => 'startup', 'en' => 'startup', 'content' => str_repeat( 'テキストが入ります。', 12 ) ),
+		array( 'title' => '節税対策', 'slug' => 'tax-planning', 'en' => 'tax-planning', 'content' => str_repeat( 'テキストが入ります。', 12 ) ),
+	);
+
+	foreach ( $services as $i => $service ) {
+		$post_id = wp_insert_post(
+			array(
+				'post_type'    => 'service',
+				'post_status'  => 'publish',
+				'post_title'   => $service['title'],
+				'post_name'    => $service['slug'],
+				'post_content' => $service['content'],
+				'menu_order'   => $i + 1,
+			)
+		);
+		if ( $post_id && ! is_wp_error( $post_id ) ) {
+			update_post_meta( $post_id, 'service_en', $service['en'] );
+		}
+	}
+}
 
 /**
  * Sample 事例 posts (only when none exist yet).

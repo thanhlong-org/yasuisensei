@@ -1,7 +1,7 @@
 <?php
 /**
- * Template: サービス
- * Converted from html_asset/service/index.html
+ * Archive: サービス (service CPT)
+ * Layout from html_asset/service/index.html — data from the service post type.
  *
  * @package Ludoa
  */
@@ -60,42 +60,18 @@ $s = ludoa_static_uri();
           </div>
 
           <ul class="service__list">
+            <?php if ( have_posts() ) : ?>
+              <?php $num = 0; ?>
+              <?php while ( have_posts() ) : the_post(); $num++; ?>
             <li class="service-item" data-reveal>
-              <span class="service-item__num">01</span>
-              <span class="service-item__name">税務顧問</span>
-              <span class="service-item__en">advisory</span>
+              <span class="service-item__num"><?php echo esc_html( str_pad( (string) $num, 2, '0', STR_PAD_LEFT ) ); ?></span>
+              <span class="service-item__name"><?php the_title(); ?></span>
+              <span class="service-item__en"><?php echo esc_html( ludoa_scf( 'service_en' ) ); ?></span>
               <span class="service-item__accent" aria-hidden="true"></span>
+              <a href="<?php the_permalink(); ?>" class="service-item__cover" aria-label="<?php the_title_attribute(); ?>"></a>
             </li>
-            <li class="service-item" data-reveal>
-              <span class="service-item__num">02</span>
-              <span class="service-item__name">決算・記帳代行</span>
-              <span class="service-item__en">accounting</span>
-              <span class="service-item__accent" aria-hidden="true"></span>
-            </li>
-            <li class="service-item" data-reveal>
-              <span class="service-item__num">03</span>
-              <span class="service-item__name">確定申告代行</span>
-              <span class="service-item__en">tax-return</span>
-              <span class="service-item__accent" aria-hidden="true"></span>
-            </li>
-            <li class="service-item" data-reveal>
-              <span class="service-item__num">04</span>
-              <span class="service-item__name">月次給与・賞与計算</span>
-              <span class="service-item__en">payroll</span>
-              <span class="service-item__accent" aria-hidden="true"></span>
-            </li>
-            <li class="service-item" data-reveal>
-              <span class="service-item__num">05</span>
-              <span class="service-item__name">起業・スタートアップの支援</span>
-              <span class="service-item__en">startup</span>
-              <span class="service-item__accent" aria-hidden="true"></span>
-            </li>
-            <li class="service-item" data-reveal>
-              <span class="service-item__num">06</span>
-              <span class="service-item__name">節税対策</span>
-              <span class="service-item__en">tax-planning</span>
-              <span class="service-item__accent" aria-hidden="true"></span>
-            </li>
+              <?php endwhile; ?>
+            <?php endif; ?>
           </ul>
         </div>
       </div>

@@ -106,7 +106,7 @@ $s = ludoa_static_uri();
         <img src="<?php echo $s; ?>/assets/img/logo-icon.svg" alt="" class="service__logo-deco" aria-hidden="true" />
 
         <!-- Top-right button: View case list -->
-        <a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>" class="detail-btn service__btn">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="detail-btn service__btn">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -137,46 +137,19 @@ $s = ludoa_static_uri();
 
         <!-- Service items list (right column / SP center) -->
         <ul class="service__list">
+          <?php foreach ( ludoa_services() as $i => $ludoa_service ) : ?>
           <li class="service-item" data-reveal>
-            <span class="service-item__num">01</span>
-            <span class="service-item__name">税務顧問</span>
-            <span class="service-item__en">advisory</span>
+            <span class="service-item__num"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+            <span class="service-item__name"><?php echo esc_html( get_the_title( $ludoa_service ) ); ?></span>
+            <span class="service-item__en"><?php echo esc_html( ludoa_scf( 'service_en', $ludoa_service->ID ) ); ?></span>
             <span class="service-item__accent" aria-hidden="true"></span>
+            <a href="<?php echo esc_url( get_permalink( $ludoa_service ) ); ?>" class="service-item__cover" aria-label="<?php echo esc_attr( get_the_title( $ludoa_service ) ); ?>"></a>
           </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">02</span>
-            <span class="service-item__name">決算・記帳代行</span>
-            <span class="service-item__en">accounting</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">03</span>
-            <span class="service-item__name">確定申告代行</span>
-            <span class="service-item__en">tax-return</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">04</span>
-            <span class="service-item__name">月次給与・賞与計算</span>
-            <span class="service-item__en">payroll</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">05</span>
-            <span class="service-item__name">起業・スタートアップの支援</span>
-            <span class="service-item__en">startup</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">06</span>
-            <span class="service-item__name">節税対策</span>
-            <span class="service-item__en">tax-planning</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
+          <?php endforeach; ?>
         </ul>
 
         <!-- SP-only button at bottom -->
-        <a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>" class="detail-btn service__btn-sp">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="detail-btn service__btn-sp">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
