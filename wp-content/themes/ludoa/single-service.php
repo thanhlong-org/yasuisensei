@@ -59,12 +59,21 @@ if ( ! $flow ) {
 
 $head_star = '<svg class="asy-head__star" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg>';
 $check     = '<svg class="asy-issues__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7.5 12.4l3 3 6-6.4" stroke-width="2"/></svg>';
+
+// Banner: featured image → per-service static banner.png (PC & SP) → CSS default.
+$banner_style = ludoa_bg_style( null, 'full' );
+if ( ! $banner_style ) {
+	$slug = get_post_field( 'post_name' );
+	if ( file_exists( get_template_directory() . "/static/{$slug}/img/banner.png" ) ) {
+		$banner_style = ' style="background-image: url(\'' . esc_url( "{$s}/{$slug}/img/banner.png" ) . '\')"';
+	}
+}
 ?>
 <main>
     <!-- ============ PAGE BANNER (FV) ============ -->
     <section class="page-banner" aria-label="<?php the_title_attribute(); ?>">
       <div class="page-banner__media" aria-hidden="true">
-        <div class="page-banner__photo" role="img" aria-label="打ち合わせの様子"<?php echo ludoa_bg_style( null, 'full' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>></div>
+        <div class="page-banner__photo" role="img" aria-label="打ち合わせの様子"<?php echo $banner_style; // phpcs:ignore WordPress.Security.EscapeOutput ?>></div>
         <div class="page-banner__scroll">
           <span class="page-banner__scroll-line"></span>
           <span class="page-banner__scroll-text">SCROLL</span>
