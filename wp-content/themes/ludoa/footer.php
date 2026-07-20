@@ -51,15 +51,12 @@ $ludoa_static = ludoa_static_uri();
 
           <div class="sitemap__cols">
             <div class="sitemap__col sitemap__col--service-h">
-              <a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>" class="sitemap__title">サービス</a>
+              <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="sitemap__title">サービス</a>
             </div>
             <ul class="sitemap__col sitemap__sub sitemap__col--service-s">
-              <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">月次給与・賞与計算</a></li>
-              <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">起業・スタートアップ支援</a></li>
-              <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">決算・記帳代行</a></li>
-              <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">確定申告代行</a></li>
-              <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">税務顧問</a></li>
-              <li><a href="<?php echo esc_url( ludoa_url( 'service' ) ); ?>">節税対策</a></li>
+              <?php foreach ( ludoa_services() as $ludoa_service ) : ?>
+              <li><a href="<?php echo esc_url( get_permalink( $ludoa_service ) ); ?>"><?php echo esc_html( get_the_title( $ludoa_service ) ); ?></a></li>
+              <?php endforeach; ?>
             </ul>
             <div class="sitemap__col sitemap__col--company-h">
               <a href="<?php echo esc_url( home_url( '/#company' ) ); ?>" class="sitemap__title">企業情報</a>
@@ -70,8 +67,8 @@ $ludoa_static = ludoa_static_uri();
               <li><a href="<?php echo esc_url( ludoa_url( 'office' ) ); ?>">事務所概要</a></li>
             </ul>
             <div class="sitemap__standalone">
-              <a href="<?php echo esc_url( ludoa_url( 'case' ) ); ?>" class="sitemap__title">事例紹介</a>
-              <a href="<?php echo esc_url( ludoa_url( 'infomation' ) ); ?>" class="sitemap__title">お知らせ</a>
+              <a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>" class="sitemap__title">事例紹介</a>
+              <a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="sitemap__title">お知らせ</a>
               <a href="<?php echo esc_url( ludoa_url( 'privacy' ) ); ?>" class="sitemap__title sitemap__privacy-sp">プライバシーポリシー</a>
             </div>
           </div>

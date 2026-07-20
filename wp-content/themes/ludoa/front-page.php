@@ -80,7 +80,7 @@ $s = ludoa_static_uri();
           常に伴走し続ける安心感をご提供します。
         </p>
 
-        <a href="#" class="detail-btn features__btn">
+        <a href="<?php echo esc_url( ludoa_url( 'features' ) ); ?>" class="detail-btn features__btn">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -106,7 +106,7 @@ $s = ludoa_static_uri();
         <img src="<?php echo $s; ?>/assets/img/logo-icon.svg" alt="" class="service__logo-deco" aria-hidden="true" />
 
         <!-- Top-right button: View case list -->
-        <a href="#" class="detail-btn service__btn">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="detail-btn service__btn">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -137,46 +137,19 @@ $s = ludoa_static_uri();
 
         <!-- Service items list (right column / SP center) -->
         <ul class="service__list">
+          <?php foreach ( ludoa_services() as $i => $ludoa_service ) : ?>
           <li class="service-item" data-reveal>
-            <span class="service-item__num">01</span>
-            <span class="service-item__name">税務顧問</span>
-            <span class="service-item__en">advisory</span>
+            <span class="service-item__num"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+            <span class="service-item__name"><?php echo esc_html( get_the_title( $ludoa_service ) ); ?></span>
+            <span class="service-item__en"><?php echo esc_html( ludoa_scf( 'service_en', $ludoa_service->ID ) ); ?></span>
             <span class="service-item__accent" aria-hidden="true"></span>
+            <a href="<?php echo esc_url( get_permalink( $ludoa_service ) ); ?>" class="service-item__cover" aria-label="<?php echo esc_attr( get_the_title( $ludoa_service ) ); ?>"></a>
           </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">02</span>
-            <span class="service-item__name">決算・記帳代行</span>
-            <span class="service-item__en">accounting</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">03</span>
-            <span class="service-item__name">確定申告代行</span>
-            <span class="service-item__en">tax-return</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">04</span>
-            <span class="service-item__name">月次給与・賞与計算</span>
-            <span class="service-item__en">payroll</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">05</span>
-            <span class="service-item__name">起業・スタートアップの支援</span>
-            <span class="service-item__en">startup</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="service-item" data-reveal>
-            <span class="service-item__num">06</span>
-            <span class="service-item__name">節税対策</span>
-            <span class="service-item__en">tax-planning</span>
-            <span class="service-item__accent" aria-hidden="true"></span>
-          </li>
+          <?php endforeach; ?>
         </ul>
 
         <!-- SP-only button at bottom -->
-        <a href="#" class="detail-btn service__btn-sp">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="detail-btn service__btn-sp">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -196,7 +169,7 @@ $s = ludoa_static_uri();
         </h2>
 
         <!-- Top-right button -->
-        <a href="#" class="detail-btn case__btn">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>" class="detail-btn case__btn">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -205,10 +178,20 @@ $s = ludoa_static_uri();
           <span class="detail-btn__label">事例一覧を見る</span>
         </a>
 
-        <!-- Case items -->
+        <!-- Case items — latest 3 posts of the case CPT -->
+        <?php
+        $front_cases = new WP_Query(
+            array(
+                'post_type'      => 'case',
+                'posts_per_page' => 3,
+                'no_found_rows'  => true,
+            )
+        );
+        ?>
         <ul class="case__list">
-          <!-- Case 1 -->
-          <li class="case-item" data-reveal>
+          <?php $delay = 0; ?>
+          <?php while ( $front_cases->have_posts() ) : $front_cases->the_post(); ?>
+          <li class="case-item" data-reveal<?php echo $delay ? ' data-reveal-delay="' . esc_attr( $delay ) . '"' : ''; ?>>
             <span class="case-deco case-deco--tl" aria-hidden="true"></span>
             <span class="case-deco case-deco--tline" aria-hidden="true"></span>
             <span class="case-deco case-deco--bline" aria-hidden="true"></span>
@@ -216,17 +199,13 @@ $s = ludoa_static_uri();
             <img src="<?php echo $s; ?>/assets/img/slossy-icon.svg" alt="" class="case-deco case-deco--star-tr" aria-hidden="true" />
             <img src="<?php echo $s; ?>/assets/img/slossy-icon.svg" alt="" class="case-deco case-deco--star-bl" aria-hidden="true" />
 
-            <div class="case-item__image" role="img" aria-label="事例画像"></div>
+            <div class="case-item__image" role="img" aria-label="<?php the_title_attribute(); ?>"<?php echo ludoa_bg_style(); // phpcs:ignore WordPress.Security.EscapeOutput ?>></div>
             <span class="case-item__tag" aria-hidden="true"></span>
-            <h3 class="case-item__title">題名が入ります。題名が入ります。題名が入ります。題名が入ります。題名が入ります。題名が入ります。</h3>
-            <p class="case-item__desc">
-              テキストが入ります。テキストが入ります。テキストが入ります。<br />
-              テキストが入ります。テキストが入ります。テキストが入ります。<br />
-              テキストが入ります。テキストが入ります。テキストが入ります。
-            </p>
+            <h3 class="case-item__title"><?php the_title(); ?></h3>
+            <p class="case-item__desc"><?php echo esc_html( ludoa_excerpt( 81 ) ); ?></p>
             <div class="case-item__footer">
-              <p class="case-item__client">株式会社◯◯◯様</p>
-              <a href="<?php echo esc_url( ludoa_url( 'case-detail' ) ); ?>" class="detail-btn case-item__btn case-item__btn--light">
+              <p class="case-item__client"><?php echo esc_html( ludoa_scf( 'case_client' ) ); ?></p>
+              <a href="<?php the_permalink(); ?>" class="detail-btn case-item__btn case-item__btn--light">
                 <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
                 <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
                 <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -236,70 +215,13 @@ $s = ludoa_static_uri();
               </a>
             </div>
           </li>
-
-          <!-- Case 2 -->
-          <li class="case-item" data-reveal data-reveal-delay="1">
-            <span class="case-deco case-deco--tl" aria-hidden="true"></span>
-            <span class="case-deco case-deco--tline" aria-hidden="true"></span>
-            <span class="case-deco case-deco--bline" aria-hidden="true"></span>
-            <span class="case-deco case-deco--br" aria-hidden="true"></span>
-            <img src="<?php echo $s; ?>/assets/img/slossy-icon.svg" alt="" class="case-deco case-deco--star-tr" aria-hidden="true" />
-            <img src="<?php echo $s; ?>/assets/img/slossy-icon.svg" alt="" class="case-deco case-deco--star-bl" aria-hidden="true" />
-
-            <div class="case-item__image" role="img" aria-label="事例画像"></div>
-            <span class="case-item__tag" aria-hidden="true"></span>
-            <h3 class="case-item__title">題名が入ります。題名が入ります。題名が入ります。題名が入ります。題名が入ります。題名が入ります。</h3>
-            <p class="case-item__desc">
-              テキストが入ります。テキストが入ります。テキストが入ります。<br />
-              テキストが入ります。テキストが入ります。テキストが入ります。<br />
-              テキストが入ります。テキストが入ります。テキストが入ります。
-            </p>
-            <div class="case-item__footer">
-              <p class="case-item__client">株式会社◯◯◯様</p>
-              <a href="<?php echo esc_url( ludoa_url( 'case-detail' ) ); ?>" class="detail-btn case-item__btn case-item__btn--light">
-                <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
-                <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
-                <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
-                <span class="detail-btn__edge detail-btn__edge--r" aria-hidden="true"></span>
-                <span class="detail-btn__accent" aria-hidden="true"></span>
-                <span class="detail-btn__label">詳しく見る</span>
-              </a>
-            </div>
-          </li>
-
-          <!-- Case 3 -->
-          <li class="case-item" data-reveal data-reveal-delay="2">
-            <span class="case-deco case-deco--tl" aria-hidden="true"></span>
-            <span class="case-deco case-deco--tline" aria-hidden="true"></span>
-            <span class="case-deco case-deco--bline" aria-hidden="true"></span>
-            <span class="case-deco case-deco--br" aria-hidden="true"></span>
-            <img src="<?php echo $s; ?>/assets/img/slossy-icon.svg" alt="" class="case-deco case-deco--star-tr" aria-hidden="true" />
-            <img src="<?php echo $s; ?>/assets/img/slossy-icon.svg" alt="" class="case-deco case-deco--star-bl" aria-hidden="true" />
-
-            <div class="case-item__image" role="img" aria-label="事例画像"></div>
-            <span class="case-item__tag" aria-hidden="true"></span>
-            <h3 class="case-item__title">題名が入ります。題名が入ります。題名が入ります。題名が入ります。題名が入ります。題名が入ります。</h3>
-            <p class="case-item__desc">
-              テキストが入ります。テキストが入ります。テキストが入ります。<br />
-              テキストが入ります。テキストが入ります。テキストが入ります。<br />
-              テキストが入ります。テキストが入ります。テキストが入ります。
-            </p>
-            <div class="case-item__footer">
-              <p class="case-item__client">株式会社◯◯◯様</p>
-              <a href="<?php echo esc_url( ludoa_url( 'case-detail' ) ); ?>" class="detail-btn case-item__btn case-item__btn--light">
-                <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
-                <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
-                <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
-                <span class="detail-btn__edge detail-btn__edge--r" aria-hidden="true"></span>
-                <span class="detail-btn__accent" aria-hidden="true"></span>
-                <span class="detail-btn__label">詳しく見る</span>
-              </a>
-            </div>
-          </li>
+          <?php $delay++; ?>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
         </ul>
 
         <!-- SP-only bottom button -->
-        <a href="#" class="detail-btn case__btn-sp case-item__btn--light">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>" class="detail-btn case__btn-sp case-item__btn--light">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -356,7 +278,7 @@ $s = ludoa_static_uri();
             </li>
 
             <li class="company-item company-item--02" data-reveal data-reveal-delay="1">
-              <a href="#" class="company-item__link">
+              <a href="<?php echo esc_url( ludoa_url( 'message' ) ); ?>" class="company-item__link">
                 <span class="company-item__media" aria-hidden="true"></span>
                 <span class="company-item__bar-top" aria-hidden="true"></span>
                 <span class="company-item__text">
@@ -372,7 +294,7 @@ $s = ludoa_static_uri();
             </li>
 
             <li class="company-item company-item--03" data-reveal data-reveal-delay="2">
-              <a href="#" class="company-item__link">
+              <a href="<?php echo esc_url( ludoa_url( 'office' ) ); ?>" class="company-item__link">
                 <span class="company-item__media" aria-hidden="true"></span>
                 <span class="company-item__bar-top" aria-hidden="true"></span>
                 <span class="company-item__text">
@@ -400,7 +322,7 @@ $s = ludoa_static_uri();
         </h2>
 
         <!-- Top-right button (PC) -->
-        <a href="#" class="detail-btn info__btn">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="detail-btn info__btn">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
@@ -412,33 +334,31 @@ $s = ludoa_static_uri();
         <!-- Decorative logo (PC, behind list, opacity 0.1) -->
         <img src="<?php echo $s; ?>/assets/img/logo-icon.svg" alt="" class="info__logo-deco" aria-hidden="true" />
 
-        <!-- News rows -->
+        <!-- News rows — latest 3 posts of the news CPT -->
+        <?php
+        $front_news = new WP_Query(
+            array(
+                'post_type'      => 'news',
+                'posts_per_page' => 3,
+                'no_found_rows'  => true,
+            )
+        );
+        ?>
         <ul class="info__list">
+          <?php while ( $front_news->have_posts() ) : $front_news->the_post(); ?>
           <li class="info-item">
-            <p class="info-item__date">2026.05.18 ｜ お知らせが入ります</p>
+            <p class="info-item__date"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?> ｜ <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
             <span class="info-item__tag" aria-hidden="true"></span>
-            <p class="info-item__desc">テキストが入ります。テキストが入ります。テキストが入ります。</p>
+            <p class="info-item__desc"><?php echo esc_html( ludoa_excerpt( 30 ) ); ?></p>
             <span class="info-item__line" aria-hidden="true"></span>
             <span class="info-item__accent" aria-hidden="true"></span>
           </li>
-          <li class="info-item">
-            <p class="info-item__date">2026.05.18 ｜ お知らせが入ります</p>
-            <span class="info-item__tag" aria-hidden="true"></span>
-            <p class="info-item__desc">テキストが入ります。テキストが入ります。テキストが入ります。</p>
-            <span class="info-item__line" aria-hidden="true"></span>
-            <span class="info-item__accent" aria-hidden="true"></span>
-          </li>
-          <li class="info-item">
-            <p class="info-item__date">2026.05.18 ｜ お知らせが入ります</p>
-            <span class="info-item__tag" aria-hidden="true"></span>
-            <p class="info-item__desc">テキストが入ります。テキストが入ります。テキストが入ります。</p>
-            <span class="info-item__line" aria-hidden="true"></span>
-            <span class="info-item__accent" aria-hidden="true"></span>
-          </li>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
         </ul>
 
         <!-- SP-only bottom button (green accent) -->
-        <a href="#" class="detail-btn info__btn-sp">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="detail-btn info__btn-sp">
           <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>

@@ -1,11 +1,13 @@
 <?php
 /**
  * Template part: service
- * Converted from html_asset/partials/service.html
+ * Converted from html_asset/partials/service.html — cards from the service CPT.
  *
  * @package Ludoa
  */
 $s = ludoa_static_uri();
+
+$arrow_star = '<svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34C7.87 9.89 10.65 5.77 12.26 0c-.26 2-.26 2.5 0 4 .26 3.5.39 4.39 4.91 4.77.72.06 1.44.1 2.09.14-2.8 1.15-6.27 1.75-8.13 3.59C7.97 14.38 7 17.5 6.2 20c.23-1.79.43-3.6.7-5.38.52-3.29-.7-3.83-4.51-4.68-.99-.22-2.24-.37-3.36-.59L0 9.34Z"/></svg>';
 ?>
     <!-- ============ サービス (Service) ============ -->
     <section class="svc" aria-labelledby="svc-heading">
@@ -17,113 +19,31 @@ $s = ludoa_static_uri();
         </h2>
 
         <div class="svc__grid">
-          <article class="svc-card" data-reveal>
-            <div class="svc-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-01.jpg')" aria-hidden="true"></div>
+          <?php foreach ( ludoa_services() as $i => $ludoa_service ) : ?>
+          <?php
+          $photo = get_the_post_thumbnail_url( $ludoa_service, 'large' );
+          if ( ! $photo ) {
+            $photo = sprintf( '%s/assets/img/service-%02d.jpg', $s, ( $i % 6 ) + 1 );
+          }
+          ?>
+          <a class="svc-card" href="<?php echo esc_url( get_permalink( $ludoa_service ) ); ?>" data-reveal<?php echo ( $i % 3 ) ? ' data-reveal-delay="' . esc_attr( $i % 3 ) . '"' : ''; ?>>
+            <div class="svc-card__photo" style="background-image: url('<?php echo esc_url( $photo ); ?>')" aria-hidden="true"></div>
             <span class="svc-card__edge svc-card__edge--t" aria-hidden="true"></span>
             <span class="svc-card__edge svc-card__edge--b" aria-hidden="true"></span>
             <span class="svc-card__edge svc-card__edge--l" aria-hidden="true"></span>
             <span class="svc-card__edge svc-card__edge--r" aria-hidden="true"></span>
-            <span class="svc-card__num" aria-hidden="true">01</span>
+            <span class="svc-card__num" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
             <div class="svc-card__body">
-              <h3 class="svc-card__title">税務顧問</h3>
-              <p class="svc-card__en">advisory</p>
+              <h3 class="svc-card__title"><?php echo esc_html( get_the_title( $ludoa_service ) ); ?></h3>
+              <p class="svc-card__en"><?php echo esc_html( ludoa_scf( 'service_en', $ludoa_service->ID ) ); ?></p>
               <span class="svc-card__arrow" aria-hidden="true">
                 <span class="svc-card__arrow-line"></span>
                 <span class="svc-card__arrow-head"></span>
-                <span class="svc-card__arrow-star"><svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34C7.87 9.89 10.65 5.77 12.26 0c-.26 2-.26 2.5 0 4 .26 3.5.39 4.39 4.91 4.77.72.06 1.44.1 2.09.14-2.8 1.15-6.27 1.75-8.13 3.59C7.97 14.38 7 17.5 6.2 20c.23-1.79.43-3.6.7-5.38.52-3.29-.7-3.83-4.51-4.68-.99-.22-2.24-.37-3.36-.59L0 9.34Z"/></svg></span>
+                <span class="svc-card__arrow-star"><?php echo $arrow_star; // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
               </span>
             </div>
-          </article>
-
-          <article class="svc-card" data-reveal data-reveal-delay="1">
-            <div class="svc-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-02.jpg')" aria-hidden="true"></div>
-            <span class="svc-card__edge svc-card__edge--t" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--b" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--l" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--r" aria-hidden="true"></span>
-            <span class="svc-card__num" aria-hidden="true">02</span>
-            <div class="svc-card__body">
-              <h3 class="svc-card__title">決算・記帳代行</h3>
-              <p class="svc-card__en">accounting</p>
-              <span class="svc-card__arrow" aria-hidden="true">
-                <span class="svc-card__arrow-line"></span>
-                <span class="svc-card__arrow-head"></span>
-                <span class="svc-card__arrow-star"><svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34C7.87 9.89 10.65 5.77 12.26 0c-.26 2-.26 2.5 0 4 .26 3.5.39 4.39 4.91 4.77.72.06 1.44.1 2.09.14-2.8 1.15-6.27 1.75-8.13 3.59C7.97 14.38 7 17.5 6.2 20c.23-1.79.43-3.6.7-5.38.52-3.29-.7-3.83-4.51-4.68-.99-.22-2.24-.37-3.36-.59L0 9.34Z"/></svg></span>
-              </span>
-            </div>
-          </article>
-
-          <article class="svc-card" data-reveal data-reveal-delay="2">
-            <div class="svc-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-03.jpg')" aria-hidden="true"></div>
-            <span class="svc-card__edge svc-card__edge--t" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--b" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--l" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--r" aria-hidden="true"></span>
-            <span class="svc-card__num" aria-hidden="true">03</span>
-            <div class="svc-card__body">
-              <h3 class="svc-card__title">確定申告代行</h3>
-              <p class="svc-card__en">tax-return</p>
-              <span class="svc-card__arrow" aria-hidden="true">
-                <span class="svc-card__arrow-line"></span>
-                <span class="svc-card__arrow-head"></span>
-                <span class="svc-card__arrow-star"><svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34C7.87 9.89 10.65 5.77 12.26 0c-.26 2-.26 2.5 0 4 .26 3.5.39 4.39 4.91 4.77.72.06 1.44.1 2.09.14-2.8 1.15-6.27 1.75-8.13 3.59C7.97 14.38 7 17.5 6.2 20c.23-1.79.43-3.6.7-5.38.52-3.29-.7-3.83-4.51-4.68-.99-.22-2.24-.37-3.36-.59L0 9.34Z"/></svg></span>
-              </span>
-            </div>
-          </article>
-
-          <article class="svc-card" data-reveal>
-            <div class="svc-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-04.jpg')" aria-hidden="true"></div>
-            <span class="svc-card__edge svc-card__edge--t" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--b" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--l" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--r" aria-hidden="true"></span>
-            <span class="svc-card__num" aria-hidden="true">04</span>
-            <div class="svc-card__body">
-              <h3 class="svc-card__title">月次給与・賞与計算</h3>
-              <p class="svc-card__en">payroll</p>
-              <span class="svc-card__arrow" aria-hidden="true">
-                <span class="svc-card__arrow-line"></span>
-                <span class="svc-card__arrow-head"></span>
-                <span class="svc-card__arrow-star"><svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34C7.87 9.89 10.65 5.77 12.26 0c-.26 2-.26 2.5 0 4 .26 3.5.39 4.39 4.91 4.77.72.06 1.44.1 2.09.14-2.8 1.15-6.27 1.75-8.13 3.59C7.97 14.38 7 17.5 6.2 20c.23-1.79.43-3.6.7-5.38.52-3.29-.7-3.83-4.51-4.68-.99-.22-2.24-.37-3.36-.59L0 9.34Z"/></svg></span>
-              </span>
-            </div>
-          </article>
-
-          <article class="svc-card" data-reveal data-reveal-delay="1">
-            <div class="svc-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-05.jpg')" aria-hidden="true"></div>
-            <span class="svc-card__edge svc-card__edge--t" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--b" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--l" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--r" aria-hidden="true"></span>
-            <span class="svc-card__num" aria-hidden="true">05</span>
-            <div class="svc-card__body">
-              <h3 class="svc-card__title">起業・スタートアップの支援</h3>
-              <p class="svc-card__en">startup</p>
-              <span class="svc-card__arrow" aria-hidden="true">
-                <span class="svc-card__arrow-line"></span>
-                <span class="svc-card__arrow-head"></span>
-                <span class="svc-card__arrow-star"><svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34C7.87 9.89 10.65 5.77 12.26 0c-.26 2-.26 2.5 0 4 .26 3.5.39 4.39 4.91 4.77.72.06 1.44.1 2.09.14-2.8 1.15-6.27 1.75-8.13 3.59C7.97 14.38 7 17.5 6.2 20c.23-1.79.43-3.6.7-5.38.52-3.29-.7-3.83-4.51-4.68-.99-.22-2.24-.37-3.36-.59L0 9.34Z"/></svg></span>
-              </span>
-            </div>
-          </article>
-
-          <article class="svc-card" data-reveal data-reveal-delay="2">
-            <div class="svc-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/service-06.jpg')" aria-hidden="true"></div>
-            <span class="svc-card__edge svc-card__edge--t" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--b" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--l" aria-hidden="true"></span>
-            <span class="svc-card__edge svc-card__edge--r" aria-hidden="true"></span>
-            <span class="svc-card__num" aria-hidden="true">06</span>
-            <div class="svc-card__body">
-              <h3 class="svc-card__title">節税対策</h3>
-              <p class="svc-card__en">tax-planninng</p>
-              <span class="svc-card__arrow" aria-hidden="true">
-                <span class="svc-card__arrow-line"></span>
-                <span class="svc-card__arrow-head"></span>
-                <span class="svc-card__arrow-star"><svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34C7.87 9.89 10.65 5.77 12.26 0c-.26 2-.26 2.5 0 4 .26 3.5.39 4.39 4.91 4.77.72.06 1.44.1 2.09.14-2.8 1.15-6.27 1.75-8.13 3.59C7.97 14.38 7 17.5 6.2 20c.23-1.79.43-3.6.7-5.38.52-3.29-.7-3.83-4.51-4.68-.99-.22-2.24-.37-3.36-.59L0 9.34Z"/></svg></span>
-              </span>
-            </div>
-          </article>
+          </a>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>
