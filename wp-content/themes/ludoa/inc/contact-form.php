@@ -39,6 +39,20 @@ function ludoa_contact_fields() {
 }
 
 /**
+ * Options for the お問い合わせ種別 dropdown: the 6 service titles + その他.
+ *
+ * @return string[]
+ */
+function ludoa_contact_types() {
+	$types = array();
+	foreach ( ludoa_services() as $service ) {
+		$types[] = $service->post_title;
+	}
+	$types[] = 'その他';
+	return $types;
+}
+
+/**
  * Start a PHP session on the front end (needed to carry form data between steps).
  */
 function ludoa_contact_session_start() {
@@ -133,6 +147,10 @@ function ludoa_contact_validate( $data ) {
 
 	if ( empty( $errors['tel'] ) && '' !== $data['tel'] && ! preg_match( '/\A[0-9０-９+\-() ]{8,20}\z/u', $data['tel'] ) ) {
 		$errors['tel'] = '電話番号の形式が正しくありません。';
+	}
+
+	if ( empty( $errors['type'] ) && '' !== $data['type'] && ! in_array( $data['type'], ludoa_contact_types(), true ) ) {
+		$errors['type'] = 'お問い合わせ種別を選択してください。';
 	}
 
 	return $errors;
@@ -233,7 +251,7 @@ function ludoa_contact_inline_css() {
 	.contact-form__field input.is-invalid,.contact-form__field textarea.is-invalid{border-color:#c0392b}
 	.contact-form__errors{margin:0 0 32px;padding:16px 20px;border:1px solid #c0392b;color:#c0392b;font-size:14px}
 	.contact-form__errors li{list-style:none}
-	button.detail-btn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;text-align:inherit;width:100%}
+	button.detail-btn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;text-align:inherit;}
 	form.confirm-actions{display:flex;flex-direction:column;align-items:center;gap:24px}
 	.confirm-actions__back{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:14px;color:inherit;text-decoration:underline;text-underline-offset:4px}
 	.ludoa-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}

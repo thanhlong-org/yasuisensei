@@ -144,7 +144,13 @@ $s = ludoa_static_uri();
           <div class="contact-form__row">
             <label class="contact-form__label" for="cf-type">お問い合わせ種別<span class="req">*</span></label>
             <div class="contact-form__field">
-              <input type="text" id="cf-type" name="type" placeholder="税務顧問" value="<?php echo esc_attr( ludoa_contact_old( 'type' ) ); ?>" class="<?php echo isset( $cf_errors['type'] ) ? 'is-invalid' : ''; ?>" required />
+              <?php $cf_type_old = ludoa_contact_old( 'type' ); ?>
+              <select id="cf-type" name="type" class="<?php echo isset( $cf_errors['type'] ) ? 'is-invalid' : ''; ?>" required>
+                <option value="" disabled<?php selected( '', $cf_type_old ); ?>>選択してください</option>
+                <?php foreach ( ludoa_contact_types() as $cf_type_opt ) : ?>
+                <option value="<?php echo esc_attr( $cf_type_opt ); ?>"<?php selected( $cf_type_old, $cf_type_opt ); ?>><?php echo esc_html( $cf_type_opt ); ?></option>
+                <?php endforeach; ?>
+              </select>
               <?php ludoa_contact_field_error( 'type' ); ?>
             </div>
           </div>
