@@ -3,15 +3,31 @@
  * Template part: case — latest 3 posts of the case CPT.
  * Layout from html_asset/partials/case.html.
  *
+ * Pass array( 'service' => '<service post slug>' ) via get_template_part()
+ * to show only the cases in that service's case_service term (falls back to
+ * the latest 3 overall when the term has no case yet).
+ *
  * @package Ludoa
  */
-$fcase_query = new WP_Query(
-	array(
-		'post_type'      => 'case',
-		'posts_per_page' => 3,
-		'no_found_rows'  => true,
-	)
+$fcase_args = array(
+	'post_type'      => 'case',
+	'posts_per_page' => 3,
+	'no_found_rows'  => true,
 );
+if ( ! empty( $args['service'] ) ) {
+	$fcase_args['tax_query'] = array(
+		array(
+			'taxonomy' => 'case_service',
+			'field'    => 'slug',
+			'terms'    => $args['service'],
+		),
+	);
+}
+$fcase_query = new WP_Query( $fcase_args );
+if ( ! $fcase_query->have_posts() && isset( $fcase_args['tax_query'] ) ) {
+	unset( $fcase_args['tax_query'] );
+	$fcase_query = new WP_Query( $fcase_args );
+}
 $fcase_archive = get_post_type_archive_link( 'case' );
 ?>
     <!-- ============ 事例紹介 (Case) ============ -->
@@ -44,7 +60,7 @@ $fcase_archive = get_post_type_archive_link( 'case' );
             <span class="fcase-deco fcase-deco--star-bl" aria-hidden="true"></span>
             <div class="fcase-card">
               <div class="fcase-card__image" role="img" aria-label="<?php the_title_attribute(); ?>"<?php echo ludoa_bg_style(); // phpcs:ignore WordPress.Security.EscapeOutput ?>></div>
-              <?php $fcase_tag = ludoa_scf( 'case_tag' ); ?>
+              <?php $fcase_tag = ludoa_case_tag(); ?>
               <?php if ( $fcase_tag ) : ?>
               <span class="fcase-card__tag"><?php echo esc_html( $fcase_tag ); ?></span>
               <?php endif; ?>

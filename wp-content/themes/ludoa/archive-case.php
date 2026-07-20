@@ -43,6 +43,19 @@ get_header();
     <!-- ============ 事例紹介 (Case list) ============ -->
     <section class="cs" aria-label="事例紹介一覧">
       <div class="cs__inner">
+
+        <!-- Service filter -->
+        <?php
+        $cs_current = isset( $_GET['svc'] ) ? sanitize_title( wp_unslash( $_GET['svc'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $cs_base    = get_post_type_archive_link( 'case' );
+        ?>
+        <nav class="cs-filter" aria-label="サービスで絞り込む">
+          <a href="<?php echo esc_url( $cs_base ); ?>" class="cs-filter__btn<?php echo $cs_current ? '' : ' is-active'; ?>">すべて</a>
+          <?php foreach ( ludoa_services() as $ludoa_service ) : ?>
+          <a href="<?php echo esc_url( add_query_arg( 'svc', $ludoa_service->post_name, $cs_base ) ); ?>" class="cs-filter__btn<?php echo $cs_current === $ludoa_service->post_name ? ' is-active' : ''; ?>"><?php echo esc_html( get_the_title( $ludoa_service ) ); ?></a>
+          <?php endforeach; ?>
+        </nav>
+
         <div class="cs-list">
 
           <?php if ( have_posts() ) : ?>
@@ -58,7 +71,7 @@ get_header();
               <div class="cs-item__image" role="img" aria-label="<?php the_title_attribute(); ?>"<?php echo ludoa_bg_style(); // phpcs:ignore WordPress.Security.EscapeOutput ?>></div>
               <div class="cs-item__body">
                 <h3 class="cs-item__title"><?php the_title(); ?></h3>
-                <?php $tag = ludoa_scf( 'case_tag' ); ?>
+                <?php $tag = ludoa_case_tag(); ?>
                 <?php if ( $tag ) : ?>
                 <span class="cs-item__tag"><?php echo esc_html( $tag ); ?></span>
                 <?php endif; ?>

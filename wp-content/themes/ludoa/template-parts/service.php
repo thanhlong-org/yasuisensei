@@ -26,7 +26,8 @@ $arrow_star = '<svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3
             $photo = sprintf( '%s/assets/img/service-%02d.jpg', $s, ( $i % 6 ) + 1 );
           }
           ?>
-          <a class="svc-card" href="<?php echo esc_url( get_permalink( $ludoa_service ) ); ?>" data-reveal<?php echo ( $i % 3 ) ? ' data-reveal-delay="' . esc_attr( $i % 3 ) . '"' : ''; ?>>
+          <?php $is_current = is_singular( 'service' ) && get_the_ID() === $ludoa_service->ID; ?>
+          <a class="svc-card<?php echo $is_current ? ' is-current' : ''; ?>" href="<?php echo esc_url( get_permalink( $ludoa_service ) ); ?>"<?php echo $is_current ? ' aria-current="page"' : ''; ?> data-reveal<?php echo ( $i % 3 ) ? ' data-reveal-delay="' . esc_attr( $i % 3 ) . '"' : ''; ?>>
             <div class="svc-card__photo" style="background-image: url('<?php echo esc_url( $photo ); ?>')" aria-hidden="true"></div>
             <span class="svc-card__edge svc-card__edge--t" aria-hidden="true"></span>
             <span class="svc-card__edge svc-card__edge--b" aria-hidden="true"></span>

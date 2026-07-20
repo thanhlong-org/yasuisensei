@@ -13,7 +13,7 @@ $hero_url = get_the_post_thumbnail_url( null, 'full' );
 if ( ! $hero_url ) {
 	$hero_url = "$s/assets/img/service-01.jpg";
 }
-$case_tag    = ludoa_scf( 'case_tag' );
+$case_tag    = ludoa_case_tag();
 $case_client = ludoa_scf( 'case_client' );
 $archive_url = get_post_type_archive_link( 'case' );
 ?>
@@ -85,14 +85,28 @@ $archive_url = get_post_type_archive_link( 'case' );
 
     <!-- ============ More Contents (他の事例) ============ -->
     <?php
-    $more_query = new WP_Query(
-        array(
-            'post_type'      => 'case',
-            'posts_per_page' => 3,
-            'post__not_in'   => array( get_the_ID() ),
-            'no_found_rows'  => true,
-        )
+    // Related cases: same service first, latest overall as fallback.
+    $more_args = array(
+        'post_type'      => 'case',
+        'posts_per_page' => 3,
+        'post__not_in'   => array( get_the_ID() ),
+        'no_found_rows'  => true,
     );
+    $case_terms = get_the_terms( get_the_ID(), 'case_service' );
+    if ( $case_terms && ! is_wp_error( $case_terms ) ) {
+        $more_args['tax_query'] = array(
+            array(
+                'taxonomy' => 'case_service',
+                'field'    => 'term_id',
+                'terms'    => wp_list_pluck( $case_terms, 'term_id' ),
+            ),
+        );
+    }
+    $more_query = new WP_Query( $more_args );
+    if ( ! $more_query->have_posts() && isset( $more_args['tax_query'] ) ) {
+        unset( $more_args['tax_query'] );
+        $more_query = new WP_Query( $more_args );
+    }
     ?>
     <?php if ( $more_query->have_posts() ) : ?>
     <section class="cd-more" aria-label="関連する事例">
@@ -111,7 +125,7 @@ $archive_url = get_post_type_archive_link( 'case' );
             <span class="cd-frame cd-frame--star-bl" aria-hidden="true"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg></span>
             <?php $more_photo = get_the_post_thumbnail_url( null, 'large' ); ?>
             <span class="cd-more-card__photo" style="background-image: url('<?php echo esc_url( $more_photo ? $more_photo : "$s/assets/img/service-02.jpg" ); ?>')" aria-hidden="true"></span>
-            <?php $more_tag = ludoa_scf( 'case_tag' ); ?>
+            <?php $more_tag = ludoa_case_tag(); ?>
             <?php if ( $more_tag ) : ?>
             <span class="cd-more-card__tag"><?php echo esc_html( $more_tag ); ?></span>
             <?php endif; ?>

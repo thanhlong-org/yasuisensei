@@ -165,7 +165,7 @@ if ( ! $banner_style ) {
 
     <?php get_template_part( 'template-parts/service' ); ?>
 
-    <?php get_template_part( 'template-parts/case' ); ?>
+    <?php get_template_part( 'template-parts/case', null, array( 'service' => get_post_field( 'post_name' ) ) ); ?>
 
     <?php get_template_part( 'template-parts/cta' ); ?>
   </main>

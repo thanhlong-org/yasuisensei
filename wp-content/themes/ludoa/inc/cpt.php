@@ -74,6 +74,22 @@ function ludoa_register_post_types() {
 			'rewrite'       => array( 'slug' => 'service' ),
 		)
 	);
+
+	register_taxonomy(
+		'case_service',
+		'case',
+		array(
+			'labels'            => array(
+				'name'          => 'サービス種別',
+				'singular_name' => 'サービス種別',
+			),
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_in_rest'      => true,
+			'show_admin_column' => true,
+			'rewrite'           => array( 'slug' => 'case-service' ),
+		)
+	);
 }
 add_action( 'init', 'ludoa_register_post_types' );
 
@@ -88,6 +104,20 @@ function ludoa_archive_query( $query ) {
 	}
 	if ( $query->is_post_type_archive( 'case' ) ) {
 		$query->set( 'posts_per_page', 4 );
+		// ?svc=<slug> — filter the list by service (cs-filter UI). Note:
+		// ?service= is taken by the service CPT's own query var.
+		if ( ! empty( $_GET['svc'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$query->set(
+				'tax_query',
+				array(
+					array(
+						'taxonomy' => 'case_service',
+						'field'    => 'slug',
+						'terms'    => sanitize_title( wp_unslash( $_GET['svc'] ) ), // phpcs:ignore WordPress.Security
+					),
+				)
+			);
+		}
 	}
 	if ( $query->is_post_type_archive( 'news' ) ) {
 		$query->set( 'posts_per_page', 10 );
@@ -224,6 +254,21 @@ function ludoa_scf( $name, $post_id = null, $default = '' ) {
 function ludoa_bg_style( $post_id = null, $size = 'large' ) {
 	$url = get_the_post_thumbnail_url( $post_id, $size );
 	return $url ? ' style="background-image: url(\'' . esc_url( $url ) . '\')"' : '';
+}
+
+/**
+ * Tag label for a case card: the case_service term name, falling back to the
+ * old free-text SCF case_tag field.
+ *
+ * @param int|null $post_id Post id.
+ * @return string
+ */
+function ludoa_case_tag( $post_id = null ) {
+	$terms = get_the_terms( $post_id ? $post_id : get_the_ID(), 'case_service' );
+	if ( $terms && ! is_wp_error( $terms ) ) {
+		return $terms[0]->name;
+	}
+	return ludoa_scf( 'case_tag', $post_id );
 }
 
 /**
@@ -370,6 +415,67 @@ function ludoa_service_migrate() {
 	update_option( 'ludoa_service_migrated', 1 );
 }
 add_action( 'init', 'ludoa_service_migrate', 21 );
+
+/**
+ * Third migration: link cases to services via the case_service taxonomy.
+ * Creates one term per service post, replaces the old untagged placeholder
+ * cases with 3 sample cases per service (the client will overwrite these).
+ * Runs once, after the services are seeded.
+ */
+function ludoa_case_service_migrate() {
+	if ( get_option( 'ludoa_case_service_migrated' ) ) {
+		return;
+	}
+
+	$services = ludoa_services();
+	if ( ! $services ) {
+		return; // Services not seeded yet — retry on the next load.
+	}
+
+	// The first migration's placeholder cases carry no service — replace them.
+	$placeholder_title = str_repeat( '題名が入ります。', 6 );
+	foreach ( get_posts( array( 'post_type' => 'case', 'post_status' => 'any', 'numberposts' => -1 ) ) as $old ) {
+		if ( $old->post_title === $placeholder_title && ! get_the_terms( $old->ID, 'case_service' ) ) {
+			wp_trash_post( $old->ID );
+		}
+	}
+
+	$body = str_repeat( 'テキストが入ります。', 20 ) . "\n\n" . str_repeat( 'テキストが入ります。', 16 ) . "\n\n" . str_repeat( 'テキストが入ります。', 14 );
+
+	foreach ( $services as $si => $service ) {
+		// Term slug mirrors the service post slug so templates can match them.
+		$term    = term_exists( $service->post_name, 'case_service' );
+		$term_id = $term ? (int) $term['term_id'] : 0;
+		if ( ! $term_id ) {
+			$inserted = wp_insert_term( get_the_title( $service ), 'case_service', array( 'slug' => $service->post_name ) );
+			if ( is_wp_error( $inserted ) ) {
+				continue;
+			}
+			$term_id = (int) $inserted['term_id'];
+		}
+
+		for ( $i = 1; $i <= 3; $i++ ) {
+			$post_id = wp_insert_post(
+				array(
+					'post_type'    => 'case',
+					'post_status'  => 'publish',
+					'post_title'   => $placeholder_title,
+					'post_content' => $body,
+					'post_date'    => gmdate( 'Y-m-d H:i:s', strtotime( '-' . ( $si * 3 + $i ) . ' days' ) ),
+				)
+			);
+			if ( $post_id && ! is_wp_error( $post_id ) ) {
+				wp_set_object_terms( $post_id, $term_id, 'case_service' );
+				update_post_meta( $post_id, 'case_tag', get_the_title( $service ) );
+				update_post_meta( $post_id, 'case_client', '株式会社○○○様' );
+			}
+		}
+	}
+
+	flush_rewrite_rules();
+	update_option( 'ludoa_case_service_migrated', 1 );
+}
+add_action( 'init', 'ludoa_case_service_migrate', 22 );
 
 /**
  * Sample サービス posts matching the static design (only when none exist yet).
