@@ -381,7 +381,8 @@
 .contact-form__label .req { color: #D0021B; margin-left: 2px; }
 .contact-form__field { flex: 1; }
 .contact-form__field input,
-.contact-form__field textarea {
+.contact-form__field textarea,
+.contact-form__field select {
   width: 100%;
   padding: 15px 18px;
   border: 1px solid #C4C4C4;
@@ -392,10 +393,22 @@
   color: #323232;
 }
 .contact-form__field textarea { min-height: 190px; resize: vertical; display: block; }
+.contact-form__field select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23323232' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='1,1.5 6,6.5 11,1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+}
+.contact-form__field select:invalid { color: #B2B2B2; }
 .contact-form__field input::placeholder,
 .contact-form__field textarea::placeholder { color: #B2B2B2; }
 .contact-form__field input:focus,
-.contact-form__field textarea:focus { outline: none; border-color: #1B3D6E; }
+.contact-form__field textarea:focus,
+.contact-form__field select:focus { outline: none; border-color: #1B3D6E; }
 
 .contact-form__submit { display: flex; justify-content: center; margin-top: 50px; }
 .contact-form__submit .detail-btn {
@@ -424,7 +437,7 @@
   .contact-form__row { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 22px; }
   .contact-form__label { width: 100%; padding-top: 0; font-size: 15px; }
   .contact-form__field { width: 100%; }
-  .contact-form__field input, .contact-form__field textarea { font-size: 15px; }
+  .contact-form__field input, .contact-form__field textarea, .contact-form__field select { font-size: 15px; }
   .contact-form__field textarea { min-height: 150px; }
 }
 
