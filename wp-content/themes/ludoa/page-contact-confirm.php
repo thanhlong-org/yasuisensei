@@ -34,7 +34,7 @@ $s = ludoa_static_uri();
             <span class="breadcrumb__sep" aria-hidden="true">
               <svg viewBox="0 0 10 10" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,1 7,5 3,9"/></svg>
             </span>
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>">お問い合わせ</a>
+            <a href="<?php echo esc_url( ludoa_url( 'contact' ) ); ?>">お問い合わせ</a>
           </li>
           <li>
             <span class="breadcrumb__sep" aria-hidden="true">
@@ -47,7 +47,7 @@ $s = ludoa_static_uri();
     </section>
 
     <!-- ============ お問い合わせ（内容確認） ============ -->
-    <section class="contact" aria-label="入力内容の確認">
+    <section class="contact" id="contact-form" aria-label="入力内容の確認">
       <div class="contact__inner">
         <!-- Steps (02 active) -->
         <div class="contact-steps" aria-hidden="true" data-reveal>

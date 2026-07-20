@@ -24,6 +24,9 @@ require get_template_directory() . '/inc/contact-mail.php';
 // CPT (case / news) + Smart Custom Fields + template helpers.
 require get_template_directory() . '/inc/cpt.php';
 
+// Theme options (Customizer) — phone / LINE contact settings.
+require get_template_directory() . '/inc/theme-options.php';
+
 /**
  * Base URI for the copied static asset tree.
  *
@@ -104,10 +107,30 @@ function ludoa_assets() {
 		wp_enqueue_style( 'ludoa-page', "$static/case/detail/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	} elseif ( is_post_type_archive( 'case' ) ) {
 		wp_enqueue_style( 'ludoa-page', "$static/case/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+		// Service filter buttons (cs-filter) — not part of the static design.
+		wp_add_inline_style(
+			'ludoa-page',
+			'.cs-filter{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 48px}' .
+			'.cs-filter__btn{display:inline-block;padding:10px 22px;border:1px solid #0340A4;color:#0340A4;background:#fff;font-size:14px;line-height:1;text-decoration:none;transition:background .3s,color .3s}' .
+			'.cs-filter__btn:hover,.cs-filter__btn.is-active{background:#0340A4;color:#fff}' .
+			'@media (max-width:767px){.cs-filter{gap:8px;margin-bottom:32px}.cs-filter__btn{padding:8px 14px;font-size:12px}}'
+		);
 	} elseif ( is_singular( 'news' ) || is_post_type_archive( 'news' ) ) {
 		wp_enqueue_style( 'ludoa-page', "$static/infomation/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	} elseif ( is_singular( 'service' ) ) {
 		wp_enqueue_style( 'ludoa-page', "$static/advisory/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+		// Current service card in the サービス grid: keep the hover state on.
+		wp_add_inline_style(
+			'ludoa-page',
+			'.svc-card.is-current .svc-card__photo{opacity:1}' .
+			'.svc-card.is-current .svc-card__edge--t,.svc-card.is-current .svc-card__edge--b{left:0;right:0}' .
+			'.svc-card.is-current .svc-card__edge--l,.svc-card.is-current .svc-card__edge--r{top:0;bottom:0}' .
+			'.svc-card.is-current .svc-card__num{color:rgba(0,69,124,.2)}' .
+			'.svc-card.is-current .svc-card__title{color:#000}' .
+			'.svc-card.is-current .svc-card__arrow{color:#464343}' .
+			'.svc-card.is-current .svc-card__arrow-head{opacity:0}' .
+			'.svc-card.is-current .svc-card__arrow-star{left:calc(100% + 10px);transform:translate(-100%,-50%)}'
+		);
 	} elseif ( is_post_type_archive( 'service' ) ) {
 		wp_enqueue_style( 'ludoa-page', "$static/service/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	} else {

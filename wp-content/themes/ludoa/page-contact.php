@@ -41,23 +41,23 @@ $s = ludoa_static_uri();
     </section>
 
     <!-- ============ お問い合わせ ============ -->
-    <section class="contact" aria-label="お問い合わせフォーム">
+    <section class="contact" id="contact-form" aria-label="お問い合わせフォーム">
       <div class="contact__inner">
         <p class="contact__urgent" data-reveal>お急ぎの方は、お電話またはLINEからでもお気軽にご連絡ください。</p>
 
         <!-- Quick contact -->
         <div class="contact-quick">
-          <a href="tel:03XXXXXXXX" class="contact-quick__box" data-reveal>
+          <a href="<?php echo esc_attr( ludoa_tel_href() ); ?>" class="contact-quick__box" data-reveal>
             <img src="<?php echo $s; ?>/contact/img/phone-icon.svg" alt="" class="contact-quick__icon" aria-hidden="true" />
             <span class="contact-quick__text">
-              <span class="contact-quick__title">03-XXXX-XXXXにかける</span>
+              <span class="contact-quick__title"><?php echo esc_html( ludoa_tel_display() ); ?>にかける</span>
               <span class="contact-quick__sub">受付時間　平日 9:00〜18:00</span>
             </span>
             <span class="contact-quick__chev" aria-hidden="true">
               <svg viewBox="0 0 10 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 9,9 2,16"/></svg>
             </span>
           </a>
-          <a href="#" class="contact-quick__box contact-quick__box--line" data-reveal data-reveal-delay="1">
+          <a href="<?php echo esc_url( ludoa_line_url() ); ?>" class="contact-quick__box contact-quick__box--line" data-reveal data-reveal-delay="1"<?php echo '#' !== ludoa_line_url() ? ' target="_blank" rel="noopener"' : ''; ?>>
             <img src="<?php echo $s; ?>/contact/img/line-icon.svg" alt="" class="contact-quick__icon" aria-hidden="true" />
             <span class="contact-quick__text">
               <span class="contact-quick__title">更新LINEを追加する</span>
@@ -98,7 +98,7 @@ $s = ludoa_static_uri();
           <p class="contact-form__intro-lead">以下のフォームに必要事項を入力し、「内容を確認する」ボタンを押してください。</p>
           <p class="contact-form__intro-note">
             入力いただいたメールアドレス宛てに、弊社担当よりご連絡させていただきます。<br />
-            個人情報の取り扱いについて、詳しくは<a href="#">こちら</a>をご覧ください。
+            個人情報の取り扱いについて、詳しくは<a href="<?php echo esc_url( ludoa_url( 'privacy' ) ); ?>">こちら</a>をご覧ください。
           </p>
         </div>
 

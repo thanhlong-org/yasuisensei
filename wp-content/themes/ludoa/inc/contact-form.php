@@ -175,7 +175,7 @@ function ludoa_contact_router() {
 			// Honeypot: bots fill the hidden field — pretend success, send nothing.
 			if ( ! empty( $_POST['ludoa_hp'] ) ) {
 				$_SESSION[ LUDOA_CONTACT_SENT_KEY ] = true;
-				wp_safe_redirect( ludoa_url( 'contact-complete' ) );
+				wp_safe_redirect( ludoa_url( 'contact-complete' ) . '#contact-form' );
 				exit;
 			}
 
@@ -187,20 +187,20 @@ function ludoa_contact_router() {
 				'errors' => $errors,
 			);
 
-			wp_safe_redirect( ludoa_url( $errors ? 'contact' : 'contact-confirm' ) );
+			wp_safe_redirect( ludoa_url( $errors ? 'contact' : 'contact-confirm' ) . '#contact-form' );
 			exit;
 		}
 
 		if ( 'back' === $step ) {
 			// Keep the entered data so the inputs come back filled.
-			wp_safe_redirect( ludoa_url( 'contact' ) );
+			wp_safe_redirect( ludoa_url( 'contact' ) . '#contact-form' );
 			exit;
 		}
 
 		if ( 'send' === $step ) {
 			$data = ludoa_contact_data();
 			if ( ! $data || ludoa_contact_validate( $data ) ) {
-				wp_safe_redirect( ludoa_url( 'contact' ) );
+				wp_safe_redirect( ludoa_url( 'contact' ) . '#contact-form' );
 				exit;
 			}
 
@@ -209,7 +209,7 @@ function ludoa_contact_router() {
 			unset( $_SESSION[ LUDOA_CONTACT_SESSION_KEY ] );
 			$_SESSION[ LUDOA_CONTACT_SENT_KEY ] = true;
 
-			wp_safe_redirect( ludoa_url( 'contact-complete' ) );
+			wp_safe_redirect( ludoa_url( 'contact-complete' ) . '#contact-form' );
 			exit;
 		}
 	}
@@ -245,6 +245,8 @@ add_action( 'template_redirect', 'ludoa_contact_router' );
  */
 function ludoa_contact_inline_css() {
 	$css = '
+	#contact-form{scroll-margin-top:calc(var(--header-h-pc, 90px) + 24px)}
+	@media (max-width:767px){#contact-form{scroll-margin-top:calc(var(--header-h-sp, 60px) + 16px)}}
 	.contact-form__error{margin-top:6px;font-size:13px;color:#c0392b}
 	.contact-form__field input.is-invalid,.contact-form__field textarea.is-invalid{border-color:#c0392b}
 	.contact-form__errors{margin:0 0 32px;padding:16px 20px;border:1px solid #c0392b;color:#c0392b;font-size:14px}

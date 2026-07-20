@@ -1,14 +1,14 @@
-# ============================================================
-# WordPress - chỉ track custom theme (ludoa) và custom plugins
+﻿# ============================================================
+# WordPress - ch盻・track custom theme (ludoa) vﾃ custom plugins
 # ============================================================
 html_asset
-# === CRITICAL: WordPress config (chứa DB credentials, secret keys) ===
+# === CRITICAL: WordPress config (ch盻ｩa DB credentials, secret keys) ===
 wp-config.php
 
-# === Uploads (media files - binary, không thuộc git) ===
+# === Uploads (media files - binary, khﾃｴng thu盻冂 git) ===
 wp-content/uploads/
 
-# === WordPress core mặc định - không phải custom ===
+# === WordPress core m蘯ｷc ﾄ黛ｻ杵h - khﾃｴng ph蘯｣i custom ===
 wp-content/themes/twenty*/
 
 # === WordPress temp / cache ===
@@ -44,3 +44,4 @@ error_log
 debug.log
 wp-content/debug.log
 memo.md
+
