@@ -50,7 +50,7 @@ function ludoa_register_post_types() {
 			'has_archive'   => true,
 			'menu_position' => 21,
 			'menu_icon'     => 'dashicons-megaphone',
-			'supports'      => array( 'title', 'editor' ),
+			'supports'      => array( 'title', 'editor', 'thumbnail' ),
 			'show_in_rest'  => true,
 			'rewrite'       => array( 'slug' => 'infomation' ),
 		)

@@ -15,8 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'LUDOA_VERSION', '1.0.0' );
 
-// お問い合わせフォーム — validation / confirm flow / mail sending.
+// お問い合わせフォーム — validation / confirm flow.
 require get_template_directory() . '/inc/contact-form.php';
+
+// お問い合わせフォーム — mail sending (admin notification + auto-reply).
+require get_template_directory() . '/inc/contact-mail.php';
 
 // CPT (case / news) + Smart Custom Fields + template helpers.
 require get_template_directory() . '/inc/cpt.php';
