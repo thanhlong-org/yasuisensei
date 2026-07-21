@@ -62,8 +62,9 @@ $s = ludoa_static_uri();
           <ul class="service__list">
             <?php if ( have_posts() ) : ?>
               <?php $num = 0; ?>
+              <?php $sv_imgs = array( 'service-consultant.png', 'sv2.png', 'sv3.png', 'sv4.png', 'sv5.png', 'sv6.png' ); ?>
               <?php while ( have_posts() ) : the_post(); $num++; ?>
-            <li class="service-item" data-reveal>
+            <li class="service-item" data-reveal data-sv-img="<?php echo esc_url( "$s/assets/img/home-sv/" . $sv_imgs[ ( $num - 1 ) % 6 ] ); ?>">
               <span class="service-item__num"><?php echo esc_html( str_pad( (string) $num, 2, '0', STR_PAD_LEFT ) ); ?></span>
               <span class="service-item__name"><?php the_title(); ?></span>
               <span class="service-item__en"><?php echo esc_html( ludoa_scf( 'service_en' ) ); ?></span>
