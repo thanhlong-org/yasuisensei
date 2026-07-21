@@ -1008,13 +1008,31 @@ html {
   pointer-events: none;
   z-index: 0;
   object-fit: contain;
-  opacity: 0;
-}
-/* Show the background icon when hovering over the entire card */
-.cta-card:hover .cta-card__bg-icon {
   opacity: 1;
+}
+/* Hide the ghost icon on hover (the per-card photo takes over) */
+.cta-card:hover .cta-card__bg-icon {
+  opacity: 0;
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+/* Per-card photo: hidden at rest, revealed on hover (sits behind text/edges, above the ghost icon) */
+.cta-card__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.cta-card__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 40, 70, 0.55);
+}
+.cta-card:hover .cta-card__photo { opacity: 1; }
 .cta-card__title,
 .cta-card__desc,
 .cta-card__btn {
@@ -1136,7 +1154,8 @@ html {
 }
 @media (prefers-reduced-motion: reduce) {
   .cta-card--image::before,
-  .cta-card--image .cta-card__btn--filled { transition: none; }
+  .cta-card--image .cta-card__btn--filled,
+  .cta-card__photo { transition: none; }
   .cta-card[data-reveal],
   .cta-card[data-reveal] .cta-card__edge,
   .cta-card__bg-icon { transition: none; transform: none; opacity: 1; }
@@ -1319,20 +1338,19 @@ html {
   .svc-card__edge { transition: background-color 0.3s ease; }
 }
 
-/* Big faint number watermark (Nova Cut 150px) */
+/* Simple small number at the top-center of the card */
 .svc-card__num {
   position: absolute;
-  z-index: 1;
-  top: 0;
-  left: -2px;
+  z-index: 2;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: "Nova Cut", serif;
-  font-size: 150px; /* Figma style_YG5Z43 */
+  font-size: 22px;
   line-height: 1;
-  color: rgba(0, 69, 124, 0.1); /* Figma fill_N9CDC9 */
+  color: #1B3D6E;
   pointer-events: none;
-  transition: color 0.4s ease;
 }
-.svc-card:hover .svc-card__num { color: rgba(0, 69, 124, 0.2); } /* Figma fill_DGY2RU */
 
 /* Title + en + arrow */
 .svc-card__body {
@@ -1372,7 +1390,6 @@ html {
   width: 158px;
   max-width: 62%;
   height: 16px;
-  margin-top: 8px;
   color: #FFFDFD;
   transition: color 0.4s ease;
 }
@@ -1425,7 +1442,7 @@ html {
   .svc__inner { padding: 0 48px; }
   .svc__grid { column-gap: 20px; margin: 0; }
   .svc-card { height: 132px; }
-  .svc-card__num { font-size: 120px; }
+  .svc-card__num { font-size: 20px; top: 20px; }
   .svc-card__title { font-size: 20px; }
   .svc-card__en { font-size: 16px; }
 }
@@ -1449,10 +1466,10 @@ html {
     row-gap: 14px;
   }
   .svc-card { height: 88px; }
-  .svc-card__num { font-size: 70px; top: 5px; left: -1px; } /* Figma SP style_7NXO48 */
-  .svc-card__title { font-size: 12px; font-weight: 600; }    /* Figma SP style_ANS22F */
+  .svc-card__num { font-size: 15px; top: 10px; } /* small number, centered via base rule */
+  .svc-card__title { font-size: 12px; font-weight: 600; margin-top: 20px;}    /* Figma SP style_ANS22F */
   .svc-card__en { font-size: 12px; }                          /* Figma SP style_WNKY8C */
-  .svc-card__arrow { width: 96px; margin-top: 0; }
+  .svc-card__arrow { width: 96px; }
   .svc-card__edge--t, .svc-card__edge--b { left: 8px; right: 8px; }
   .svc-card__edge--l, .svc-card__edge--r { top: 8px; bottom: 8px; }
 }
