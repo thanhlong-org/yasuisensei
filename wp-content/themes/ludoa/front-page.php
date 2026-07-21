@@ -352,7 +352,7 @@ $s = ludoa_static_uri();
           <?php while ( $front_news->have_posts() ) : $front_news->the_post(); ?>
           <li class="info-item">
             <p class="info-item__date"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?> ｜ <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
-            <span class="info-item__tag" aria-hidden="true"></span>
+            <span class="info-item__tag"><?php echo esc_html( ludoa_news_tag() ); ?></span>
             <p class="info-item__desc"><?php echo esc_html( ludoa_excerpt( 30 ) ); ?></p>
             <span class="info-item__line" aria-hidden="true"></span>
             <span class="info-item__accent" aria-hidden="true"></span>

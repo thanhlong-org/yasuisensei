@@ -49,7 +49,7 @@ get_header();
             <?php while ( have_posts() ) : the_post(); ?>
           <a href="<?php the_permalink(); ?>" class="news-item" data-reveal<?php echo $delay ? ' data-reveal-delay="' . esc_attr( min( $delay, 3 ) ) . '"' : ''; ?>>
             <p class="news-item__date"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?> ｜ <?php the_title(); ?></p>
-            <span class="news-item__tag" aria-hidden="true"></span>
+            <span class="news-item__tag"><?php echo esc_html( ludoa_news_tag() ); ?></span>
             <p class="news-item__desc"><?php echo esc_html( ludoa_excerpt( 60 ) ); ?></p>
             <span class="news-item__line" aria-hidden="true"></span>
             <span class="news-item__accent" aria-hidden="true"></span>

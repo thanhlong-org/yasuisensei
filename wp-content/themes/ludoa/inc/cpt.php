@@ -93,6 +93,27 @@ function ludoa_register_post_types() {
 			'rewrite'           => array( 'slug' => 'case-service' ),
 		)
 	);
+
+	register_taxonomy(
+		'news_tag',
+		'news',
+		array(
+			'labels'            => array(
+				'name'          => 'お知らせタグ',
+				'singular_name' => 'お知らせタグ',
+				'add_new_item'  => 'タグを追加',
+				'edit_item'     => 'タグを編集',
+			),
+			'hierarchical'      => true,
+			'public'            => true,
+			// Editors pick the tag via the SCF select (news_tag_slug), synced
+			// on save — hide the sidebar panel / default meta box.
+			'show_in_rest'      => false,
+			'meta_box_cb'       => false,
+			'show_admin_column' => true,
+			'rewrite'           => array( 'slug' => 'news-tag' ),
+		)
+	);
 }
 add_action( 'init', 'ludoa_register_post_types' );
 
@@ -169,6 +190,31 @@ function ludoa_scf_register_fields( $settings, $type, $id, $meta_type ) {
 					'name'  => 'case_client',
 					'label' => 'お客様名（例：株式会社○○○様）',
 					'type'  => 'text',
+				),
+			)
+		);
+		$settings[] = $setting;
+	}
+
+	if ( 'news' === $type ) {
+		// Tag choices: slug => name of the current news_tag terms.
+		$tag_choices = array();
+		foreach ( get_terms( array( 'taxonomy' => 'news_tag', 'hide_empty' => false ) ) as $ludoa_term ) {
+			$tag_choices[ $ludoa_term->slug ] = $ludoa_term->name;
+		}
+
+		$setting = SCF::add_setting( 'ludoa-news-fields', 'お知らせ情報' );
+		$setting->add_group(
+			'news-meta',
+			false,
+			array(
+				array(
+					'name'        => 'news_tag_slug',
+					'label'       => 'タグ',
+					'type'        => 'select',
+					'choices'     => $tag_choices,
+					'default'     => 'news',
+					'instruction' => 'タグの追加・名前変更は「お知らせ → お知らせタグ」から行えます。',
 				),
 			)
 		);
@@ -254,6 +300,27 @@ function ludoa_case_service_sync( $post_id, $post ) {
 }
 add_action( 'save_post', 'ludoa_case_service_sync', 99, 2 );
 
+/**
+ * Sync the SCF tag select (news_tag_slug) to the news_tag taxonomy.
+ * Runs after SCF has saved its meta (priority 99 > SCF's 10).
+ *
+ * @param int     $post_id Post id.
+ * @param WP_Post $post    Post.
+ */
+function ludoa_news_tag_sync( $post_id, $post ) {
+	if ( 'news' !== $post->post_type || ! isset( $_POST['smart-custom-fields'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	$slug = get_post_meta( $post_id, 'news_tag_slug', true );
+	$term = $slug ? get_term_by( 'slug', $slug, 'news_tag' ) : false;
+	wp_set_object_terms( $post_id, $term ? (int) $term->term_id : array(), 'news_tag' );
+}
+add_action( 'save_post', 'ludoa_news_tag_sync', 99, 2 );
+
 /* ============================================================
  * Template helpers
  * ============================================================ */
@@ -300,6 +367,18 @@ function ludoa_case_tag( $post_id = null ) {
 		return $terms[0]->name;
 	}
 	return ludoa_scf( 'case_tag', $post_id );
+}
+
+/**
+ * Tag label for a news item: the first news_tag term name, falling back to
+ * the generic お知らせ so the pill is never empty.
+ *
+ * @param int|null $post_id Post id.
+ * @return string
+ */
+function ludoa_news_tag( $post_id = null ) {
+	$terms = get_the_terms( $post_id ? $post_id : get_the_ID(), 'news_tag' );
+	return ( $terms && ! is_wp_error( $terms ) ) ? $terms[0]->name : 'お知らせ';
 }
 
 /**
@@ -531,6 +610,64 @@ function ludoa_case_service_select_migrate() {
 	update_option( 'ludoa_case_service_select_migrated', 1 );
 }
 add_action( 'init', 'ludoa_case_service_select_migrate', 23 );
+
+/**
+ * Seed the news_tag taxonomy: default terms, existing untagged news posts
+ * get お知らせ (the year-end sample gets 重要 to show variety). Runs once.
+ */
+function ludoa_news_tag_migrate() {
+	if ( get_option( 'ludoa_news_tag_migrated' ) ) {
+		return;
+	}
+
+	$default_id = 0;
+	foreach ( array( 'お知らせ' => 'news', '重要' => 'important' ) as $name => $slug ) {
+		$term    = term_exists( $slug, 'news_tag' );
+		$term_id = $term ? (int) $term['term_id'] : 0;
+		if ( ! $term_id ) {
+			$inserted = wp_insert_term( $name, 'news_tag', array( 'slug' => $slug ) );
+			$term_id  = is_wp_error( $inserted ) ? 0 : (int) $inserted['term_id'];
+		}
+		if ( 'news' === $slug ) {
+			$default_id = $term_id;
+		}
+	}
+
+	if ( $default_id ) {
+		foreach ( get_posts( array( 'post_type' => 'news', 'post_status' => 'any', 'numberposts' => -1 ) ) as $news ) {
+			if ( ! get_the_terms( $news->ID, 'news_tag' ) ) {
+				wp_set_object_terms( $news->ID, $default_id, 'news_tag' );
+			}
+		}
+	}
+
+	flush_rewrite_rules();
+	update_option( 'ludoa_news_tag_migrated', 1 );
+}
+add_action( 'init', 'ludoa_news_tag_migrate', 24 );
+
+/**
+ * Back-fill the SCF tag select meta (news_tag_slug) from the taxonomy so the
+ * edit screen shows the current tag preselected. Runs once.
+ */
+function ludoa_news_tag_select_migrate() {
+	if ( get_option( 'ludoa_news_tag_select_migrated' ) ) {
+		return;
+	}
+
+	foreach ( get_posts( array( 'post_type' => 'news', 'post_status' => 'any', 'numberposts' => -1 ) ) as $news ) {
+		if ( get_post_meta( $news->ID, 'news_tag_slug', true ) ) {
+			continue;
+		}
+		$terms = get_the_terms( $news->ID, 'news_tag' );
+		if ( $terms && ! is_wp_error( $terms ) ) {
+			update_post_meta( $news->ID, 'news_tag_slug', $terms[0]->slug );
+		}
+	}
+
+	update_option( 'ludoa_news_tag_select_migrated', 1 );
+}
+add_action( 'init', 'ludoa_news_tag_select_migrate', 25 );
 
 /**
  * Sample サービス posts matching the static design (only when none exist yet).

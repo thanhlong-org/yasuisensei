@@ -312,12 +312,22 @@
   color: #000;
 }
 .news-item__tag {
-  display: inline-block;
-  width: 97px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 97px;
+  width: auto;
   height: 26px;
+  padding: 0 14px;
   border-radius: 13px;
   background: #4E5D76;
   margin-bottom: 18px;
+  font-family: var(--font-jp-serif);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #fff;
+  white-space: nowrap;
 }
 .news-item__desc {
   margin: 0;

@@ -119,10 +119,21 @@
   position: absolute;
   top: 55px;
   left: 0.06px;
-  width: 97.31px;
+  min-width: 97.31px;
+  width: auto;
   height: 26px;
   border-radius: 13px;
   background: #4E5D76; /* fill_OJKZYL */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  font-family: var(--font-jp-serif);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #fff;
+  white-space: nowrap;
 }
 
 .info-item__desc {

@@ -62,7 +62,7 @@ $archive_url = get_post_type_archive_link( 'news' );
         <div class="news-detail__body">
           <div class="news-detail__meta">
             <time class="news-detail__date" datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time>
-            <span class="news-detail__tag">お知らせ</span>
+            <span class="news-detail__tag"><?php echo esc_html( ludoa_news_tag() ); ?></span>
           </div>
           <h2 class="news-detail__title"><?php the_title(); ?></h2>
           <div class="news-detail__text">
