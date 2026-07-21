@@ -1,0 +1,175 @@
+/* =============================================
+   Site loader — first visit per session.
+   Navy curtain + logo reveal + slogan per-char.
+   ============================================= */
+
+/* Repeat visit in the same session: skip entirely (class set inline in <head>). */
+html.ludoa-no-loader .ludoa-loader { display: none; }
+
+/* Lock scroll while the loader is on screen. */
+html:not(.ludoa-no-loader):not(.ludoa-loader-done) { overflow: hidden; }
+
+.ludoa-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+}
+.ludoa-loader.is-gone { display: none; }
+
+/* --- Curtain panels ---------------------------------------------------- */
+.ludoa-loader__panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.1%; /* slight overlap so no seam line shows */
+  background: linear-gradient(160deg, #041a35 0%, #0b2f55 55%, #00457C 100%);
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.18, 1) 0.3s;
+  will-change: transform;
+}
+.ludoa-loader__panel--t { top: 0; }
+.ludoa-loader__panel--b { bottom: 0; }
+
+.ludoa-loader.is-done .ludoa-loader__panel--t { transform: translateY(-101%); }
+.ludoa-loader.is-done .ludoa-loader__panel--b { transform: translateY(101%); }
+
+/* Soft radial glow behind the logo */
+.ludoa-loader::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 620px;
+  height: 620px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0, 125, 226, 0.28) 0%, rgba(0, 125, 226, 0) 62%);
+  pointer-events: none;
+}
+
+/* --- Centered body ------------------------------------------------------ */
+.ludoa-loader__body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+  transition: opacity 0.35s ease;
+}
+.ludoa-loader.is-done .ludoa-loader__body { opacity: 0; }
+
+/* Sparkle above the logo */
+.ludoa-loader__star {
+  width: 26px;
+  height: 26px;
+  color: #e8d9a8;
+  animation: ludoa-star-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both,
+             ludoa-star-pulse 2.2s ease-in-out 1.2s infinite;
+  filter: drop-shadow(0 0 6px rgba(232, 217, 168, 0.55));
+}
+.ludoa-loader__star svg { display: block; width: 100%; height: 100%; }
+
+/* Logo: blur → sharp rise */
+.ludoa-loader__logo {
+  width: 288px;
+  max-width: 72vw;
+  height: auto;
+  opacity: 0;
+  animation: ludoa-logo-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+/* Slogan — per-character rise */
+.ludoa-loader__tagline {
+  margin: 0;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 253, 253, 0.92);
+}
+.ludoa-loader__tagline span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.7em);
+  animation: ludoa-char-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(0.95s + var(--d) * 0.05s);
+}
+
+/* Thin progress line, gold fill */
+.ludoa-loader__bar {
+  position: relative;
+  width: 200px;
+  height: 1px;
+  margin-top: 6px;
+  background: rgba(255, 253, 253, 0.22);
+  overflow: hidden;
+}
+.ludoa-loader__bar-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #b79c55, #e8d9a8);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: ludoa-bar-fill 1.9s cubic-bezier(0.22, 1, 0.3, 1) 0.5s forwards;
+}
+
+/* Corner sparkles, twinkling */
+.ludoa-loader__spark {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  color: rgba(232, 217, 168, 0.8);
+  animation: ludoa-star-pulse 1.9s ease-in-out infinite;
+}
+.ludoa-loader__spark svg { display: block; width: 100%; height: 100%; }
+.ludoa-loader__spark--1 { top: -46px; left: -64px; animation-delay: 0.9s; }
+.ludoa-loader__spark--2 { bottom: -38px; right: -70px; width: 10px; height: 10px; animation-delay: 1.5s; }
+
+/* --- Keyframes ----------------------------------------------------------- */
+@keyframes ludoa-logo-in {
+  from { opacity: 0; transform: translateY(16px); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+@keyframes ludoa-char-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ludoa-bar-fill {
+  to { transform: scaleX(1); }
+}
+@keyframes ludoa-star-in {
+  from { opacity: 0; transform: scale(0.2) rotate(-90deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0); }
+}
+@keyframes ludoa-star-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.72); }
+}
+
+/* --- SP ------------------------------------------------------------------ */
+@media (max-width: 767px) {
+  .ludoa-loader__logo { width: 230px; }
+  .ludoa-loader__tagline { font-size: 12px; letter-spacing: 0.16em; }
+  .ludoa-loader__bar { width: 160px; }
+  .ludoa-loader__spark--1 { left: -30px; }
+  .ludoa-loader__spark--2 { right: -34px; }
+}
+
+/* --- Reduced motion: simple fade ------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .ludoa-loader { transition: opacity 0.4s ease; }
+  .ludoa-loader__panel { transition: none; }
+  .ludoa-loader.is-done { opacity: 0; }
+  .ludoa-loader.is-done .ludoa-loader__panel { transform: none; }
+  .ludoa-loader__star,
+  .ludoa-loader__spark,
+  .ludoa-loader__logo,
+  .ludoa-loader__tagline span,
+  .ludoa-loader__bar-fill {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

@@ -85,7 +85,10 @@ function ludoa_register_post_types() {
 			),
 			'hierarchical'      => true,
 			'public'            => true,
-			'show_in_rest'      => true,
+			// Editors pick the service via the SCF select (case_service_slug),
+			// which is synced to this taxonomy on save — hide the default UIs.
+			'show_in_rest'      => false,
+			'meta_box_cb'       => false,
 			'show_admin_column' => true,
 			'rewrite'           => array( 'slug' => 'case-service' ),
 		)
@@ -145,16 +148,22 @@ add_action( 'pre_get_posts', 'ludoa_archive_query' );
  */
 function ludoa_scf_register_fields( $settings, $type, $id, $meta_type ) {
 	if ( 'case' === $type ) {
+		// Service choices for the select: slug => title of the current services.
+		$service_choices = array( '' => '— 選択してください —' );
+		foreach ( ludoa_services() as $ludoa_service ) {
+			$service_choices[ $ludoa_service->post_name ] = get_the_title( $ludoa_service );
+		}
+
 		$setting = SCF::add_setting( 'ludoa-case-fields', '事例情報' );
 		$setting->add_group(
 			'case-meta',
 			false,
 			array(
 				array(
-					'name'    => 'case_tag',
-					'label'   => 'タグ（サービス種別）',
-					'type'    => 'text',
-					'default' => '税務顧問',
+					'name'    => 'case_service_slug',
+					'label'   => 'サービス種別',
+					'type'    => 'select',
+					'choices' => $service_choices,
 				),
 				array(
 					'name'  => 'case_client',
@@ -222,6 +231,28 @@ function ludoa_scf_register_fields( $settings, $type, $id, $meta_type ) {
 	return $settings;
 }
 add_filter( 'smart-cf-register-fields', 'ludoa_scf_register_fields', 10, 4 );
+
+/**
+ * Sync the SCF service select (case_service_slug) to the case_service
+ * taxonomy so the archive filter and related-case queries keep working.
+ * Runs after SCF has saved its meta (priority 99 > SCF's 10).
+ *
+ * @param int     $post_id Post id.
+ * @param WP_Post $post    Post.
+ */
+function ludoa_case_service_sync( $post_id, $post ) {
+	if ( 'case' !== $post->post_type || ! isset( $_POST['smart-custom-fields'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	$slug = get_post_meta( $post_id, 'case_service_slug', true );
+	$term = $slug ? get_term_by( 'slug', $slug, 'case_service' ) : false;
+	wp_set_object_terms( $post_id, $term ? (int) $term->term_id : array(), 'case_service' );
+}
+add_action( 'save_post', 'ludoa_case_service_sync', 99, 2 );
 
 /* ============================================================
  * Template helpers
@@ -466,6 +497,7 @@ function ludoa_case_service_migrate() {
 			);
 			if ( $post_id && ! is_wp_error( $post_id ) ) {
 				wp_set_object_terms( $post_id, $term_id, 'case_service' );
+				update_post_meta( $post_id, 'case_service_slug', $service->post_name );
 				update_post_meta( $post_id, 'case_tag', get_the_title( $service ) );
 				update_post_meta( $post_id, 'case_client', '株式会社○○○様' );
 			}
@@ -476,6 +508,29 @@ function ludoa_case_service_migrate() {
 	update_option( 'ludoa_case_service_migrated', 1 );
 }
 add_action( 'init', 'ludoa_case_service_migrate', 22 );
+
+/**
+ * Back-fill the SCF select meta (case_service_slug) from the taxonomy for
+ * cases created before the select existed. Runs once.
+ */
+function ludoa_case_service_select_migrate() {
+	if ( get_option( 'ludoa_case_service_select_migrated' ) ) {
+		return;
+	}
+
+	foreach ( get_posts( array( 'post_type' => 'case', 'post_status' => 'any', 'numberposts' => -1 ) ) as $case ) {
+		if ( get_post_meta( $case->ID, 'case_service_slug', true ) ) {
+			continue;
+		}
+		$terms = get_the_terms( $case->ID, 'case_service' );
+		if ( $terms && ! is_wp_error( $terms ) ) {
+			update_post_meta( $case->ID, 'case_service_slug', $terms[0]->slug );
+		}
+	}
+
+	update_option( 'ludoa_case_service_select_migrated', 1 );
+}
+add_action( 'init', 'ludoa_case_service_select_migrate', 23 );
 
 /**
  * Sample サービス posts matching the static design (only when none exist yet).

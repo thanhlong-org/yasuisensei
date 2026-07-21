@@ -36,10 +36,10 @@ $ludoa_static = ludoa_static_uri();
           </p>
           <div class="site-footer__map">
             <iframe
-              src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%A4%A7%E7%94%B0%E5%8C%BA%E7%94%B0%E5%9C%92%E8%AA%BF%E5%B8%83%E6%9C%AC%E7%94%BA21-27&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.7970447052613!2d139.6755155902128!3d35.58449489100077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f5d843d87e83%3A0x5dec555431ad8e33!2sLaguna%20Sakurazaka!5e0!3m2!1sen!2sjp!4v1784615869786!5m2!1sen!2sjp"
               title="事務所の地図"
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen></iframe>
           </div>
         </div>
@@ -59,7 +59,7 @@ $ludoa_static = ludoa_static_uri();
               <?php endforeach; ?>
             </ul>
             <div class="sitemap__col sitemap__col--company-h">
-              <a href="<?php echo esc_url( home_url( '/#company' ) ); ?>" class="sitemap__title">企業情報</a>
+              <a href="<?php echo esc_url( ludoa_url( 'company' ) ); ?>" class="sitemap__title">企業情報</a>
             </div>
             <ul class="sitemap__col sitemap__sub sitemap__col--company-s">
               <li><a href="<?php echo esc_url( ludoa_url( 'features' ) ); ?>">私たちの強み</a></li>
