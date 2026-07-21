@@ -38,7 +38,7 @@ $s = ludoa_static_uri();
             <span class="breadcrumb__sep" aria-hidden="true">
               <svg viewBox="0 0 10 10" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,1 7,5 3,9"/></svg>
             </span>
-            <a href="<?php echo esc_url( home_url( '/#company' ) ); ?>">企業情報</a>
+            <a href="<?php echo esc_url( ludoa_url( 'company' ) ); ?>">企業情報</a>
           </li>
           <li>
             <span class="breadcrumb__sep" aria-hidden="true">

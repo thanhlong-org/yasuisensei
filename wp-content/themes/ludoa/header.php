@@ -30,9 +30,9 @@
       <!-- Main navigation (PC) -->
       <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
         <ul class="site-nav__list">
-          <li><a href="<?php echo esc_url( home_url( '/#features' ) ); ?>">私たちの強み</a></li>
+          <li><a href="<?php echo esc_url( ludoa_url( 'features' ) ); ?>">私たちの強み</a></li>
           <li><a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>">サービス</a></li>
-          <li><a href="<?php echo esc_url( home_url( '/#company' ) ); ?>">企業情報</a></li>
+          <li><a href="<?php echo esc_url( ludoa_url( 'company' ) ); ?>">企業情報</a></li>
           <li><a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>">事例紹介</a></li>
           <li><a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>">お知らせ</a></li>
         </ul>
@@ -98,7 +98,7 @@
 
       <!-- 企業情報 -->
       <div class="sp-menu__group">
-        <a class="sp-menu__head" href="<?php echo esc_url( home_url( '/#company' ) ); ?>">
+        <a class="sp-menu__head" href="<?php echo esc_url( ludoa_url( 'company' ) ); ?>">
           <span class="sp-menu__head-title">企業情報</span>
           <span class="sp-menu__head-box" aria-hidden="true"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 8,8 2,14"/></svg></span>
         </a>
