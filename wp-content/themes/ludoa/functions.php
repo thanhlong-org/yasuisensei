@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.0.2' );
+define( 'LUDOA_VERSION', '1.0.3' );
 
 // お問い合わせフォーム — validation / confirm flow.
 require get_template_directory() . '/inc/contact-form.php';

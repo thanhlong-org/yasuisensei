@@ -1464,10 +1464,20 @@
   position: absolute;
   top: 176.14px; /* Figma layout_07UAD1 */
   left: 601.5px;
-  width: 97.31px;
+  min-width: 97.31px;
+  width: auto;
   height: 26px;
+  padding: 0 14px;
   border-radius: 13px;
   background: #498ABF; /* fill_1VV192 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #fff;
+  white-space: nowrap;
 }
 
 /* Description text below tag */
@@ -1684,8 +1694,9 @@
     margin-bottom: 24px;
   }
   .case-item__tag {
-    /* Explicit dimensions (Figma SP spec: 97.31 Ãƒâ€” 26) */
-    width: 97.31px;
+    /* Figma SP spec: 97.31 x 26 — min-width so longer labels still fit */
+    min-width: 97.31px;
+    width: auto;
     height: 26px;
     margin-bottom: 16px;
     align-self: center;

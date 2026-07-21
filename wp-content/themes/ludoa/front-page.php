@@ -201,7 +201,10 @@ $s = ludoa_static_uri();
             <img src="<?php echo $s; ?>/assets/img/slossy-icon.svg" alt="" class="case-deco case-deco--star-bl" aria-hidden="true" />
 
             <div class="case-item__image" role="img" aria-label="<?php the_title_attribute(); ?>"<?php echo ludoa_bg_style(); // phpcs:ignore WordPress.Security.EscapeOutput ?>></div>
-            <span class="case-item__tag" aria-hidden="true"></span>
+            <?php $fp_case_tag = ludoa_case_tag(); ?>
+            <?php if ( $fp_case_tag ) : ?>
+            <span class="case-item__tag"><?php echo esc_html( $fp_case_tag ); ?></span>
+            <?php endif; ?>
             <h3 class="case-item__title"><?php the_title(); ?></h3>
             <p class="case-item__desc"><?php echo esc_html( ludoa_excerpt( 81 ) ); ?></p>
             <div class="case-item__footer">
