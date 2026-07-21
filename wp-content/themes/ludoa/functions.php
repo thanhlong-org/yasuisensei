@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.0.0' );
+define( 'LUDOA_VERSION', '1.0.1' );
 
 // お問い合わせフォーム — validation / confirm flow.
 require get_template_directory() . '/inc/contact-form.php';
@@ -97,6 +97,7 @@ function ludoa_assets() {
 	wp_enqueue_style( 'ludoa-reset', "$static/css/reset.css", array(), LUDOA_VERSION );
 	wp_enqueue_style( 'ludoa-tokens', "$static/css/tokens.css", array( 'ludoa-reset' ), LUDOA_VERSION );
 	wp_enqueue_style( 'ludoa-common', "$static/css/common.css", array( 'ludoa-tokens' ), LUDOA_VERSION );
+	wp_enqueue_style( 'ludoa-loader', "$static/css/loader.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	// The static service-list rows are not links — cover each row with one.
 	wp_add_inline_style( 'ludoa-common', '.service-item{cursor:pointer}.service-item__cover{position:absolute;inset:0;z-index:2}' );
 
@@ -143,6 +144,7 @@ function ludoa_assets() {
 
 	// Site script (footer).
 	wp_enqueue_script( 'ludoa-script', "$static/js/script.js", array(), LUDOA_VERSION, true );
+	wp_enqueue_script( 'ludoa-loader', "$static/js/loader.js", array(), LUDOA_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'ludoa_assets' );
 

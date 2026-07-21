@@ -19,6 +19,35 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+  <!-- ============ LOADER (home: every load / other pages: first visit per session) ============ -->
+  <?php if ( ! is_front_page() ) : ?>
+  <script>try{if(sessionStorage.getItem('ludoaLoaderShown'))document.documentElement.classList.add('ludoa-no-loader');}catch(e){}</script>
+  <?php endif; ?>
+  <noscript><style>.ludoa-loader{display:none}html{overflow:auto!important}</style></noscript>
+  <?php
+  $ludoa_star_svg = '<svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 9.34003C8.28596 9.88522 11.2145 5.76758 12.9027 0C12.8338 1.26255 12.8165 2.53945 12.6959 3.80201C12.3342 7.6901 13.0405 8.39311 17.795 8.76614C18.553 8.82353 19.3109 8.86657 20 8.90961C17.0543 10.0574 13.4022 10.66 11.4384 12.4964C9.44014 14.3759 9.0956 17.4749 7.57967 20C7.82084 18.2066 8.02756 16.3989 8.32041 14.6198C8.81998 11.5782 7.44186 9.95696 3.56589 9.94261C2.37726 9.94261 1.20586 9.56958 0.0344538 9.35438L0 9.34003Z"/></svg>';
+  ?>
+  <div class="ludoa-loader" id="ludoa-loader" aria-hidden="true">
+    <div class="ludoa-loader__panel ludoa-loader__panel--t"></div>
+    <div class="ludoa-loader__panel ludoa-loader__panel--b"></div>
+    <div class="ludoa-loader__body">
+      <span class="ludoa-loader__star"><?php echo $ludoa_star_svg; // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
+      <img class="ludoa-loader__logo" src="<?php echo esc_url( ludoa_static_uri() ); ?>/assets/img/logo.svg" alt="" width="307" height="56" />
+      <p class="ludoa-loader__tagline">
+        <?php
+        $ludoa_tagline = '守りの税務から、攻めの経営へ。';
+        $ludoa_len     = mb_strlen( $ludoa_tagline );
+        for ( $ludoa_i = 0; $ludoa_i < $ludoa_len; $ludoa_i++ ) {
+          printf( '<span style="--d:%d">%s</span>', (int) $ludoa_i, esc_html( mb_substr( $ludoa_tagline, $ludoa_i, 1 ) ) );
+        }
+        ?>
+      </p>
+      <span class="ludoa-loader__bar"><span class="ludoa-loader__bar-fill"></span></span>
+      <span class="ludoa-loader__spark ludoa-loader__spark--1"><?php echo $ludoa_star_svg; // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
+      <span class="ludoa-loader__spark ludoa-loader__spark--2"><?php echo $ludoa_star_svg; // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
+    </div>
+  </div>
+
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="site-header">
     <div class="site-header__inner">
