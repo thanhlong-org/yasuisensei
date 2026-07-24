@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.0.8' );
+define( 'LUDOA_VERSION', '1.0.9' );
 
 
 // お問い合わせフォーム — validation / confirm flow.
@@ -138,6 +138,8 @@ function ludoa_assets() {
 		);
 	} elseif ( is_post_type_archive( 'service' ) ) {
 		wp_enqueue_style( 'ludoa-page', "$static/service/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	} elseif ( is_404() ) {
+		wp_enqueue_style( 'ludoa-page', "$static/404/css/style.css", array( 'ludoa-common' ), LUDOA_VERSION );
 	} else {
 		$slug  = get_post_field( 'post_name', get_queried_object_id() );
 		$pages = ludoa_pages();

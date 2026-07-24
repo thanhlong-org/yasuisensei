@@ -1,0 +1,95 @@
+/* 404/css/style.css — ページが見つかりません。
+   Shared header/footer/CTA/detail-btn via ../css/common.css.
+   Page-specific: the centered 404 hero. */
+
+.nf {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(96px, 16vh, 200px) 24px clamp(80px, 12vh, 140px);
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--color-bg-gradient-from) 0%, #ffffff 60%),
+    #ffffff;
+  text-align: center;
+}
+
+.nf__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Big decorative code */
+.nf__code {
+  margin: 0;
+  font-family: var(--font-en-serif);
+  font-weight: 500;
+  font-size: clamp(120px, 22vw, 240px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: rgba(0, 69, 124, 0.12); /* --color-primary @ 12% */
+}
+
+.nf__en {
+  margin: 8px 0 0;
+  font-family: var(--font-en-serif);
+  font-weight: 500;
+  font-size: clamp(20px, 3vw, 30px);
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.nf__title {
+  margin: 24px 0 0;
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: clamp(20px, 4.4vw, 30px);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+}
+
+.nf__lead {
+  margin: 22px 0 0;
+  font-family: var(--font-jp-serif);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--color-text-soft);
+}
+
+.nf__br--sp { display: none; }
+
+.nf__actions {
+  margin-top: 44px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Decorative slash marks echoing the site's frame accents */
+.nf__deco {
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  border: 1px solid rgba(0, 69, 124, 0.14);
+  pointer-events: none;
+}
+.nf__deco--tl { top: 40px; left: 40px; border-right: 0; border-bottom: 0; }
+.nf__deco--br { bottom: 40px; right: 40px; border-left: 0; border-top: 0; }
+
+/* ===== Tablet ===== */
+@media (max-width: 1024px) {
+  .nf__deco { width: 80px; height: 80px; }
+  .nf__deco--tl { top: 24px; left: 24px; }
+  .nf__deco--br { bottom: 24px; right: 24px; }
+}
+
+/* ===== SP ===== */
+@media (max-width: 767px) {
+  .nf { padding: 88px 20px 72px; }
+  .nf__lead { font-size: 15px; }
+  .nf__br--sp { display: inline; }
+  .nf__deco { display: none; }
+}
