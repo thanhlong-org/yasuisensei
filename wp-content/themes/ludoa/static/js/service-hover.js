@@ -1,10 +1,31 @@
-/* Service section — crossfade the left image to the hovered service's image. */
+/* Service section — crossfade the left image + description to the hovered service. */
 (function () {
   document.querySelectorAll('.service__inner').forEach(function (inner) {
     var img = inner.querySelector('.service__image');
+    var desc = inner.querySelector('.service__desc');
     var items = inner.querySelectorAll('.service-item[data-sv-img]');
     if (!img || !items.length) {
       return;
+    }
+
+    // Seed with item 1's text (the default shown) so hovering it is a no-op.
+    var currentDesc = items[0].getAttribute('data-sv-desc');
+    var descTimer = null;
+    if (desc) {
+      desc.style.transition = 'opacity 0.25s ease';
+    }
+
+    function swapDesc(html) {
+      if (!desc || html === currentDesc) {
+        return;
+      }
+      currentDesc = html;
+      clearTimeout(descTimer);
+      desc.style.opacity = '0';
+      descTimer = setTimeout(function () {
+        desc.innerHTML = html;
+        desc.style.opacity = '1';
+      }, 250);
     }
 
     var fade = document.createElement('span');
@@ -38,12 +59,15 @@
 
     items.forEach(function (item) {
       var url = item.getAttribute('data-sv-img');
+      var descHtml = item.getAttribute('data-sv-desc');
       new Image().src = url; // preload so the first hover is instant
       item.addEventListener('mouseenter', function () {
         swap(url);
+        swapDesc(descHtml);
       });
       item.addEventListener('focusin', function () {
         swap(url);
+        swapDesc(descHtml);
       });
     });
   });

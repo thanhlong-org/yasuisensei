@@ -11,10 +11,7 @@
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<?php if ( is_front_page() ) : ?>
-  <meta name="description" content="安井税理士事務所 — 守りの税務から、攻めの経営へ。" />
-<?php endif; ?>
-  <?php wp_head(); ?>
+  <?php wp_head(); // description / OGP / icons injected via inc/seo.php ?>
 </head>
 
 <body <?php body_class(); ?>>

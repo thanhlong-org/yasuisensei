@@ -155,7 +155,7 @@ if ( ! $banner_style ) {
             <span class="asy-flow__num" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
             <div class="asy-flow__body">
               <h3 class="asy-flow__title"><?php echo esc_html( $step['title'] ); ?></h3>
-              <p class="asy-flow__desc"><?php echo esc_html( $step['desc'] ); ?></p>
+              <p class="asy-flow__desc"><?php echo nl2br( esc_html( $step['desc'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
             </div>
           </li>
           <?php endforeach; ?>

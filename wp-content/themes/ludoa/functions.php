@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.0.4' );
+define( 'LUDOA_VERSION', '1.0.8' );
 
 
 // お問い合わせフォーム — validation / confirm flow.
@@ -27,6 +27,9 @@ require get_template_directory() . '/inc/cpt.php';
 
 // Theme options (Customizer) — phone / LINE contact settings.
 require get_template_directory() . '/inc/theme-options.php';
+
+// SEO — favicon, app icons, Open Graph / Twitter meta, sitemap tuning.
+require get_template_directory() . '/inc/seo.php';
 
 /**
  * Base URI for the copied static asset tree.

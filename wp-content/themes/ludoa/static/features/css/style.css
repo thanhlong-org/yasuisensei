@@ -368,16 +368,32 @@
 .promise-badge--01 { background: #0A87C6; } /* Figma fill_7Q6AAY */
 .promise-badge--02 { background: #7A9AD3; } /* Figma fill_ED0EVP */
 .promise-badge--03 { background: #8DACBB; } /* Figma fill_8TM6F8 */
-/* Diagonal stripe texture overlay (same as homepage Venn circles) */
+/* Diagonal stripe texture overlay (same as homepage Venn circles) — slow drift */
 .promise-badge::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -10%;
   z-index: 0;
-  background: url("../../assets/img/promise-stripe.png") center / cover no-repeat;
+  background-image: url("../../assets/img/promise-stripe.png");
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  background-position: 0% 50%;
   mix-blend-mode: overlay;
   opacity: 0.45;
   pointer-events: none;
+  /* Long, gentle back-and-forth drift — same feel as .venn-circle__shine */
+  animation: promise-badge-shine 36s ease-in-out infinite alternate;
+}
+.promise-badge--02::before { animation-duration: 42s; animation-delay: -10s; }
+.promise-badge--03::before { animation-duration: 48s; animation-delay: -22s; }
+
+@keyframes promise-badge-shine {
+  from { background-position:   0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promise-badge::before { animation: none; }
 }
 /* Faint logo swoosh watermark */
 .promise-badge__deco {
