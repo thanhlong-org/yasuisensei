@@ -670,6 +670,111 @@ function ludoa_news_tag_select_migrate() {
 add_action( 'init', 'ludoa_news_tag_select_migrate', 25 );
 
 /**
+ * Seed the service-detail SCF content (支援内容 / 解決できる課題 / ご利用の流れ) for
+ * each service, so a fresh deploy (e.g. production) has the copy without hand
+ * entry. Idempotent: skips any service that already has 支援内容 data, so it
+ * never clobbers edits made from the SCF screen. Runs once (option flag), and
+ * only after the services exist so it can match them by slug.
+ */
+function ludoa_service_scf_migrate() {
+	if ( get_option( 'ludoa_service_scf_migrated' ) ) {
+		return;
+	}
+	if ( ! ludoa_services() ) {
+		return; // Services not seeded yet — retry on the next load.
+	}
+
+	$data = array(
+		'advisory'     => array(
+			'support' => array( '定期的な打ち合わせ', '税務相談', '経営分析、財務分析', '試算表の作成', '資金繰表の作成', '融資相談' ),
+			'issues'  => array( '税金や財務の相談相手がいない', '自社の状況や資金繰りが不明', '融資や資金調達の進め方が不安', '数字の管理で経営に集中できない' ),
+			'flow'    => array(
+				array( '商談', "経営方針や企業理念、将来のビジョンについての共有。\n現状の課題や悩みについての把握と解決に向けての提案。\nサービス内容のお知らせ。\n御見積書の作成。※" ),
+				array( '顧問契約の締結', '顧問契約書の作成と電子契約完了までのプロセスの説明。' ),
+				array( '定期的な打ち合わせ', "経営分析、財務分析の報告\n試算表の作成\n資金繰表の作成" ),
+			),
+		),
+		'accounting'   => array(
+			'support' => array( '各種記帳代行資料の整理、入力', '決算報告書の作成' ),
+			'issues'  => array( '面倒な帳簿付けに時間を取られる', '経理知識がなく処理が不安', '経理の採用や人件費を抑えたい', '決算時期の書類準備で焦る' ),
+			'flow'    => array(
+				array( '商談', "事業概要（業種・業態、規模）の共有。\n納品までのプロセスの説明。\nサービス内容のお知らせ。\n御見積書の作成。※" ),
+				array( '記帳代行', "必要資料、書類の共有。\nお取引内容の精査。" ),
+				array( '納品', '試算表の作成。' ),
+			),
+		),
+		'tax-return'   => array(
+			'support' => array( '法人税申告書の作成', '地方税申告書の作成', '所得税申告書の作成', '消費税申告書の作成', '相続税申告書の作成', '事業所税申告書の作成' ),
+			'issues'  => array( '申告書類の作成や計算が分からない', '申告ミスや罰則への不安がある', '申告手続きで本業が止まる', '各種税金の対応手順に迷う' ),
+			'flow'    => array(
+				array( '商談', "事業概要（業種・業態、規模）の共有。\n電子申告完了までのプロセスの説明。\nサービス内容のお知らせ。\n御見積書の作成。※" ),
+				array( '申告書作成', "必要資料、書類の共有。\n申告書の作成開始\n申告書の作成完了の通知と決算報告。" ),
+				array( '電子申告', "納税方法の案内。\n申告書の送信完了の報告と共有" ),
+			),
+		),
+		'payroll'      => array(
+			'support' => array( '給与、賞与の計算', '給与明細書、賞与明細書の作成' ),
+			'issues'  => array( '毎月の給与計算の手間を減らしたい', '手計算による計算ミスが不安', '法改正や保険料の変更に対応できない', '給与情報の社内漏洩を防ぎたい' ),
+			'flow'    => array(
+				array( '商談', "事業概要（業種・業態、人員）の共有。\n納品完了までの説明。\nサービス詳細のお知らせ。\n御見積書の作成。※" ),
+				array( '給与計算、賞与計算', "必要資料、書類の共有。\n給与計算、賞与計算開始。" ),
+				array( '納品', '給与明細書、賞与明細書の共有。' ),
+			),
+		),
+		'startup'      => array(
+			'support' => array( '法人設立のご案内', '各種届出書の作成' ),
+			'issues'  => array( '設立に必要な手続きが分からない', '提出すべき各種届出書に迷う', '創業期の資金調達や融資が不安', '本業準備で設立手続きの手が回らない' ),
+			'flow'    => array(
+				array( '商談', "法人設立に伴う課題や悩みについての把握と解決に向けての提案。\nサービス内容のお知らせ。\n御見積書の作成。" ),
+				array( '法人設立完了前', "必要資料、書類の共有。\n資本金のお振込。" ),
+				array( '法人設立完了後', "謄本、定款の共有。\n各種届出書の作成。\n融資の相談。" ),
+			),
+		),
+		'tax-planning' => array(
+			'support' => array( '納税予測', '各種節税商品のご案内' ),
+			'issues'  => array( '税金がいくらかかるか予想できない', '自社に合う節税方法が分からない', '手元に残る資金を最大化したい', '無計画な急な納税で焦りたくない' ),
+			'flow'    => array(
+				array( '現状の課題や悩みについての把握', "資金繰表を活用した納税予測。\n各種節税商品の案内。" ),
+			),
+		),
+	);
+
+	foreach ( $data as $slug => $d ) {
+		$posts = get_posts(
+			array(
+				'post_type'      => 'service',
+				'name'           => $slug,
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+			)
+		);
+		if ( ! $posts ) {
+			continue;
+		}
+		$id = $posts[0]->ID;
+
+		// Never clobber content already entered from the SCF screen.
+		if ( get_post_meta( $id, 'support_name', true ) ) {
+			continue;
+		}
+
+		foreach ( $d['support'] as $v ) {
+			add_post_meta( $id, 'support_name', $v );
+		}
+		foreach ( $d['issues'] as $v ) {
+			add_post_meta( $id, 'issue_text', $v );
+		}
+		foreach ( $d['flow'] as $step ) {
+			add_post_meta( $id, 'flow_title', $step[0] );
+			add_post_meta( $id, 'flow_desc', $step[1] );
+		}
+	}
+
+	update_option( 'ludoa_service_scf_migrated', 1 );
+}
+add_action( 'init', 'ludoa_service_scf_migrate', 26 );
+
+/**
  * Sample サービス posts matching the static design (only when none exist yet).
  */
 function ludoa_seed_services() {
