@@ -1,0 +1,30 @@
+# robots.txt — https://tax-tokyo.jp
+# Corporate site (安井税理士事務所). Allow full crawl of public content;
+# keep JS/CSS/images crawlable so Google can render pages correctly.
+
+User-agent: *
+Allow: /
+
+# --- WordPress internals ---
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+# --- Internal search results (no SEO value, duplicate-ish) ---
+Disallow: /*?s=
+Disallow: /*&s=
+Disallow: /search/
+
+# --- Author enumeration (also blocked at .htaccess) ---
+Disallow: /*?author=
+
+# --- Form utility pages (excluded from sitemap too) ---
+Disallow: /contact-confirm/
+Disallow: /contact-complete/
+
+# --- Feeds / trackbacks / comment-reply noise ---
+Disallow: /*/feed/
+Disallow: /*/trackback/
+Disallow: /*?replytocom
+
+# --- Sitemap (WordPress core) ---
+Sitemap: https://tax-tokyo.jp/wp-sitemap.xml
