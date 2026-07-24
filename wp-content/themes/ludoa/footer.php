@@ -69,14 +69,14 @@ $ludoa_static = ludoa_static_uri();
             <div class="sitemap__standalone">
               <a href="<?php echo esc_url( get_post_type_archive_link( 'case' ) ); ?>" class="sitemap__title">事例紹介</a>
               <a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="sitemap__title">お知らせ</a>
-              <a href="<?php echo esc_url( ludoa_url( 'privacy' ) ); ?>" class="sitemap__title sitemap__privacy-sp">プライバシーポリシー</a>
+              <a href="<?php echo esc_url( ludoa_url( 'privacy-policy' ) ); ?>" class="sitemap__title sitemap__privacy-sp">プライバシーポリシー</a>
             </div>
           </div>
         </nav>
       </div>
 
       <div class="site-footer__bottom">
-        <a href="<?php echo esc_url( ludoa_url( 'privacy' ) ); ?>" class="site-footer__privacy">プライバシーポリシー</a>
+        <a href="<?php echo esc_url( ludoa_url( 'privacy-policy' ) ); ?>" class="site-footer__privacy">プライバシーポリシー</a>
         <p class="site-footer__copy">©2025 Yasui Tax Co. All rights reserved.</p>
       </div>
     </div>

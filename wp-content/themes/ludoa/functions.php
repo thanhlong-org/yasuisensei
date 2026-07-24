@@ -57,19 +57,31 @@ function ludoa_pages() {
 		'contact'             => array( 'title' => 'お問い合わせ', 'css' => 'contact' ),
 		'contact-confirm'     => array( 'title' => '入力内容の確認', 'css' => 'contact' ),
 		'contact-complete'    => array( 'title' => '送信完了', 'css' => 'contact' ),
-		'privacy'             => array( 'title' => 'プライバシーポリシー', 'css' => 'privacy' ),
+		'privacy-policy'      => array( 'title' => 'プライバシーポリシー', 'css' => 'privacy' ),
 	);
 }
 
 /**
- * Permalink for a provisioned page by slug (falls back to /slug/).
+ * Permalink for a provisioned page by its (leaf) slug (falls back to /slug/).
  *
- * @param string $slug Page slug.
+ * Resolved by post_name rather than path so nested pages (e.g. the company
+ * children at /company/features) still resolve from their leaf slug.
+ *
+ * @param string $slug Page slug (post_name).
  * @return string
  */
 function ludoa_url( $slug ) {
-	$page = get_page_by_path( $slug );
-	return $page ? get_permalink( $page ) : home_url( "/$slug/" );
+	$pages = get_posts(
+		array(
+			'post_type'        => 'page',
+			'name'             => $slug,
+			'post_status'      => 'publish',
+			'posts_per_page'   => 1,
+			'no_found_rows'    => true,
+			'suppress_filters' => false,
+		)
+	);
+	return $pages ? get_permalink( $pages[0] ) : home_url( "/$slug/" );
 }
 
 /**

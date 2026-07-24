@@ -33,7 +33,7 @@ function ludoa_register_post_types() {
 			'menu_icon'     => 'dashicons-portfolio',
 			'supports'      => array( 'title', 'editor', 'thumbnail' ),
 			'show_in_rest'  => true,
-			'rewrite'       => array( 'slug' => 'case' ),
+			'rewrite'       => array( 'slug' => 'company/case' ),
 		)
 	);
 
@@ -52,7 +52,7 @@ function ludoa_register_post_types() {
 			'menu_icon'     => 'dashicons-megaphone',
 			'supports'      => array( 'title', 'editor', 'thumbnail' ),
 			'show_in_rest'  => true,
-			'rewrite'       => array( 'slug' => 'infomation' ),
+			'rewrite'       => array( 'slug' => 'news' ),
 		)
 	);
 
@@ -773,6 +773,50 @@ function ludoa_service_scf_migrate() {
 	update_option( 'ludoa_service_scf_migrated', 1 );
 }
 add_action( 'init', 'ludoa_service_scf_migrate', 26 );
+
+/**
+ * ディレクトリマップ routing: nest the company sub-pages under /company and give
+ * the privacy page its /privacy-policy slug. The CPT slug changes (news→/news,
+ * case→/company/case) are declared in the register calls; this migration just
+ * moves the fixed pages and flushes so every URL matches the spec sheet.
+ * Runs once (option flag).
+ */
+function ludoa_dirmap_migrate() {
+	if ( get_option( 'ludoa_dirmap_migrated' ) ) {
+		return;
+	}
+
+	// Nest 私たちの強み / 代表あいさつ / 事務所概要 under 企業情報 → /company/<slug>.
+	$company = get_page_by_path( 'company' );
+	if ( $company ) {
+		foreach ( array( 'features', 'message', 'office' ) as $child_slug ) {
+			$child = get_page_by_path( $child_slug );
+			if ( $child && (int) $child->post_parent !== (int) $company->ID ) {
+				wp_update_post(
+					array(
+						'ID'          => $child->ID,
+						'post_parent' => $company->ID,
+					)
+				);
+			}
+		}
+	}
+
+	// プライバシーポリシー: /privacy → /privacy-policy.
+	$privacy = get_page_by_path( 'privacy' );
+	if ( $privacy && 'privacy-policy' !== $privacy->post_name ) {
+		wp_update_post(
+			array(
+				'ID'        => $privacy->ID,
+				'post_name' => 'privacy-policy',
+			)
+		);
+	}
+
+	flush_rewrite_rules();
+	update_option( 'ludoa_dirmap_migrated', 1 );
+}
+add_action( 'init', 'ludoa_dirmap_migrate', 27 );
 
 /**
  * Sample サービス posts matching the static design (only when none exist yet).

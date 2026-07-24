@@ -98,7 +98,7 @@ $s = ludoa_static_uri();
           <p class="contact-form__intro-lead">以下のフォームに必要事項を入力し、「内容を確認する」ボタンを押してください。</p>
           <p class="contact-form__intro-note">
             入力いただいたメールアドレス宛てに、弊社担当よりご連絡させていただきます。<br />
-            個人情報の取り扱いについて、詳しくは<a href="<?php echo esc_url( ludoa_url( 'privacy' ) ); ?>">こちら</a>をご覧ください。
+            個人情報の取り扱いについて、詳しくは<a href="<?php echo esc_url( ludoa_url( 'privacy-policy' ) ); ?>">こちら</a>をご覧ください。
           </p>
         </div>
 
