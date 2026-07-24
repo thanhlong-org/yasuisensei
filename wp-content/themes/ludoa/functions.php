@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.0.9' );
+define( 'LUDOA_VERSION', '1.1.0' );
 
 
 // お問い合わせフォーム — validation / confirm flow.
@@ -94,6 +94,20 @@ function ludoa_setup() {
 	add_theme_support( 'automatic-feed-links' );
 }
 add_action( 'after_setup_theme', 'ludoa_setup' );
+
+/**
+ * Perf resource hints — preconnect to the font hosts and preload the LCP hero
+ * image on the front page so it paints as early as possible.
+ */
+function ludoa_resource_hints() {
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com" />' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
+	if ( is_front_page() ) {
+		$hero = esc_url( ludoa_static_uri() . '/assets/img/banner-pc.webp' );
+		echo '<link rel="preload" as="image" href="' . $hero . '" fetchpriority="high" />' . "\n";
+	}
+}
+add_action( 'wp_head', 'ludoa_resource_hints', 1 );
 
 /**
  * Enqueue fonts, global stylesheets, the page-specific stylesheet and the site script.

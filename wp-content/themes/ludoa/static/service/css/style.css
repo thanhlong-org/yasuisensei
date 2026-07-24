@@ -15,7 +15,7 @@
   /* White overlay on top fades the pattern — raise the 0.6 (0–1) to fade more */
   background:
     linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
-    url("../../assets/img/banner-bg.png") center / cover no-repeat,
+    url("../../assets/img/banner-bg.webp") center / cover no-repeat,
     #ffffff;
   overflow: hidden;
 }
@@ -37,7 +37,7 @@
                       screens (like the homepage hero), so no white gap appears */
   width: 74.24%;   /* left edge lands at the design x371 (25.76% of 1440) */
   height: 100%;
-  background: url("../img/banner-pc.png") center top / cover no-repeat;
+  background: url("../img/banner-pc.webp") center top / cover no-repeat;
   -webkit-mask-image: linear-gradient(90deg, transparent 4%, #000 44%);
           mask-image: linear-gradient(90deg, transparent 4%, #000 44%);
 }
@@ -266,7 +266,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../img/banner-sp.png"); /* SP-specific crop */
+    background-image: url("../img/banner-sp.webp"); /* SP-specific crop */
     -webkit-mask-image: none;
             mask-image: none;
   }
@@ -374,7 +374,7 @@
   left: 35px;
   width: 528px;
   height: 395px;
-  background: url("../../assets/img/home-sv/service-consultant.png") center/cover no-repeat;
+  background: url("../../assets/img/home-sv/service-consultant.webp") center/cover no-repeat;
 }
 
 /* Description text below image */

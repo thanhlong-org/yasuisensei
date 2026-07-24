@@ -56,7 +56,7 @@ $s = ludoa_static_uri();
         <article class="promise-row">
           <div class="promise-row__media" data-reveal>
             <div class="promise-row__photo">
-              <img src="<?php echo $s; ?>/message/img/img-01.jpg" alt="代表税理士 安井瑛顕" />
+              <img src="<?php echo $s; ?>/message/img/img-01.webp" alt="代表税理士 安井瑛顕" loading="lazy" decoding="async" />
             </div>
             <div class="msg-caption">
               <span class="msg-caption__logo" aria-hidden="true"></span>
@@ -90,7 +90,7 @@ $s = ludoa_static_uri();
         </div>
         <div class="mc__cards">
           <a href="<?php echo esc_url( ludoa_url( 'features' ) ); ?>" class="mc-card" data-reveal>
-            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/message/img/img-02.jpg')" aria-hidden="true"></span>
+            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/message/img/img-02.webp')" aria-hidden="true"></span>
             <span class="mc-card__foot">
               <span class="mc-card__name">私たちの強み</span>
               <span class="mc-arrow" aria-hidden="true">
@@ -101,7 +101,7 @@ $s = ludoa_static_uri();
             </span>
           </a>
           <a href="<?php echo esc_url( ludoa_url( 'office' ) ); ?>" class="mc-card" data-reveal data-reveal-delay="1">
-            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/message/img/img-03.jpg')" aria-hidden="true"></span>
+            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/message/img/img-03.webp')" aria-hidden="true"></span>
             <span class="mc-card__foot">
               <span class="mc-card__name">事務所概要</span>
               <span class="mc-arrow" aria-hidden="true">

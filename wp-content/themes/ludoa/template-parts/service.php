@@ -23,7 +23,7 @@ $arrow_star = '<svg viewBox="0 0 19 20" fill="currentColor" xmlns="http://www.w3
           <?php
           $photo = get_the_post_thumbnail_url( $ludoa_service, 'large' );
           if ( ! $photo ) {
-            $photo = sprintf( '%s/assets/img/service-%02d.jpg', $s, ( $i % 6 ) + 1 );
+            $photo = sprintf( '%s/assets/img/service-%02d.webp', $s, ( $i % 6 ) + 1 );
           }
           ?>
           <?php $is_current = is_singular( 'service' ) && get_the_ID() === $ludoa_service->ID; ?>

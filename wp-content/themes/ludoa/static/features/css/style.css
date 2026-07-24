@@ -1,7 +1,7 @@
 /* =============================================
    features/css/style.css — 私たちの強み (Features) page
    Page-specific styles. Shared header/footer/nav live in ../css/common.css.
-   Images live in ../img (banner-pc.png, banner-sp.png, banner-bg.png).
+   Images live in ../img (banner-pc.webp, banner-sp.webp, banner-bg.webp).
    ============================================= */
 
 /* =============================================
@@ -16,7 +16,7 @@
   /* White overlay on top fades the pattern — raise the 0.6 (0–1) to fade more */
   background:
     linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
-    url("../../assets/img/banner-bg.png") center / cover no-repeat,
+    url("../../assets/img/banner-bg.webp") center / cover no-repeat,
     #ffffff;
   overflow: hidden;
 }
@@ -38,7 +38,7 @@
                       screens (like the homepage hero), so no white gap appears */
   width: 74.24%;   /* left edge lands at the design x371 (25.76% of 1440) */
   height: 100%;
-  background: url("../img/banner-pc.png") center top / cover no-repeat;
+  background: url("../img/banner-pc.webp") center top / cover no-repeat;
   -webkit-mask-image: linear-gradient(90deg, transparent 4%, #000 44%);
           mask-image: linear-gradient(90deg, transparent 4%, #000 44%);
 }
@@ -267,7 +267,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../img/banner-sp.png"); /* SP-specific crop */
+    background-image: url("../img/banner-sp.webp"); /* SP-specific crop */
     -webkit-mask-image: none;
             mask-image: none;
   }
@@ -304,7 +304,7 @@
   /* Same faded pattern as the banner (raise 0.6 to fade more) */
   background:
     linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
-    url("../../assets/img/banner-bg.png") center / cover no-repeat,
+    url("../../assets/img/banner-bg.webp") center / cover no-repeat,
     #ffffff;
   padding: 120px 0 140px;
 }
@@ -374,7 +374,7 @@
   position: absolute;
   inset: -10%;
   z-index: 0;
-  background-image: url("../../assets/img/promise-stripe.png");
+  background-image: url("../../assets/img/promise-stripe.webp");
   background-repeat: no-repeat;
   background-size: 200% 100%;
   background-position: 0% 50%;

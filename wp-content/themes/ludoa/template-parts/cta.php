@@ -18,7 +18,7 @@ $s = ludoa_static_uri();
             <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--r" aria-hidden="true"></span>
             <img src="<?php echo $s; ?>/assets/img/phone-icon.svg" alt="" class="cta-card__bg-icon" aria-hidden="true" />
-            <span class="cta-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/cta-01.jpg')" aria-hidden="true"></span>
+            <span class="cta-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/cta-01.webp')" aria-hidden="true"></span>
             <h3 class="cta-card__title">お電話でのお問い合わせ</h3>
             <p class="cta-card__desc">受付時間：平日9:00〜18:00<br />定休日：土日祝</p>
             <span class="cta-card__btn"><?php echo esc_html( ludoa_tel_display() ); ?>にかける</span>
@@ -29,7 +29,7 @@ $s = ludoa_static_uri();
             <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--r" aria-hidden="true"></span>
             <img src="<?php echo $s; ?>/assets/img/line-icon.svg" alt="" class="cta-card__bg-icon" aria-hidden="true" />
-            <span class="cta-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/cta-02.jpg')" aria-hidden="true"></span>
+            <span class="cta-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/cta-02.webp')" aria-hidden="true"></span>
             <h3 class="cta-card__title">LINEでのお問い合わせ</h3>
             <p class="cta-card__desc">LINEアカウントの[友だち追加]<br />またはQRコードから追加ください。</p>
             <span class="cta-card__btn">公式LINEを追加する</span>
@@ -40,7 +40,7 @@ $s = ludoa_static_uri();
             <span class="cta-card__edge cta-card__edge--l" aria-hidden="true"></span>
             <span class="cta-card__edge cta-card__edge--r" aria-hidden="true"></span>
             <img src="<?php echo $s; ?>/assets/img/mail-icon.svg" alt="" class="cta-card__bg-icon" aria-hidden="true" />
-            <span class="cta-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/cta-03.jpg')" aria-hidden="true"></span>
+            <span class="cta-card__photo" style="background-image: url('<?php echo $s; ?>/assets/img/cta-03.webp')" aria-hidden="true"></span>
             <h3 class="cta-card__title">メールでのお問い合わせ</h3>
             <p class="cta-card__desc">お問い合わせページのフォームから<br />お気軽にご相談ください。</p>
             <span class="cta-card__btn">お問い合わせ</span>

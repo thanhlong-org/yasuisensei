@@ -144,7 +144,7 @@ $s = ludoa_static_uri();
 
         <!-- Service items list (right column / SP center) -->
         <ul class="service__list">
-          <?php $sv_imgs = array( 'service-consultant.png', 'sv2.png', 'sv3.png', 'sv4.png', 'sv5.png', 'sv6.png' ); ?>
+          <?php $sv_imgs = array( 'service-consultant.webp', 'sv2.webp', 'sv3.webp', 'sv4.webp', 'sv5.webp', 'sv6.webp' ); ?>
           <?php foreach ( ludoa_services() as $i => $ludoa_service ) : ?>
           <li class="service-item" data-reveal data-sv-img="<?php echo esc_url( "$s/assets/img/home-sv/" . $sv_imgs[ $i % 6 ] ); ?>" data-sv-desc="<?php echo esc_attr( nl2br( esc_html( $sv_descs[ $i % 6 ] ) ) ); ?>">
             <span class="service-item__num"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>

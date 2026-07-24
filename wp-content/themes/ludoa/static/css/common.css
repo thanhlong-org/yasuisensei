@@ -1094,7 +1094,7 @@ html {
   inset: 0;
   background-image:
     linear-gradient(rgba(20, 40, 70, 0.55), rgba(20, 40, 70, 0.55)),
-    url("../assets/img/home-sv/service-consultant.png");
+    url("../assets/img/home-sv/service-consultant.webp");
   background-size: cover;
   background-position: center;
   transition: opacity 0.5s ease;
@@ -1563,7 +1563,7 @@ html {
 .fcase-card__image {
   width: 100%;
   aspect-ratio: 300 / 154; /* Figma image */
-  background: url("../assets/img/case.png") center / cover no-repeat;
+  background: url("../assets/img/case.webp") center / cover no-repeat;
   align-self: stretch;
 }
 .fcase-card__tag {

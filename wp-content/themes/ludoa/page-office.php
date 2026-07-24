@@ -86,7 +86,7 @@ $s = ludoa_static_uri();
         </div>
         <div class="mc__cards">
           <a href="<?php echo esc_url( ludoa_url( 'features' ) ); ?>" class="mc-card" data-reveal>
-            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/office/img/mc-feature.jpg')" aria-hidden="true"></span>
+            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/office/img/mc-feature.webp')" aria-hidden="true"></span>
             <span class="mc-card__foot">
               <span class="mc-card__name">私たちの強み</span>
               <span class="mc-arrow" aria-hidden="true">
@@ -97,7 +97,7 @@ $s = ludoa_static_uri();
             </span>
           </a>
           <a href="<?php echo esc_url( ludoa_url( 'message' ) ); ?>" class="mc-card" data-reveal data-reveal-delay="1">
-            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/office/img/mc-message.jpg')" aria-hidden="true"></span>
+            <span class="mc-card__photo" style="background-image: url('<?php echo $s; ?>/office/img/mc-message.webp')" aria-hidden="true"></span>
             <span class="mc-card__foot">
               <span class="mc-card__name">代表あいさつ</span>
               <span class="mc-arrow" aria-hidden="true">

@@ -63,7 +63,7 @@ $s = ludoa_static_uri();
               <span class="promise-badge__num">01</span>
             </div>
             <div class="promise-row__photo">
-              <img src="<?php echo $s; ?>/features/img/img-01.jpg" alt="経営者様との対話の様子" />
+              <img src="<?php echo $s; ?>/features/img/img-01.webp" alt="経営者様との対話の様子" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="promise-row__content">
@@ -88,7 +88,7 @@ $s = ludoa_static_uri();
               <span class="promise-badge__num">02</span>
             </div>
             <div class="promise-row__photo">
-              <img src="<?php echo $s; ?>/features/img/img-02.jpg" alt="迅速に対応する様子" />
+              <img src="<?php echo $s; ?>/features/img/img-02.webp" alt="迅速に対応する様子" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="promise-row__content">
@@ -114,7 +114,7 @@ $s = ludoa_static_uri();
               <span class="promise-badge__num">03</span>
             </div>
             <div class="promise-row__photo">
-              <img src="<?php echo $s; ?>/features/img/img-03.jpg" alt="一歩先の提案をする様子" />
+              <img src="<?php echo $s; ?>/features/img/img-03.webp" alt="一歩先の提案をする様子" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="promise-row__content">

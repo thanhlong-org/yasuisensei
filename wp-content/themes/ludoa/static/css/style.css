@@ -5,7 +5,7 @@
   width: 100%;
   padding: 0 100px 100px; /* Figma: no top padding (connects to Company section above) */
   background-color: #ffffff;
-  /* background-image: url("../assets/img/company-bg-pattern.png");
+  /* background-image: url("../assets/img/company-bg-pattern.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat; */
 }
@@ -423,9 +423,9 @@
   transform: scale(1.06);
   transition: opacity 0.55s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.company-item--01 .company-item__media { background-image: url("../assets/img/company-img01.jpg"); }
-.company-item--02 .company-item__media { background-image: url("../assets/img/company-img02.jpg"); }
-.company-item--03 .company-item__media { background-image: url("../assets/img/company-img03.jpg"); }
+.company-item--01 .company-item__media { background-image: url("../assets/img/company-img01.webp"); }
+.company-item--02 .company-item__media { background-image: url("../assets/img/company-img02.webp"); }
+.company-item--03 .company-item__media { background-image: url("../assets/img/company-img03.webp"); }
 .company-item__media::after {
   content: "";
   position: absolute;
@@ -757,7 +757,7 @@
   left: 35px;
   width: 528px;
   height: 395px;
-  background: url("../assets/img/home-sv/service-consultant.png") center/cover no-repeat;
+  background: url("../assets/img/home-sv/service-consultant.webp") center/cover no-repeat;
 }
 
 /* Description text below image */
@@ -1453,7 +1453,7 @@
   left: 35px;
   width: 480px;
   height: 287px;
-  background: url("../assets/img/case.png") center/cover no-repeat;
+  background: url("../assets/img/case.webp") center/cover no-repeat;
 }
 
 /* Case title Ã¢â‚¬â€ right side, top */
@@ -2028,13 +2028,13 @@
   transform: translateY(-50%);
 }
 
-/* Glossy "shine" overlay using promise-stripe.png Ã¢â‚¬â€ single image drift */
+/* Glossy "shine" overlay using promise-stripe.webp Ã¢â‚¬â€ single image drift */
 .venn-circle__shine {
   position: absolute;
   z-index: 0;          /* sits behind logo (::after z1) and text (z2) */
   inset: -10%;
   pointer-events: none;
-  background-image: url("../assets/img/promise-stripe.png");
+  background-image: url("../assets/img/promise-stripe.webp");
   background-size: 200% 100%;
   background-position: 0% 50%;
   background-repeat: no-repeat;
@@ -2354,7 +2354,7 @@
   right: 0;
   width: 75%;
   height: 100%;
-  background-image: url("../assets/img/banner-pc.png");
+  background-image: url("../assets/img/banner-pc.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2547,7 +2547,7 @@
     order: 3;
     width: 100%;
     height: 342px; /* Figma spec */
-    background-image: url("../assets/img/banner-sp.png");
+    background-image: url("../assets/img/banner-sp.webp");
   }
   /* SCROLL aligned to left edge of the image on SP */
   .hero__scroll {
