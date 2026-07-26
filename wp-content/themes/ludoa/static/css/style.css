@@ -298,18 +298,14 @@
     line-height: 1.5;
   }
   .info-item__tag {
-    width: 48.43px;
-    height: 14.72px;
+    min-width: unset;
+    padding: 6px 3px;
     border-radius: 8px;
     margin-bottom: 8px;
   }
   .info-item__desc {
     font-size: 14px;
     line-height: 1.6;
-  }
-  /* SP accent color: teal green */
-  .info-item__accent {
-    background: #2CA5A1;
   }
 }
 
@@ -1151,14 +1147,14 @@
   .service__list {
     width: auto;
     gap: 0;
-    margin: 20px;
+    margin: 0 20px 20px;
     z-index: 1;
   }
   .service-item {
     grid-template-columns: 28px max-content 1fr;
     column-gap: 14px;
     height: 54px;
-    padding-bottom: 16px;
+    padding: 16px 0;
   }
   .service-item__num {
     font-size: 18px;
@@ -1230,7 +1226,7 @@
     transform: translateX(-50%);
     width: 280px;
     height: 280px;
-    opacity: 0.08;
+    opacity: 0.8;
     z-index: 0;
   }
 }
@@ -1683,9 +1679,9 @@
     height: 30px;
   }
   /* SP bottom button has green accent in design (fill_8Q82Q4 = #2D73E7) */
-  .case__btn-sp .detail-btn__accent {
+  /* .case__btn-sp .detail-btn__accent {
     background: #2D73E7;
-  }
+  } */
 
   .case__list {
     gap: 60px;
@@ -1705,6 +1701,7 @@
     margin-bottom: 24px;
   }
   .case-item__tag {
+    display: flex;
     /* Figma SP spec: 97.31 x 26 — min-width so longer labels still fit */
     min-width: 97.31px;
     width: auto;

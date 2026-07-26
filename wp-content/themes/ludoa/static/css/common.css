@@ -1741,7 +1741,7 @@ html {
 /* Card button "詳しく見る" — grey text/border, blue accent.
    width:100% here (declared after .detail-btn) overrides the fixed 272px so the
    button shrinks with the card — otherwise it forces a min card width and overflows. */
-.fcase-card__btn { color: #A0A8B3; margin: auto; width: 100%; }
+.fcase-card__btn { color: #A0A8B3; margin: auto; }
 .fcase-card__btn .detail-btn__edge { background: #A0A8B3; }
 .fcase-card__btn .detail-btn__accent { background: #0340A4; }
 /* Bottom SP button — hidden on PC */
@@ -1776,7 +1776,7 @@ html {
     margin: 0 auto;
   }
   .fcase-card {
-    padding: 20px 0;
+    padding: 20px;
   }
   .fcase__btn--sp {
     display: flex;
