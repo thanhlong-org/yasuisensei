@@ -395,6 +395,11 @@
 @media (prefers-reduced-motion: reduce) {
   .promise-badge::before { animation: none; }
 }
+/* SP: background-position cannot be composited, so this repaints three blended
+   layers every frame for no visible gain at phone size. */
+@media (max-width: 767px) {
+  .promise-badge::before { animation: none; }
+}
 /* Faint logo swoosh watermark */
 .promise-badge__deco {
   position: absolute;

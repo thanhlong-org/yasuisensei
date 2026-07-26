@@ -1,5 +1,23 @@
 /* Service section — crossfade the left image + description to the hovered service. */
 (function () {
+  // Touch devices never fire the hover, so the six full-size swap images were
+  // pure waste there — ~350 KB competing with the banner for bandwidth.
+  if (window.matchMedia && !window.matchMedia('(hover: hover)').matches) {
+    return;
+  }
+
+  // Warm the swap images once the page is idle, never during the initial load.
+  var warm = function (url) {
+    var run = function () {
+      new Image().src = url;
+    };
+    if (window.requestIdleCallback) {
+      requestIdleCallback(run, { timeout: 3000 });
+    } else {
+      setTimeout(run, 1200);
+    }
+  };
+
   document.querySelectorAll('.service__inner').forEach(function (inner) {
     var img = inner.querySelector('.service__image');
     var desc = inner.querySelector('.service__desc');
@@ -60,7 +78,7 @@
     items.forEach(function (item) {
       var url = item.getAttribute('data-sv-img');
       var descHtml = item.getAttribute('data-sv-desc');
-      new Image().src = url; // preload so the first hover is instant
+      warm(url); // preloaded at idle so the first hover is still instant
       item.addEventListener('mouseenter', function () {
         swap(url);
         swapDesc(descHtml);

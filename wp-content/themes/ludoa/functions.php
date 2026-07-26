@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.1.1' );
+define( 'LUDOA_VERSION', '1.1.2' );
 
 
 // お問い合わせフォーム — validation / confirm flow.
@@ -96,15 +96,76 @@ function ludoa_setup() {
 add_action( 'after_setup_theme', 'ludoa_setup' );
 
 /**
- * Perf resource hints — preconnect to the font hosts and preload the LCP hero
- * image on the front page so it paints as early as possible.
+ * Folder under /static/ that holds the banner (LCP) image pair for the current
+ * view — `img/banner-pc.webp` + `img/banner-sp.webp` relative to it.
+ *
+ * Mirrors the per-page stylesheet mapping in ludoa_assets().
+ *
+ * @return string|null Folder path, or null when the view has no fixed banner.
+ */
+function ludoa_banner_dir() {
+	if ( is_front_page() ) {
+		return 'assets';
+	}
+	if ( is_post_type_archive( 'case' ) ) {
+		return 'case';
+	}
+	if ( is_singular( 'news' ) || is_post_type_archive( 'news' ) ) {
+		return 'infomation';
+	}
+	if ( is_singular( 'service' ) ) {
+		return 'advisory';
+	}
+	if ( is_post_type_archive( 'service' ) ) {
+		return 'service';
+	}
+	if ( is_singular( 'case' ) || is_404() ) {
+		return null; // Per-post featured image / no banner.
+	}
+
+	$slug = get_post_field( 'post_name', get_queried_object_id() );
+	$map  = array(
+		'features'         => 'features',
+		'company'          => 'company',
+		'message'          => 'message',
+		'office'           => 'office',
+		'contact'          => 'contact',
+		'contact-confirm'  => 'contact',
+		'contact-complete' => 'contact',
+		'privacy-policy'   => 'assets',
+	);
+
+	return isset( $map[ $slug ] ) ? $map[ $slug ] : null;
+}
+
+/**
+ * Perf resource hints — preconnect to the font hosts and preload the LCP banner
+ * image so it paints as early as possible.
+ *
+ * The banner is painted as a CSS background that swaps at the 767px breakpoint,
+ * so each preload carries the matching `media` — otherwise mobile downloads the
+ * (much heavier) PC crop at high priority and still discovers its own image late.
  */
 function ludoa_resource_hints() {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com" />' . "\n";
 	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
-	if ( is_front_page() ) {
-		$hero = esc_url( ludoa_static_uri() . '/assets/img/banner-pc.webp' );
-		echo '<link rel="preload" as="image" href="' . $hero . '" fetchpriority="high" />' . "\n";
+
+	$dir = ludoa_banner_dir();
+	if ( $dir ) {
+		$base = ludoa_static_uri() . '/' . $dir . '/img';
+		printf(
+			'<link rel="preload" as="image" href="%s" media="(max-width:767px)" fetchpriority="high" />' . "\n",
+			esc_url( "$base/banner-sp.webp" )
+		);
+		printf(
+			'<link rel="preload" as="image" href="%s" media="(min-width:768px)" fetchpriority="high" />' . "\n",
+			esc_url( "$base/banner-pc.webp" )
+		);
+	} elseif ( is_singular( 'case' ) && has_post_thumbnail() ) {
+		$thumb = get_the_post_thumbnail_url( get_queried_object_id(), 'full' );
+		if ( $thumb ) {
+			printf( '<link rel="preload" as="image" href="%s" fetchpriority="high" />' . "\n", esc_url( $thumb ) );
+		}
 	}
 }
 add_action( 'wp_head', 'ludoa_resource_hints', 1 );
@@ -115,12 +176,30 @@ add_action( 'wp_head', 'ludoa_resource_hints', 1 );
 function ludoa_assets() {
 	$static = ludoa_static_uri();
 
-	// Google Fonts (matches the static design).
+	// Google Fonts — latin display faces. Small (~64 KB total), wanted everywhere.
+	//
+	// Noto Sans JP is dropped entirely: --font-jp-sans is declared in tokens.css
+	// but never referenced by any rule.
 	wp_enqueue_style(
 		'ludoa-fonts',
-		'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Nova+Cut&family=Padyakke+Expanded+One&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Nova+Cut&family=Padyakke+Expanded+One&display=swap',
 		array(),
 		null
+	);
+
+	// Noto Serif JP — PC only. Google serves it as ~32 unicode-range chunks of a
+	// variable font, and this site's kanji coverage pulls all of them: ~805 KB,
+	// which trimming weights does not reduce. On phones that is the single
+	// biggest drag on LCP, and the fallback stack is already a real mincho
+	// everywhere it matters (Hiragino Mincho ProN on iOS, Noto Serif CJK JP on
+	// Android, Yu Mincho on Windows), so the media query keeps the bytes on the
+	// viewports that can afford them.
+	wp_enqueue_style(
+		'ludoa-fonts-jp',
+		'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap',
+		array(),
+		null,
+		'(min-width:768px)'
 	);
 
 	// Global stylesheets, in the same order as the static <head>.
@@ -182,6 +261,38 @@ function ludoa_assets() {
 add_action( 'wp_enqueue_scripts', 'ludoa_assets' );
 
 /**
+ * Load the Google Fonts stylesheet without blocking the first paint.
+ *
+ * The JP serif alone is ~600 KB of unicode-range subsets; fetched at render
+ * priority it starves the LCP banner image. `media="print"` drops it out of the
+ * critical path, the onload handler promotes it back, and every face already
+ * carries `display=swap`, so text paints in the local mincho fallback first.
+ *
+ * @param string $tag    The <link> markup.
+ * @param string $handle Stylesheet handle.
+ * @return string
+ */
+function ludoa_async_fonts( $tag, $handle ) {
+	if ( is_admin() || ! in_array( $handle, array( 'ludoa-fonts', 'ludoa-fonts-jp' ), true ) ) {
+		return $tag;
+	}
+
+	if ( ! preg_match( '/media=([\'"])(.*?)\1/', $tag, $m ) ) {
+		return $tag; // Unexpected markup — leave it render-blocking rather than break it.
+	}
+
+	$restore = str_replace( "'", "\\'", $m[2] );
+	$async   = str_replace(
+		$m[0],
+		sprintf( 'media="print" onload="this.media=\'%s\';this.onload=null"', esc_attr( $restore ) ),
+		$tag
+	);
+
+	return $async . '<noscript>' . $tag . '</noscript>' . "\n";
+}
+add_filter( 'style_loader_tag', 'ludoa_async_fonts', 10, 2 );
+
+/**
  * Static site: drop WordPress block-library bloat on the front end.
  */
 function ludoa_dequeue_block_styles() {
@@ -191,6 +302,22 @@ function ludoa_dequeue_block_styles() {
 	wp_dequeue_style( 'classic-theme-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'ludoa_dequeue_block_styles', 100 );
+
+/**
+ * Drop the emoji polyfill — 23 KB of script plus a DOM scan, for a feature the
+ * site never uses.
+ */
+function ludoa_disable_emojis() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	add_filter( 'emoji_svg_url', '__return_false' );
+}
+add_action( 'init', 'ludoa_disable_emojis' );
 
 /* ============================================================
  * Auto-provision pages on theme activation.

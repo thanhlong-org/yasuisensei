@@ -1201,6 +1201,11 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .page-banner__photo { animation: none; }
 }
+/* SP: this is the LCP element on every inner page — the blur filter and the
+   endless breathing scale keep a full-width layer repainting behind it. */
+@media (max-width: 767px) {
+  .page-banner__photo { animation: none; }
+}
 
 /* =============================================
    Service + Case (+ detail-btn, case-deco) - shared blocks

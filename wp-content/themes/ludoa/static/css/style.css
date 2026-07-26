@@ -2051,6 +2051,13 @@
 @media (prefers-reduced-motion: reduce) {
   .venn-circle__shine { animation: none; }
 }
+
+/* SP: background-position is not compositable, so this drifts the main thread
+   through a repaint of three blended layers on every frame, forever. The effect
+   is barely legible at phone size — drop it. */
+@media (max-width: 767px) {
+  .venn-circle__shine { animation: none; }
+}
 .venn-circle--01 {
   top: 0;
   left: 145px;            /* centered: (720-430)/2 */
@@ -2545,6 +2552,9 @@
     width: 100%;
     height: 342px; /* Figma spec */
     background-image: url("../assets/img/banner-sp.webp");
+    /* No entrance animation on SP: this is the LCP element, and the blur filter
+       plus the endless float keep a full-width layer repainting on the phone. */
+    animation: none;
   }
   /* SCROLL aligned to left edge of the image on SP */
   .hero__scroll {

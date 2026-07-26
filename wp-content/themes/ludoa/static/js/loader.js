@@ -13,7 +13,7 @@
     return;
   }
 
-  var MIN_SHOW = 2100; // let the intro animation finish
+  var MIN_SHOW = 1400; // matches the (tightened) intro choreography in loader.css
   var started = Date.now();
   var done = false;
 
@@ -32,10 +32,8 @@
     }, 1300);
   }
 
-  window.addEventListener('load', function () {
-    setTimeout(finish, Math.max(0, MIN_SHOW - (Date.now() - started)));
-  });
-
-  // Failsafe: never trap the visitor if the load event stalls.
-  setTimeout(finish, 6000);
+  // Hide as soon as the intro animation has played. Waiting for `load` used to
+  // hold the curtain until every font and image had arrived, which on mobile
+  // pushed the hero — the LCP element — several seconds past its actual paint.
+  setTimeout(finish, Math.max(0, MIN_SHOW - (Date.now() - started)));
 })();
