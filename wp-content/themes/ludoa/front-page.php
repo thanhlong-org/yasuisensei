@@ -237,7 +237,7 @@ $s = ludoa_static_uri();
           <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
           <span class="detail-btn__edge detail-btn__edge--r" aria-hidden="true"></span>
-          <span class="detail-btn__accent case__btn-sp-accent" aria-hidden="true"></span>
+          <span class="detail-btn__accent detail-btn__accent--highlight" aria-hidden="true"></span>
           <span class="detail-btn__label">事例紹介一覧を見る</span>
         </a>
       </div>

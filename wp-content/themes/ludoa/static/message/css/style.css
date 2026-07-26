@@ -517,7 +517,7 @@
     writing-mode: vertical-rl;
     /* NO display:flex — in vertical-rl each block child becomes its own
        full-height column (right→left). Flex would split the height and wrap. */
-    height: 290px;
+    height: 380px;
     margin: 0;
     font-size: 18px; /* Figma style_S1337G */
     line-height: 1.3;

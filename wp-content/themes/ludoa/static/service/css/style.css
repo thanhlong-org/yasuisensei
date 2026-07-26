@@ -748,7 +748,7 @@
   }
   .detail-btn.service__btn-sp {
     display: flex; /* block-level so margin auto works */
-    margin: 40px auto 0;
+    margin: 100px auto 0;
     width: 272px;
     height: 50px;
     font-size: 14px;
@@ -775,7 +775,7 @@
     grid-template-columns: 28px max-content 1fr;
     column-gap: 14px;
     height: 54px;
-    padding-bottom: 16px;
+    padding: 16px 0;
   }
   .service-item__num {
     font-size: 18px;
@@ -847,7 +847,7 @@
     transform: translateX(-50%);
     width: 280px;
     height: 280px;
-    opacity: 0.08;
+    opacity: 0.8;
     z-index: 0;
   }
   /* Offset the list to match the homepage frame coordinates since subpage has no heading */

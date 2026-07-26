@@ -152,22 +152,22 @@
   .page-banner__inner { display: contents; }
   .page-banner__breadcrumb {
     position: static;
-    order: 1;
+    order: 2;
     width: 100%;
-    padding: 12px 0 6px 20px;
+    padding: 10px 0 10px 20px;
   }
   .breadcrumb { font-size: 13px; }
   .page-banner__en {
     position: static;
-    order: 2;
-    padding: 6px 0 0 19px;
+    order: 1;
+    padding: 17px 0 0 19px;
     font-size: 50px;
     color: rgba(65, 99, 136, 0.2);
   }
   .page-banner__jp {
     position: static;
     margin-top: -15px;
-    order: 2;
+    order: 1;
     padding: 4px 0 0 24px;
     font-size: 20px;
   }
@@ -399,7 +399,7 @@
 @media (max-width: 767px) {
   .asy-support,
   .asy-issues,
-  .asy-flow { padding: 56px 20px 0; }
+  .asy-flow { padding: 56px 20px; }
 
   .asy-head { margin-bottom: 32px; }
   .asy-head__title { font-size: 24px; }

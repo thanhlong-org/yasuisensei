@@ -74,6 +74,15 @@ $s = ludoa_static_uri();
               <?php endwhile; ?>
             <?php endif; ?>
           </ul>
+          <!-- SP-only button at bottom -->
+          <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="detail-btn service__btn-sp">
+            <span class="detail-btn__edge detail-btn__edge--t" aria-hidden="true"></span>
+            <span class="detail-btn__edge detail-btn__edge--b" aria-hidden="true"></span>
+            <span class="detail-btn__edge detail-btn__edge--l" aria-hidden="true"></span>
+            <span class="detail-btn__edge detail-btn__edge--r" aria-hidden="true"></span>
+            <span class="detail-btn__accent detail-btn__accent--highlight" aria-hidden="true"></span>
+            <span class="detail-btn__label">サービス一覧を見る</span>
+          </a>
         </div>
       </div>
     </section>
