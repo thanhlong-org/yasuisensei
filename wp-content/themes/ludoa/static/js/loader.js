@@ -13,11 +13,22 @@
     return;
   }
 
-  // Budget: ~3s of loader, start to finish. 2300ms of intro (the gold bar is
-  // timed to top out right here) + the 0.7s curtain split below.
+  // Hard cap: the loader is off screen 3s after navigation starts, full stop.
+  // 2300ms of intro (the gold bar tops out right here) + the 0.7s curtain split.
   var MIN_SHOW = 2300;
-  var started = Date.now();
   var done = false;
+
+  // Elapsed since navigation start — NOT since this script ran. The two used to
+  // be the same thing only on a fast connection: whatever delays the document
+  // (slow TTFB, the render-blocking CSS, a phone crawling through the image
+  // queue) used to be added on top of the budget instead of counting against
+  // it, which is how a ~3s curtain turned into a minute of navy on mobile.
+  function elapsed() {
+    if (window.performance && typeof performance.now === 'function') {
+      return performance.now();
+    }
+    return 0;
+  }
 
   function finish() {
     if (done) {
@@ -38,8 +49,14 @@
   // hold the curtain until every font and image had arrived, which on mobile
   // pushed the hero — the LCP element — several seconds past its actual paint.
   //
-  // This file is inlined right below the loader markup (see header.php), so the
-  // clock starts at parse time instead of after the footer bundle has been
-  // fetched — on a phone that alone was up to a second of dead curtain.
-  setTimeout(finish, Math.max(0, MIN_SHOW - (Date.now() - started)));
+  // This file is inlined right below the loader markup (see header.php) so it
+  // runs at parse time rather than after the footer bundle has been fetched.
+  setTimeout(finish, Math.max(0, MIN_SHOW - elapsed()));
+
+  // Back/forward cache restore replays no timers — bail out immediately.
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      finish();
+    }
+  });
 })();
