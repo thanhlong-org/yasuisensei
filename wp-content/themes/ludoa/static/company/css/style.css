@@ -356,6 +356,9 @@
   gap: 0;
   padding-top: 0;
 }
+/* Extra break points used on SP only — PC keeps the original 2-line wrap */
+.company__br--sp { display: none; }
+
 .company__intro-p {
   margin: 0;
   /* Each paragraph fills the same 150px band as its matching link, centred to align with the link title */
@@ -484,21 +487,9 @@
   transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .company-item:hover .company-item__accent { width: 100%; }
-.company-item__bar-top {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 4px;
-  background: #0340A4;
-  z-index: 2;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.company-item:hover .company-item__bar-top { transform: scaleX(1); }
-/* Khi hover link dưới, thu accent đáy của link ngay trên về 0 để 2 vạch xanh không đè nhau ở ranh giới */
-.company-item:has(+ .company-item:hover) .company-item__accent { width: 0; }
+/* Same hover as the home サービス list: only the bottom accent runs.
+   The top blue bar is dropped (markup span kept, just never painted). */
+.company-item__bar-top { display: none; }
 
 /* ----- Frame deco around the body (slash corners + lines + sparkles) ----- */
 .company__frame { position: absolute; pointer-events: none; z-index: 0; }
@@ -581,8 +572,7 @@
   .company-item__text,
   .company-item__title,
   .company-item__arrow,
-  .company-item__accent,
-  .company-item__bar-top { transition: none; }
+  .company-item__accent { transition: none; }
 }
 
 /* =============================================
@@ -608,15 +598,18 @@
   .company__heading-jp { font-size: 18px; margin-top: -18px; letter-spacing: 2.7px; }
   .company__body { gap: 28px; padding: 28px 0; }
   .company__intro-p { font-size: 15px; }
+  .company__br--sp { display: inline; }
   .company-item__link { height: 120px; }
   .company-item__title { font-size: 18px; }
   .company-item:hover .company-item__title { font-size: 20px; }
   .company-item__en { font-size: 14px; }
   .company-item__arrow { width: 32px; height: 32px; right: 8px; }
   .company-item:hover .company-item__text { padding-left: 20px; }
-  .company__frame--tl, .company__frame--br { display: none; }
-  .company__frame--bline {
-    left: 0;
-    right: 0;
-  }
+  /* Slash corners kept on SP too, just smaller — lines pull in so each line end
+     meets its slash instead of running past it. */
+  .company__frame--tl, .company__frame--br { width: 32px; height: 32px; }
+  .company__frame--tl { top: -16px; left: -8px; }
+  .company__frame--br { bottom: -16px; right: -8px; }
+  .company__frame--tline { left: 10px; right: 0; }
+  .company__frame--bline { left: 0; right: 10px; }
 }

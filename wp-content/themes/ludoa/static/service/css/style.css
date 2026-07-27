@@ -790,6 +790,11 @@
     width: 60px;
     height: 4px;
   }
+  /* Breathing room above the first item so it clears the top frame line,
+     matching the gap the last item leaves above the bottom line */
+  .service-item:first-child {
+    margin-top: 30px;
+  }
 
   /* Show and position decorative frame on SP */
   .service__deco {
@@ -805,7 +810,7 @@
     left: 0;
   }
   .service__deco--slash-br {
-    top: 440px;
+    top: 470px;
     left: auto;
     right: 0;
   }
@@ -817,7 +822,7 @@
     height: 1px;
   }
   .service__deco--bottom-line {
-    top: 460px;
+    top: 490px;
     left: 10px;
     right: 20px;
     width: auto;
@@ -831,7 +836,7 @@
     height: 12px;
   }
   .service__deco--star-bl {
-    top: 454px;
+    top: 484px;
     left: 0;
     right: auto;
     width: 12px;
