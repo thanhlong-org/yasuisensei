@@ -69,7 +69,7 @@ $s = ludoa_static_uri();
           </div>
           <div class="promise-row__content">
             <h2 class="promise-title" data-reveal data-reveal-delay="1">
-              <span class="promise-title__line promise-title__line--1">数字の先には、必ず「人」と「想い」がある。</span>
+              <span class="promise-title__line promise-title__line--1"><span class="ptl-col ptl-col--1">数字の先には、</span><span class="ptl-col ptl-col--2">必ず「人」と</span><span class="ptl-col ptl-col--3">「想い」がある。</span></span>
               <span class="promise-title__line promise-title__line--2">私たちは、その考えを大切にしています。<span class="promise-title__star" aria-hidden="true"></span></span>
             </h2>
             <div class="promise-text" data-reveal data-reveal-delay="2">
