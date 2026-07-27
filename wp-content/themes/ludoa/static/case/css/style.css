@@ -401,6 +401,10 @@
   .cs-item__desc { font-size: 15px; }
   .cs-item__client { font-size: 15px; }
   .cs-item__footer { flex-direction: column; align-items: stretch; gap: 16px; }
+  /* Button centered on SP; width caps at 272px but shrinks inside narrow cards */
+  .cs-item__btn { width: 100%; max-width: 272px; margin-inline: auto; }
+  .cs-item__btn .detail-btn__edge--t,
+  .cs-item__btn .detail-btn__edge--b { width: calc(100% - 20.14px); }
   /* Tight frame: line hugs the edge, short slash meets the line end, star sits on the line */
   .cs-deco--tline { top: 6px; left: 18px; right: 8px; }
   .cs-deco--bline { bottom: 6px; left: 8px; right: 18px; }

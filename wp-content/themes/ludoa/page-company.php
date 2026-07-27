@@ -58,9 +58,9 @@ $s = ludoa_static_uri();
 
           <!-- Intro text (left) -->
           <div class="company__intro" data-reveal>
-            <p class="company__intro-p">私たちは、<br />お客様との長期的な信頼関係を何よりも大切にしています。</p>
-            <p class="company__intro-p">そのために、どのような想いで日々の業務に向き合い、<br />どのような強みを持ってご支援しているのか。</p>
-            <p class="company__intro-p">安心してご相談いただくために、<br />まずは私たちのことを知っていただければ幸いです。</p>
+            <p class="company__intro-p">私たちは、<br />お客様との長期的な信頼関係を<br class="company__br--sp" />何よりも大切にしています。</p>
+            <p class="company__intro-p">そのために、<br class="company__br--sp" />どのような想いで日々の業務に向き合い、<br />どのような強みを持ってご支援しているのか。</p>
+            <p class="company__intro-p">安心してご相談いただくために、<br />まずは私たちのことを<br class="company__br--sp" />知っていただければ幸いです。</p>
           </div>
 
           <!-- Link rows (right) — reveal a photo on hover -->
