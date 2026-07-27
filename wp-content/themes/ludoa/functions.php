@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.1.2' );
+define( 'LUDOA_VERSION', '1.1.3' );
 
 
 // お問い合わせフォーム — validation / confirm flow.
@@ -38,6 +38,34 @@ require get_template_directory() . '/inc/seo.php';
  */
 function ludoa_static_uri() {
 	return get_template_directory_uri() . '/static';
+}
+
+/**
+ * Print a file from /static/ inline, as a <style> or <script>.
+ *
+ * Used for the loader only: it is the very first thing painted and the very
+ * first thing that has to run, so a round trip for either half of it is a round
+ * trip the user spends staring at the curtain.
+ *
+ * @param string $rel  Path under /static/, e.g. 'css/loader.css'.
+ * @param string $type 'style' or 'script'.
+ */
+function ludoa_print_inline_asset( $rel, $type ) {
+	$path = get_template_directory() . '/static/' . $rel;
+	if ( ! is_readable( $path ) ) {
+		return;
+	}
+
+	$code = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	if ( false === $code ) {
+		return;
+	}
+
+	printf(
+		'style' === $type ? '<style id="ludoa-inline-%1$s">%2$s</style>' . "\n" : '<script id="ludoa-inline-%1$s">%2$s</script>' . "\n",
+		esc_attr( sanitize_title( $rel ) ),
+		$code // phpcs:ignore WordPress.Security.EscapeOutput — theme-owned file, not user input.
+	);
 }
 
 /**
@@ -150,6 +178,12 @@ function ludoa_resource_hints() {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com" />' . "\n";
 	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
 
+	// The loader curtain is the first paint, and as a <link> it could not paint
+	// until the whole render-blocking chain (common.css + the page sheet, ~120 KB)
+	// had landed — on a phone the user watched a white screen for exactly that
+	// long before the ~3s loader even began. Inline it: ~5 KB, ~1.5 KB gzipped.
+	ludoa_print_inline_asset( 'css/loader.css', 'style' );
+
 	$dir = ludoa_banner_dir();
 	if ( $dir ) {
 		$base = ludoa_static_uri() . '/' . $dir . '/img';
@@ -206,7 +240,7 @@ function ludoa_assets() {
 	wp_enqueue_style( 'ludoa-reset', "$static/css/reset.css", array(), LUDOA_VERSION );
 	wp_enqueue_style( 'ludoa-tokens', "$static/css/tokens.css", array( 'ludoa-reset' ), LUDOA_VERSION );
 	wp_enqueue_style( 'ludoa-common', "$static/css/common.css", array( 'ludoa-tokens' ), LUDOA_VERSION );
-	wp_enqueue_style( 'ludoa-loader', "$static/css/loader.css", array( 'ludoa-common' ), LUDOA_VERSION );
+	// css/loader.css is not enqueued — it is inlined in ludoa_resource_hints().
 	// The static service-list rows are not links — cover each row with one.
 	wp_add_inline_style( 'ludoa-common', '.service-item{cursor:pointer}.service-item__cover{position:absolute;inset:0;z-index:2}' );
 
@@ -253,9 +287,9 @@ function ludoa_assets() {
 		}
 	}
 
-	// Site script (footer).
+	// Site script (footer). js/loader.js is not enqueued — header.php inlines it
+	// directly below the loader markup so its clock starts at parse time.
 	wp_enqueue_script( 'ludoa-script', "$static/js/script.js", array(), LUDOA_VERSION, true );
-	wp_enqueue_script( 'ludoa-loader', "$static/js/loader.js", array(), LUDOA_VERSION, true );
 	wp_enqueue_script( 'ludoa-service-hover', "$static/js/service-hover.js", array(), LUDOA_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'ludoa_assets' );

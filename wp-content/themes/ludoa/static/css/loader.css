@@ -23,7 +23,7 @@ html:not(.ludoa-no-loader):not(.ludoa-loader-done) { overflow: hidden; }
   width: 100%;
   height: 50.1%; /* slight overlap so no seam line shows */
   background: linear-gradient(160deg, #041a35 0%, #0b2f55 55%, #00457C 100%);
-  transition: transform 0.85s cubic-bezier(0.77, 0, 0.18, 1) 0.3s;
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
   will-change: transform;
 }
 .ludoa-loader__panel--t { top: 0; }
@@ -112,7 +112,8 @@ html:not(.ludoa-no-loader):not(.ludoa-loader-done) { overflow: hidden; }
   background: linear-gradient(90deg, #b79c55, #e8d9a8);
   transform: scaleX(0);
   transform-origin: left center;
-  animation: ludoa-bar-fill 1.15s cubic-bezier(0.22, 1, 0.3, 1) 0.25s forwards;
+  /* Tops out at ~2.25s — just as loader.js opens the curtain at 2.3s. */
+  animation: ludoa-bar-fill 2s cubic-bezier(0.22, 1, 0.3, 1) 0.25s forwards;
 }
 
 /* Corner sparkles, twinkling */

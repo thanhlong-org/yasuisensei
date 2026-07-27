@@ -13,9 +13,9 @@
     return;
   }
 
-  // Matches the intro choreography in loader.css, which is shorter on SP.
-  var sp = window.matchMedia && window.matchMedia('(max-width:767px)').matches;
-  var MIN_SHOW = sp ? 850 : 1050;
+  // Budget: ~3s of loader, start to finish. 2300ms of intro (the gold bar is
+  // timed to top out right here) + the 0.7s curtain split below.
+  var MIN_SHOW = 2300;
   var started = Date.now();
   var done = false;
 
@@ -31,7 +31,7 @@
     root.classList.add('ludoa-loader-done'); // unlock scroll
     setTimeout(function () {
       el.classList.add('is-gone');
-    }, 700); // curtain transition (0.6s) + slack
+    }, 750); // curtain transition (0.7s) + slack
   }
 
   // Hide as soon as the intro animation has played. Waiting for `load` used to

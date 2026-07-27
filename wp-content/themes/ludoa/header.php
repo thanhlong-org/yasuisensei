@@ -44,6 +44,12 @@
       <span class="ludoa-loader__spark ludoa-loader__spark--2"><?php echo $ludoa_star_svg; // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
     </div>
   </div>
+  <?php
+  // Boot the loader inline, right below its markup: from the footer bundle the
+  // ~3s clock could not start until script.js had been fetched and run, so on a
+  // phone the curtain sat there for the whole download on top of its own budget.
+  ludoa_print_inline_asset( 'js/loader.js', 'script' );
+  ?>
 
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="site-header">
