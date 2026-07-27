@@ -13,7 +13,9 @@
     return;
   }
 
-  var MIN_SHOW = 1400; // matches the (tightened) intro choreography in loader.css
+  // Matches the intro choreography in loader.css, which is shorter on SP.
+  var sp = window.matchMedia && window.matchMedia('(max-width:767px)').matches;
+  var MIN_SHOW = sp ? 850 : 1050;
   var started = Date.now();
   var done = false;
 
@@ -29,11 +31,15 @@
     root.classList.add('ludoa-loader-done'); // unlock scroll
     setTimeout(function () {
       el.classList.add('is-gone');
-    }, 1300);
+    }, 700); // curtain transition (0.6s) + slack
   }
 
   // Hide as soon as the intro animation has played. Waiting for `load` used to
   // hold the curtain until every font and image had arrived, which on mobile
   // pushed the hero — the LCP element — several seconds past its actual paint.
+  //
+  // This file is inlined right below the loader markup (see header.php), so the
+  // clock starts at parse time instead of after the footer bundle has been
+  // fetched — on a phone that alone was up to a second of dead curtain.
   setTimeout(finish, Math.max(0, MIN_SHOW - (Date.now() - started)));
 })();
