@@ -118,18 +118,7 @@ $s = ludoa_static_uri();
         <!-- Consultant image (left) -->
         <div class="service__image" role="img" aria-label="コンサルティングの様子"></div>
 
-        <?php
-        // Per-service descriptions (index-aligned with ludoa_services()).
-        // Line breaks are authored as newlines; nl2br() adds the <br> tags.
-        $sv_descs = array(
-          "税務顧問とは、税金の申告や会計処理だけでなく、\n事業運営に関するさまざまな課題を継続的にサポートする\nサービスです。気軽に相談できる身近なパートナーとして、\nお客様の事業を支えます。",
-          "決算・記帳代行は、日々の帳簿入力から決算・税務申告まで\n一括で任せられるサービスです。正確な会計処理で経理の手間やコストを削減し、お客様が本業に集中できる環境を支えます。",
-          "確定申告代行は、書類作成から申告手続きまで一括で任せられるサービスです。正確な税金計算で控除漏れや申告リスクを防ぎ、\n煩雑な負担を軽減してお客様が本業や生活に\n専念できるよう支えます。",
-          "月次給与・賞与計算は、毎月の給与算出や各種保険料の計算を\n正確に行うサービスです。法改正への迅速な対応で計算ミスや\nトラブルを防ぎ、担当者の負担軽減と社内情報管理で安定した\n組織運営を支えます。",
-          "創業・スタートアップ支援は、設立手続きから資金調達、\n会計体制構築まで総合サポートするサービスです。\n計画策定や融資申請を強固に支え、経営者が事業立ち上げと\n軌道化に専念できる基盤を整えます。",
-          "節税対策は、貴社の状況に合わせ最新税制を活用した\n合法プランをご提案するサービスです。単なる減税ではなく\n手元資金を最大化し、リスクのない安全な施策で資金繰り改善と財務体質の強化をバックアップします。",
-        );
-        ?>
+        <?php $sv_descs = ludoa_service_descs(); ?>
         <!-- Description text (below image, left column) — swaps with the hovered service. -->
         <p class="service__desc"><?php echo nl2br( esc_html( $sv_descs[0] ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 

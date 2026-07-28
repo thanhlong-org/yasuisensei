@@ -56,7 +56,8 @@ $s = ludoa_static_uri();
         <div class="service__cols">
           <div class="service__left">
             <div class="service__image" role="img" aria-label="コンサルティングの様子"></div>
-            <p class="service__desc">税務顧問とは、税金の申告や会計処理だけでなく、<br />事業運営に関するさまざまな課題を継続的にサポートする<br />サービスです。気軽に相談できる身近なパートナーとして、<br />お客様の事業を支えます。</p>
+            <?php $sv_descs = ludoa_service_descs(); ?>
+            <p class="service__desc"><?php echo nl2br( esc_html( $sv_descs[0] ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
           </div>
 
           <ul class="service__list">
@@ -64,7 +65,7 @@ $s = ludoa_static_uri();
               <?php $num = 0; ?>
               <?php $sv_imgs = array( 'service-consultant.webp', 'sv2.webp', 'sv3.webp', 'sv4.webp', 'sv5.webp', 'sv6.webp' ); ?>
               <?php while ( have_posts() ) : the_post(); $num++; ?>
-            <li class="service-item" data-reveal data-sv-img="<?php echo esc_url( "$s/assets/img/home-sv/" . $sv_imgs[ ( $num - 1 ) % 6 ] ); ?>">
+            <li class="service-item" data-reveal data-sv-img="<?php echo esc_url( "$s/assets/img/home-sv/" . $sv_imgs[ ( $num - 1 ) % 6 ] ); ?>" data-sv-desc="<?php echo esc_attr( nl2br( esc_html( $sv_descs[ ( $num - 1 ) % 6 ] ) ) ); ?>">
               <span class="service-item__num"><?php echo esc_html( str_pad( (string) $num, 2, '0', STR_PAD_LEFT ) ); ?></span>
               <span class="service-item__name"><?php the_title(); ?></span>
               <span class="service-item__en"><?php echo esc_html( ludoa_scf( 'service_en' ) ); ?></span>
