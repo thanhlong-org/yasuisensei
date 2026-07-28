@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LUDOA_VERSION', '1.1.9' );
+define( 'LUDOA_VERSION', '1.1.8' );
 
 
 // お問い合わせフォーム — validation / confirm flow.
